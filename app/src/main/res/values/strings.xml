@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AI_Trader</string>
+    <string name="capital_on">time selected</string>
+    <string name="capital_off">time not selected</string>
+</resources>
