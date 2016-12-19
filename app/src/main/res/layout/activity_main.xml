@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -17,33 +17,38 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
-    <Button
-        android:text="Stream @xAPI"
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_xapi"
+        android:ems="10"
+        android:id="@+id/editTextLogin"
+        android:inputType="number"
+        tools:text="10073026"
+        android:hint="@string/login_hint"/>
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonStream"
-        android:layout_below="@+id/buttonLogin"
-        android:layout_alignParentStart="true"
-        android:onClick="streamLoader"/>
+        android:inputType="textPassword"
+        android:text="@string/password_xapi"
+        android:ems="10"
+        android:id="@+id/editTextPassword"
+        tools:text="devil666"
+        android:hint="@string/password_hint" />
 
     <Button
-        android:text="Login @xAPI"
+        android:text="@string/login_xapi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonLogin"
-        android:layout_alignTop="@+id/editTextTime"
-        android:layout_toEndOf="@+id/login_output"
-        android:layout_marginTop="79dp" />
+        />
 
-    <ToggleButton
-        android:text="SelectTime"
-        android:layout_width="wrap_content"
+    <Button
+        android:text="@string/load_historical_financial_data"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:id="@+id/toggleButton"
-        android:layout_below="@+id/sample_text"
-        android:layout_toEndOf="@+id/login_output"
-        android:checked="false"
-        android:fontFamily="sans-serif-medium" />
+        android:id="@+id/buttonStream"
+       />
 
-</RelativeLayout>
+</LinearLayout>

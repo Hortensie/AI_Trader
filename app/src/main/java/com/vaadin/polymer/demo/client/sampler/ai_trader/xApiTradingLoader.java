@@ -2,16 +2,9 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
+import pro.xstore.api.message.codes.PERIOD_CODE;
 import pro.xstore.api.message.command.APICommandFactory;
 import pro.xstore.api.message.command.ChartRangeCommand;
 import pro.xstore.api.message.error.APICommandConstructionException;
@@ -19,90 +12,53 @@ import pro.xstore.api.message.error.APICommunicationException;
 import pro.xstore.api.message.error.APIReplyParseException;
 import pro.xstore.api.message.records.ChartRangeInfoRecord;
 import pro.xstore.api.message.records.RateInfoRecord;
-import pro.xstore.api.message.records.SymbolRecord;
 import pro.xstore.api.message.response.APIErrorResponse;
-import pro.xstore.api.message.response.AllSymbolsResponse;
 import pro.xstore.api.message.response.ChartResponse;
-import pro.xstore.api.message.response.LoginResponse;
-import pro.xstore.api.sync.Credentials;
-import pro.xstore.api.sync.ServerData;
-import pro.xstore.api.sync.ServerData.ServerEnum;
 import pro.xstore.api.sync.SyncAPIConnector;
 
-import static pro.xstore.api.message.codes.PERIOD_CODE.PERIOD_D1;
-
 /**
- * Created by Piotr on 2016-12-08.
+ * Created by Piotr Szczesny on 2016-12-08.
+ * comment
  */
 
-public class xApiTradingLoader extends AsyncTask<Void,Void,List<RateInfoRecord>> {
+class xApiTradingLoader extends AsyncTask<Void,Void,List<RateInfoRecord>> {
 
+    private SyncAPIConnector apiConnector;
+    private String symbol;
+    private PERIOD_CODE period_code;
+    private long startTime;
+    private long endTime;
+
+
+    xApiTradingLoader(SyncAPIConnector apiConnector, String symbol, PERIOD_CODE period_code, long startTime, long endTime) {
+        this.apiConnector = apiConnector;
+        this.symbol = symbol;
+        this.period_code = period_code;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 
     @Override
-    protected List<RateInfoRecord> doInBackground(Void... voids) {
+    protected List<RateInfoRecord> doInBackground(Void... params) {
 
-        List<RateInfoRecord> eurUsdList = new LinkedList();
+        List<RateInfoRecord> eurUsdList=null;
         try {
-            // Create new connector
-            Log.d("json", "trying to log in");
-            SyncAPIConnector connector = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
+            Log.d("json", "trying to assign sync API connector");
+            //SyncAPIConnector syncAPIConnector=params[0];
+            Log.d("json", "sync API connector assigned");
 
-            // Create new credentials
-            // Insert your credentials
-            Credentials credentials = new Credentials(10073026, "devil666");
-
-            LoginResponse loginResponse = APICommandFactory.executeLoginCommand(connector, credentials);
-
-            // Check if user logged in correctly
-            if (loginResponse.getStatus())
-            {
-                // Print the message on console
-                Log.d("json", "User logged in");
-                Log.d("json", "Status: "+loginResponse.getStatus());
-                Log.d("json", "StreamSessionID: "+loginResponse.getStreamSessionId());
-                //gets all symbols
-
-                /*
-                AllSymbolsResponse availableSymbols = APICommandFactory.executeAllSymbolsCommand(connector);
-
-                //print message to console
-                Log.d("json", "available symbols");
-                for (SymbolRecord symbol : availableSymbols.getSymbolRecords())
-                {
-                    object.put("Symbol",symbol.getSymbol());
-                    object.put("Ask",symbol.getAsk());
-                    object.put("Bid",symbol.getBid());
-                    object.put("Time",symbol.getTime());
-                    Log.d("json do In background","-->"+symbol.getSymbol()+"Ask: "+symbol.getAsk()+"Bid: "+symbol.getBid()+"Czas: "+symbol.getTime());
-                }
-                */
                 Log.d("json","char range info record");
-                ChartRangeInfoRecord record = new ChartRangeInfoRecord("EURUSD",PERIOD_D1,1451660400000L,1483196400000L);
+                ChartRangeInfoRecord record = new ChartRangeInfoRecord(symbol,period_code,startTime,endTime);
+               // ChartRangeInfoRecord record = new ChartRangeInfoRecord("EURUSD",PERIOD_D1,1451660400000L,1483196400000L);
+                Log.d("json","chart range created");
                 ChartRangeCommand chartRangeCommand = APICommandFactory.createChartRangeCommand(record);
-                ChartResponse executeChartRangeCommand = APICommandFactory.executeChartRangeCommand(connector,record);
+                Log.d("json","chart range command created");
+                ChartResponse executeChartRangeCommand = APICommandFactory.executeChartRangeCommand(apiConnector,record);
                 Log.d("json EURUSD com req",chartRangeCommand.toString());
                 eurUsdList = executeChartRangeCommand.getRateInfos();
-
-            }
-            else
-            {
-                Log.d("json","Error, Coudn't logged in");
-            }
-
-            // Close connection
-            connector.close();
-            Log.d("json","connection closed");
-
-        } catch (IOException e) {
+        }
+         catch (APIReplyParseException|APICommunicationException|APICommandConstructionException|APIErrorResponse e) {
             e.printStackTrace();
-        } catch (APIReplyParseException e) {
-            e.printStackTrace();
-        } catch (APICommunicationException e) {
-            e.printStackTrace();
-        } catch (APICommandConstructionException e) {
-            e.printStackTrace();
-        } catch (APIErrorResponse apiErrorResponse) {
-            apiErrorResponse.printStackTrace();
         }
 
         return eurUsdList;
@@ -114,7 +70,7 @@ public class xApiTradingLoader extends AsyncTask<Void,Void,List<RateInfoRecord>>
         // Log.d("json onPostExecute",object.toString());
 
         //initialize firebase connection (instance, reference)
-        FirebaseDb firebaseDb = new FirebaseDb();
+        //FirebaseDb firebaseDb = new FirebaseDb();
         for (int i=0;i<eurUsdList.size();i++)
         {
             //save data to cloud firebase

@@ -1,52 +1,10 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
-
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.database.DatabaseErrorHandler;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Credentials;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.UserHandle;
-import android.support.annotation.Nullable;
+import android.util.JsonReader;
 import android.util.Log;
-import android.view.Display;
-
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.security.cert.Certificate;
@@ -59,13 +17,11 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.X509TrustManager;
 
-import info.guardianproject.netcipher.NetCipher;
 
-import pro.xstore.api.sync.Connector;
-import static android.R.attr.data;
 
 /**
  * Created by Piotr on 2016-12-01.
+ * API connection using Https
  */
 
 public class ApiTradingLoader extends AsyncTask<String,Void,String> {
@@ -78,7 +34,7 @@ public class ApiTradingLoader extends AsyncTask<String,Void,String> {
 
 
         try {
-            //URL url = new URL(apiAddress);
+            URL url = new URL(apiAddress);
             //Login arguments = new Login("10073026", "devil666");
             //TopLogin topLogin = new TopLogin("login", arguments);
 
@@ -108,7 +64,7 @@ public class ApiTradingLoader extends AsyncTask<String,Void,String> {
             }}, null);
             HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
             //end of accepting certification
-            HttpsURLConnection httpsURLConnection = NetCipher.getHttpsURLConnection(apiAddress);
+            HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
             //net.ssl.SSLHandshakeException: javax.net.ssl.SSLProtocolException: SSL handshake aborted
             //HttpsURLConnection httpsURLConnection = (HttpsURLConnection) url.openConnection();
             httpsURLConnection.setDoOutput(true);
@@ -246,7 +202,7 @@ public class ApiTradingLoader extends AsyncTask<String,Void,String> {
 
     }
 
-    public class NullHostNameVerifier implements HostnameVerifier {
+    private class NullHostNameVerifier implements HostnameVerifier {
 
         @Override
         public boolean verify(String hostname, SSLSession session) {

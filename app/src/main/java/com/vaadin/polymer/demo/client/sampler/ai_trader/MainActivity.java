@@ -8,45 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
+import static pro.xstore.api.message.codes.PERIOD_CODE.PERIOD_D1;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
-
-import pro.xstore.api.message.command.APICommandFactory;
-import pro.xstore.api.message.error.APICommandConstructionException;
-import pro.xstore.api.message.error.APICommunicationException;
-import pro.xstore.api.message.error.APIReplyParseException;
-import pro.xstore.api.message.records.SymbolRecord;
-import pro.xstore.api.message.response.APIErrorResponse;
-import pro.xstore.api.message.response.AllSymbolsResponse;
-import pro.xstore.api.message.response.LoginResponse;
-import pro.xstore.api.sync.Credentials;
-import pro.xstore.api.sync.ServerData;
-import pro.xstore.api.sync.SyncAPIConnector;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-
-   // FirebaseDb myDB=new FirebaseDb();
-    //FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-   // DatabaseReference databaseReference = firebaseDatabase.getReference();
-    //final String API ="https://www.bitmarket.pl/graphs/BTCPLN/1y.json";
-    //final String API ="http://dev.superman-academy.com/api.php";
-    //final String API ="https://www.bitmarket.pl/json/BTCPLN/ticker.json";
+    EditText inputLogin, inputPassword;
+    xApiLogin xApiLogin;
 
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
     }
-
-
 
 
     @Override
@@ -59,15 +33,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv.setText(stringFromJNI());
 
         Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        Button loginStream = (Button) findViewById(R.id.buttonStream);
+        Button buttonStream = (Button) findViewById(R.id.buttonStream);
+        inputLogin = (EditText) findViewById(R.id.editTextLogin);
+        inputPassword = (EditText) findViewById(R.id.editTextPassword);
+
         buttonLogin.setOnClickListener(this);
-        //EditText dateInput = (EditText) findViewById(R.id.e);
-        EditText timeInput = (EditText) findViewById(R.id.editTextTime);
-       // EditText symbolInput = (EditText) findViewById(R.id.editTextSymbol);
-        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-       // StrictMode.setThreadPolicy(policy);
+        buttonStream.setOnClickListener(this);
 
-
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
 
@@ -80,11 +54,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
-        //call AsyncTask in order to login and retrieve data from xAPI and then save it @Firebase Database
-        new xApiTradingLoader().execute();
+        switch (view.getId()) {
+
+            case R.id.buttonLogin:
+                //call AsyncTask in order to login and retrieve data from xAPI and then save it @Firebase Database
+                long login = Long.parseLong(inputLogin.getText().toString());
+                xApiLogin = new xApiLogin(getApplicationContext());
+                xApiLogin.xApiLoginToServer(login, inputPassword.getText().toString());
+                break;
+            case R.id.buttonStream:
+                new xApiTradingLoader(xApiLogin.getGlobalSyncs(),"EURUSD",PERIOD_D1,1451660400000L,1483196400000L).execute();
+                break;
+            default:
+                Log.d("error","Buttons are not working");
+                break;
+        }
     }
 
-    public void streamLoader(View view) {
-        new xApiTradingLoader().execute();
-    }
+
 }
