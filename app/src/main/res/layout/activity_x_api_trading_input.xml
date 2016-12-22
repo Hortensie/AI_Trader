@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_x_api_trading_input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.vaadin.polymer.demo.client.sampler.ai_trader.xApiTradingInput">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/data_symbol"
+        android:ems="10"
+        android:id="@+id/editTextDataSymbol"
+        android:hint="@string/hint_data_symbol" />
+
+    <TextView
+        android:text="@string/start_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/data_start_date"
+        android:id="@+id/textViewDataStartDate"
+        android:textSize="18sp" />
+
+    <TextView
+        android:text="@string/end_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/data_end_date"
+        android:id="@+id/textViewDataEndDate" />
+
+    <Button
+        android:text="@string/load_historical_financial_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonStream"
+        />
+
+    <Button
+        android:text="@string/button_setStartDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonPickStartDate" />
+
+    <Button
+        android:text="@string/button_SetEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonPickEndDate" />
+
+</LinearLayout>

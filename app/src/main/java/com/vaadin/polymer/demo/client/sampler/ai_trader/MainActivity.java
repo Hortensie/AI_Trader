@@ -1,47 +1,43 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import static pro.xstore.api.message.codes.PERIOD_CODE.PERIOD_D1;
 
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    EditText inputLogin, inputPassword;
-    xApiLogin xApiLogin;
+public class MainActivity extends Activity implements View.OnClickListener {
 
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+        // enable transitions animation
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
         setContentView(R.layout.activity_main);
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
         tv.setText(stringFromJNI());
-
-        Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        Button buttonStream = (Button) findViewById(R.id.buttonStream);
-        inputLogin = (EditText) findViewById(R.id.editTextLogin);
-        inputPassword = (EditText) findViewById(R.id.editTextPassword);
-
-        buttonLogin.setOnClickListener(this);
-        buttonStream.setOnClickListener(this);
-
+        Button buttonXApi = (Button) findViewById(R.id.buttonXApi);
+        buttonXApi.setOnClickListener(this);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
     }
 
 
@@ -56,20 +52,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (view.getId()) {
 
-            case R.id.buttonLogin:
-                //call AsyncTask in order to login and retrieve data from xAPI and then save it @Firebase Database
-                long login = Long.parseLong(inputLogin.getText().toString());
-                xApiLogin = new xApiLogin(getApplicationContext());
-                xApiLogin.xApiLoginToServer(login, inputPassword.getText().toString());
-                break;
-            case R.id.buttonStream:
-                new xApiTradingLoader(xApiLogin.getGlobalSyncs(),"EURUSD",PERIOD_D1,1451660400000L,1483196400000L).execute();
+            case R.id.buttonXApi:
+                getWindow().setExitTransition(new Explode());
+                Intent intent = new Intent(this,xApiLogin.class);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             default:
                 Log.d("error","Buttons are not working");
                 break;
         }
     }
-
 
 }

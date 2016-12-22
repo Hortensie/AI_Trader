@@ -15,40 +15,14 @@
         android:id="@+id/sample_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_xapi"
-        android:ems="10"
-        android:id="@+id/editTextLogin"
-        android:inputType="number"
-        tools:text="10073026"
-        android:hint="@string/login_hint"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:text="@string/password_xapi"
-        android:ems="10"
-        android:id="@+id/editTextPassword"
-        tools:text="devil666"
-        android:hint="@string/password_hint" />
+        android:text="@string/string_cplusplus"
+        android:elevation="5dp"/>
 
     <Button
-        android:text="@string/login_xapi"
+        android:text="@string/button_loginToXApi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonLogin"
-        />
+        android:id="@+id/buttonXApi" />
 
-    <Button
-        android:text="@string/load_historical_financial_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonStream"
-       />
 
 </LinearLayout>

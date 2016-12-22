@@ -1,7 +1,12 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import java.io.IOException;
 import pro.xstore.api.message.command.APICommandFactory;
@@ -19,58 +24,85 @@ import pro.xstore.api.sync.SyncAPIConnector;
  * comment
  */
 
-class xApiLogin {
+public class xApiLogin extends Activity implements View.OnClickListener {
 
-    private SyncAPIConnector globalSyncs;
-    private Context context;
+    private static SyncAPIConnector globalSyncs;
+    private EditText inputLogin;
+    private EditText inputPassword;
 
-    xApiLogin(Context context) {
-        this.context = context;
+      public xApiLogin() {
     }
 
-
-    SyncAPIConnector getGlobalSyncs() {
+    public static SyncAPIConnector getGlobalSyncs() {
         return globalSyncs;
     }
 
-    private void setGlobalSyncs(SyncAPIConnector globalSyncs) {
-        this.globalSyncs = globalSyncs;
+    private static void setGlobalSyncs(SyncAPIConnector globalSyncss) {
+        globalSyncs = globalSyncss;
     }
 
-    void xApiLoginToServer(long login, String password) {
+    private void xApiLoginToServer(long login, String password) {
 
         try {
             globalSyncs = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
             // Create new credentials
             // Insert your credentials
-
             Credentials credentials = new Credentials(login, password);
             LoginResponse loginResponse = APICommandFactory.executeLoginCommand(globalSyncs, credentials);
             if (loginResponse.getStatus())
             {
-                Toast toastLogged = Toast.makeText(context,"User logged in",Toast.LENGTH_LONG);
+                Toast toastLogged = Toast.makeText(getApplicationContext(),"User logged in",Toast.LENGTH_SHORT);
                 toastLogged.show();
                 Log.d("json", "user logged in, FIRST");
                 //if user was successfully logged in call Async Task to retrieve financial data
                 //and save it to FireBase database
                 setGlobalSyncs(globalSyncs);
-                Toast toastSync = Toast.makeText(context,"Global sync was set",Toast.LENGTH_LONG);
+                Toast toastSync = Toast.makeText(getApplicationContext(),"Global sync was set",Toast.LENGTH_LONG);
                 toastSync.show();
             }
             else
             {
-                Toast toast = Toast.makeText(context,"Error, user coudn't logged in",Toast.LENGTH_LONG);
-                toast.show();
+                Log.d("json", "user not logged in, FIRST");
             }
 
         } catch (IOException|APICommandConstructionException|APICommunicationException|APIReplyParseException|APIErrorResponse e) {
             e.printStackTrace();
         }
+    }
 
-        //PingCommand pingCommand = APICommandFactory.createPingCommand();
-      //  pingCommand.getCommandName();
-       // PingResponse pingResponse = APICommandFactory.executePingCommand(globalSyncs);
-      //  Log.d("json", pingResponse.toString());
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_x_api_logi);
+
+        Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        Button buttonGetdata = (Button) findViewById(R.id.buttonGetData);
+        inputLogin = (EditText) findViewById(R.id.editTextLogin);
+        inputPassword = (EditText) findViewById(R.id.editTextPassword);
+        buttonLogin.setOnClickListener(this);
+        buttonGetdata.setOnClickListener(this);
 
     }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.buttonLogin:
+                //call AsyncTask in order to login and retrieve data from xAPI and then save it @Firebase Database
+                long login = Long.parseLong(inputLogin.getText().toString());
+                xApiLoginToServer(login, inputPassword.getText().toString());
+                break;
+            case R.id.buttonGetData:
+                Intent intent = new Intent(this,xApiTradingInput.class);
+                startActivity(intent);
+                break;
+            default:
+                Log.d("error","Buttons are not working");
+                break;
+        }
+    }
+
+
 }

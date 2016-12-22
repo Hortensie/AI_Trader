@@ -4,8 +4,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 import pro.xstore.api.message.command.APICommandFactory;
 import pro.xstore.api.message.command.ChartRangeCommand;
@@ -31,7 +29,7 @@ import static pro.xstore.api.message.codes.PERIOD_CODE.PERIOD_D1;
  * Created by Piotr on 2016-12-11.
  */
 
-public class xApiStreamingTradingLoader extends AsyncTask<Void,Void,STickRecord> {
+class xApiStreamingTradingLoader extends AsyncTask<Void,Void,STickRecord> {
 
     @Override
     protected STickRecord doInBackground(Void... voids) {

@@ -17,11 +17,10 @@ import static android.content.ContentValues.TAG;
  */
 
 
+class FirebaseDb {
 
-public class FirebaseDb {
-
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    private final FirebaseDatabase firebaseDatabase;
+    private final DatabaseReference databaseReference;
 
     public FirebaseDb() {
         firebaseDatabase=FirebaseDatabase.getInstance();

@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
-import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
@@ -24,7 +23,7 @@ import javax.net.ssl.X509TrustManager;
  * API connection using Https
  */
 
-public class ApiTradingLoader extends AsyncTask<String,Void,String> {
+class ApiTradingLoader extends AsyncTask<String,Void,String> {
 
     @Override
     protected String doInBackground(String... params) {
@@ -196,7 +195,7 @@ public class ApiTradingLoader extends AsyncTask<String,Void,String> {
 
         //Euro newEuro = gson.fromJson(result_fromDoInBackground,Euro.class);
       //  FirebaseDb firebaseDb = new FirebaseDb();
-      //  firebaseDb.saveData(newEuro.getEffectiveDate(),"Date",newEuro.getEffectiveDate());
+      //  firebaseDb.saveData(newEuro.getEffectiveDate(),"DateCalendar",newEuro.getEffectiveDate());
      //   firebaseDb.saveData(newEuro.getEffectiveDate(),"MidPrice",newEuro.getMid());
 
 

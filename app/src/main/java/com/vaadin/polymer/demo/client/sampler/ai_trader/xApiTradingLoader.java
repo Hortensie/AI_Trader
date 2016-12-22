@@ -16,46 +16,51 @@ import pro.xstore.api.message.response.APIErrorResponse;
 import pro.xstore.api.message.response.ChartResponse;
 import pro.xstore.api.sync.SyncAPIConnector;
 
+import static pro.xstore.api.message.codes.PERIOD_CODE.PERIOD_D1;
+
 /**
  * Created by Piotr Szczesny on 2016-12-08.
  * comment
  */
 
-class xApiTradingLoader extends AsyncTask<Void,Void,List<RateInfoRecord>> {
+ class xApiTradingLoader extends AsyncTask<SyncAPIConnector,Void,List<RateInfoRecord>> {
 
-    private SyncAPIConnector apiConnector;
-    private String symbol;
-    private PERIOD_CODE period_code;
-    private long startTime;
-    private long endTime;
+      /*
+        private String symbol;
+        private PERIOD_CODE period_code;
+        private long startTime;
+        private long endTime;
 
 
-    xApiTradingLoader(SyncAPIConnector apiConnector, String symbol, PERIOD_CODE period_code, long startTime, long endTime) {
-        this.apiConnector = apiConnector;
-        this.symbol = symbol;
-        this.period_code = period_code;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
+        xApiTradingLoader(String symbol, PERIOD_CODE period_code, long startTime, long endTime) {
+            this.symbol = symbol;
+            this.period_code = period_code;
+            this.startTime = startTime;
+            this.endTime = endTime;
+        }
+    */
     @Override
-    protected List<RateInfoRecord> doInBackground(Void... params) {
+    protected List<RateInfoRecord> doInBackground(SyncAPIConnector... params) {
 
         List<RateInfoRecord> eurUsdList=null;
         try {
             Log.d("json", "trying to assign sync API connector");
-            //SyncAPIConnector syncAPIConnector=params[0];
+            SyncAPIConnector apiConnector=params[0];
             Log.d("json", "sync API connector assigned");
 
                 Log.d("json","char range info record");
-                ChartRangeInfoRecord record = new ChartRangeInfoRecord(symbol,period_code,startTime,endTime);
-               // ChartRangeInfoRecord record = new ChartRangeInfoRecord("EURUSD",PERIOD_D1,1451660400000L,1483196400000L);
+                //ChartRangeInfoRecord record = new ChartRangeInfoRecord(symbol,period_code,startTime,endTime);
+                ChartRangeInfoRecord record = new ChartRangeInfoRecord("EURUSD",PERIOD_D1,1451660400000L,1483196400000L);
                 Log.d("json","chart range created");
                 ChartRangeCommand chartRangeCommand = APICommandFactory.createChartRangeCommand(record);
                 Log.d("json","chart range command created");
                 ChartResponse executeChartRangeCommand = APICommandFactory.executeChartRangeCommand(apiConnector,record);
                 Log.d("json EURUSD com req",chartRangeCommand.toString());
                 eurUsdList = executeChartRangeCommand.getRateInfos();
+
+            // Close connection
+            apiConnector.close();
+            Log.d("json","connection closed");
         }
          catch (APIReplyParseException|APICommunicationException|APICommandConstructionException|APIErrorResponse e) {
             e.printStackTrace();
