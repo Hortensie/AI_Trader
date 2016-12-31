@@ -1,10 +1,5 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
-import android.util.Log;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,8 +10,8 @@ import static android.content.ContentValues.TAG;
 /**
  * Created by Piotr on 2016-12-02.
  */
-//mew
-
+//
+/*
 class FirebaseDb {
 
     private final FirebaseDatabase firebaseDatabase;
@@ -36,5 +31,4 @@ class FirebaseDb {
 
 
 }
-
-
+*/
