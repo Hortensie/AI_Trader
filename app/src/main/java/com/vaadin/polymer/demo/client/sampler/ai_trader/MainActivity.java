@@ -23,7 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+//test
         super.onCreate(savedInstanceState);
         // enable transitions animation
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
