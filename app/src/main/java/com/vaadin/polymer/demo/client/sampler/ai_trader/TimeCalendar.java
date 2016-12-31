@@ -2,7 +2,6 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.widget.TextView;
 import android.widget.TimePicker;
 
 
@@ -15,17 +14,15 @@ class TimeCalendar implements TimePickerDialog.OnTimeSetListener {
     TimeCalendar(Context context) {
         this.context = (xApiTradingInput)context;
     }
-    private DateCalendar objectDateCalendar=null;
-
     @Override
     public void onTimeSet(TimePicker timePicker, int i, int i1) {
-        setTimeInMiliseconds(objectDateCalendar.getC(),objectDateCalendar.getYearFinal(),objectDateCalendar.getMonthFinal(),objectDateCalendar.getDayFinal(), i, i1);
+        setTimeInMiliseconds(DateCalendar.getC(),DateCalendar.getYearFinal(),DateCalendar.getMonthFinal(),DateCalendar.getDayFinal(), i, i1);
     }
 
     void initiateTimePicker() {
 
-        int hour=objectDateCalendar.getC().get(Calendar.HOUR_OF_DAY);
-        int minute=objectDateCalendar.getC().get(Calendar.MINUTE);
+        int hour=DateCalendar.getC().get(Calendar.HOUR_OF_DAY);
+        int minute=DateCalendar.getC().get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(context,TimeCalendar.this,hour,minute,true);
         timePickerDialog.show();

@@ -29,15 +29,15 @@ class DateCalendar implements DatePickerDialog.OnDateSetListener {
     }
 
     private void setDayFinal(int dayFinal) {
-        this.dayFinal = dayFinal;
-    }
+        DateCalendar.dayFinal = dayFinal;
+}
 
     static int getMonthFinal() {
         return monthFinal;
     }
 
     private void setMonthFinal(int monthFinal) {
-        this.monthFinal = monthFinal;
+        DateCalendar.monthFinal = monthFinal;
     }
 
     static int getYearFinal() {
@@ -45,7 +45,7 @@ class DateCalendar implements DatePickerDialog.OnDateSetListener {
     }
 
     private void setYearFinal(int yearFinal) {
-        this.yearFinal = yearFinal;
+        DateCalendar.yearFinal = yearFinal;
     }
 
     void initiateDatePicker(){

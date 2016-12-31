@@ -33,10 +33,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/data_end_date"
-        android:id="@+id/textViewDataEndDate" />
+        android:id="@+id/textViewDataEndDate"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp" />
 
     <Button
         android:text="@string/load_historical_financial_data"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/buttonStream"
