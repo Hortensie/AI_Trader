@@ -15,7 +15,6 @@ dependencies:
     - ~/android
     
     override:
-    - echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-24.0.0,android-24,extra-google-m2repository,extra-google-google_play_services,extra-android-support
     - chmod +x gradlew
     - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
     
