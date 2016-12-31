@@ -1,5 +1,6 @@
 machine:
   environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
     ANDROID_NDK: $HOME/android-ndk-r12b
     ANDROID_NDK_HOME: $ANDROID_NDK
     PATH: $PATH:$ANDROID_NDK
