@@ -26,3 +26,4 @@ test:
   override:
 #    - mv -f circle.properties local.properties
     - ./gradlew assembleDebug
+
