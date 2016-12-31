@@ -13,7 +13,7 @@ dependencies:
     - ~/android-ndk-r12b
     - ~/.android
     - ~/android
-#pre:
+  pre:
     #-- Install NDK r12b --
     - if [[ ! -e ~/android-ndk-r12b ]]; then wget http://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip && unzip -d ~ android-ndk-r12b-linux-x86_64.zip; fi
     #-- Intall Android SDK Build-tools, revision 25.0.1 --
@@ -22,12 +22,12 @@ dependencies:
     - wget https://github.com/Commit451/android-cmake-installer/releases/download/1.1.0/install-cmake.sh
     - chmod +x install-cmake.sh
     - ./install-cmake.sh
-    #------------------
-    - echo "ndk.dir=/home/ubuntu/android-ndk-r12b" > local.properties
-#override:
-    #- echo y | android update sdk --no-ui --all --filter tools,platform-tools,build-tools-25.0.1,android-25,extra-google-m2repository,extra-google-google_play_services,extra-android-support
+    #----install gradlew dependencies
     - chmod +x gradlew
     - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies  
+    
+    #------------------
+    - echo "ndk.dir=/home/ubuntu/android-ndk-r12b" > local.properties
 
 test:
   override:
