@@ -4,10 +4,7 @@ machine:
     ANDROID_NDK: $HOME/android-ndk-r12b
     ANDROID_NDK_HOME: $ANDROID_NDK
     PATH: $PATH:$ANDROID_NDK
-    
-#general:
-  #build_dir: 
-  
+
 dependencies:
   cache_directories:
     - ~/android-ndk-r12b
@@ -25,7 +22,6 @@ dependencies:
     #----install gradlew dependencies
     - chmod +x gradlew
     - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies  
-    
     #------------------
     - echo "ndk.dir=/home/ubuntu/android-ndk-r12b" > local.properties
 
