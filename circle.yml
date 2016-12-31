@@ -13,8 +13,6 @@ dependencies:
     - ~/android-ndk-r12b
     - ~/.android
     - ~/android
-  override:
-    - (source scripts/environmentSetup.sh && getAndroidSDK)
 
   pre:
     #-- Install NDK r12b --
