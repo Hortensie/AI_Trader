@@ -11,6 +11,11 @@ general:
 dependencies:
   cache_directories:
     - ~/android-ndk-r12b
+    - ~/.android
+    - ~/android
+  override:
+    - (source scripts/environmentSetup.sh && getAndroidSDK)
+
   pre:
     #-- Install NDK r12b --
     - if [[ ! -e ~/android-ndk-r12b ]]; then wget http://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip && unzip -d ~ android-ndk-r12b-linux-x86_64.zip; fi
