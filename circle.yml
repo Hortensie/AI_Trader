@@ -25,8 +25,8 @@ dependencies:
     #------------------
     - echo "ndk.dir=/home/ubuntu/android-ndk-r12b" > local.properties
 
-#test:
-  #override:
-#    - mv -f circle.properties local.properties
-  #  - ./gradlew assembleDebug
+test:
+  override:
+    - mv -f circle.properties local.properties
+    - ./gradlew assembleDebug
 
