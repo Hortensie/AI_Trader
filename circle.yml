@@ -1,4 +1,4 @@
-﻿machine:
+machine:
   environment:
     ANDROID_NDK: $HOME/android-ndk-r12b
     ANDROID_NDK_HOME: $ANDROID_NDK
