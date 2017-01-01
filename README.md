@@ -1,3 +1,3 @@
 # AI_Trader
 ML Financial API
-https://circleci.com/gh/:owner/:repo.svg?style=shield&circlestatus=:ad0ddd6dff845a5e66f19de1ee775f0a77510ade
+https://circleci.com/gh/:owner/:repo.svg?style=shield&status=:8a96709c8eec17bac9b188c40293a972df14c628
