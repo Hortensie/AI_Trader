@@ -27,11 +27,12 @@ dependencies:
 
 test:
   override:
-      # start the emulator
+      #start the emulator
       - emulator -avd circleci-android25 -no-audio -no-window:
           background: true
           parallel: true
-      # wait for it to have booted
+      #wait for it to have booted
       - circle-android wait-for-boot
-      # run tests  against the emulator.
+      - sleep 30
+      #run tests  against the emulator.
       - ./gradlew connectedAndroidTest
