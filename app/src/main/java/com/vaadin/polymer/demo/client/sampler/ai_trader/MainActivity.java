@@ -16,22 +16,22 @@ import android.widget.TextView;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     // Used to load the 'native-lib' library on application startup.
+    /*
     static {
         System.loadLibrary("native-lib");
     }
-
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         // enable transitions animation
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-
         setContentView(R.layout.activity_main);
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
+        tv.setText("Test");
         Button buttonXApi = (Button) findViewById(R.id.buttonXApi);
         buttonXApi.setOnClickListener(this);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -43,8 +43,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
-     */
+
     public native String stringFromJNI();
+     */
 
     @Override
     public void onClick(View view) {
@@ -57,7 +58,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             default:
-                Log.d("error","Buttons are not working");
                 break;
         }
     }
