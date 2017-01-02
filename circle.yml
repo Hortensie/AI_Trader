@@ -38,6 +38,6 @@ test:
       - sleep 5
       #build the code and generate a release apk.
       - ./gradlew assembleRelease:
-        timeout: 360
+          timeout:360
       #run tests  against the emulator.
       - ./gradlew connectedAndroidTest
