@@ -5,19 +5,20 @@ import com.vaadin.polymer.demo.client.sampler.ai_trader.MainActivity;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiLogin;
 
+import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiTradingInput;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
-import static com.google.android.gms.internal.zzs.TAG;
 import static org.assertj.core.api.Java6Assertions.*;
 import static org.robolectric.Shadows.shadowOf;
 
 
 /**
  * Created by Piotr on 2017-01-02.
+ * sample of Robolectric test
  */
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 21, manifest = "src/main/AndroidManifest.xml")

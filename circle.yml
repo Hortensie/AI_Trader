@@ -36,5 +36,8 @@ test:
       - sleep 5
       - adb shell input keyevent 82
       - sleep 5
+      #build the code and generate a release apk.
+      - ./gradlew assembleRelease:
+        timeout: 360
       #run tests  against the emulator.
       - ./gradlew connectedAndroidTest
