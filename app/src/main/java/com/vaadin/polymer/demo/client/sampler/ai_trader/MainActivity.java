@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.StrictMode;
 import android.os.Bundle;
 import android.transition.Explode;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -31,7 +30,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         // Example of a call to a native method
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText("Test");
+        tv.setText(R.string.textview_testtext);
         Button buttonXApi = (Button) findViewById(R.id.buttonXApi);
         buttonXApi.setOnClickListener(this);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

@@ -99,7 +99,6 @@ public class xApiLogin extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 break;
             default:
-                Log.d("error","Buttons are not working");
                 break;
         }
     }

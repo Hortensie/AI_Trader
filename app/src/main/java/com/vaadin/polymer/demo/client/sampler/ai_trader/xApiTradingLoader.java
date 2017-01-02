@@ -23,7 +23,7 @@ import static pro.xstore.api.message.codes.PERIOD_CODE.PERIOD_D1;
  * comment
  */
 
- public class xApiTradingLoader extends AsyncTask<SyncAPIConnector,Void,List<RateInfoRecord>> {
+ class xApiTradingLoader extends AsyncTask<SyncAPIConnector,Void,List<RateInfoRecord>> {
 
       /*
         private String symbol;

@@ -38,7 +38,7 @@ test:
       - sleep 5
       #run local unit tests
       - ./gradlew testReleaseUnitTest
-      #run tests  against the emulator.
+      #run tests  against the emulator (UI tests)
       - ./gradlew connectedAndroidTest
       #build the code and generate a release apk.
       - ./gradlew assembleRelease

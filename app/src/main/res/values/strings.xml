@@ -17,4 +17,5 @@
     <string name="button_SetEndDate">Pick End Date</string>
     <string name="button_loginToXApi">Login to xAPI</string>
     <string name="title_activity_trading_symbol">tradingSymbol</string>
+    <string name="textview_testtext">Test</string>
 </resources>
