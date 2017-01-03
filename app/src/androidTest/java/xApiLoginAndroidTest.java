@@ -9,6 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import android.app.Activity;
 import android.graphics.Point;
 import android.os.RemoteException;
 import android.support.test.InstrumentationRegistry;
@@ -39,6 +40,12 @@ public class xApiLoginAndroidTest {
     @Rule
     public ActivityTestRule<xApiLogin> mActivityRule = new ActivityTestRule<>(
             xApiLogin.class);
+
+    @Before
+    public void setup()
+    {
+        Activity xApiLogin = mActivityRule.getActivity();
+    }
 
     @Before
     public void init(){
