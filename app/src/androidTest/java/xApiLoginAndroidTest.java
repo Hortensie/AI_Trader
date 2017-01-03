@@ -1,6 +1,7 @@
 /**
  * Created by Piotr on 2017-01-02.
  * Expresso UI test to valide if password editText can be used to add new value
+ * 0.2 Release fix
  */
 
 
