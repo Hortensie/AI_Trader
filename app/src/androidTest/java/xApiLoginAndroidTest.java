@@ -45,6 +45,7 @@ public class xApiLoginAndroidTest {
     @Before
     public void setup()
     {
+        //test activity Fix
         Activity xApiLogin = mActivityRule.getActivity();
     }
 
@@ -77,6 +78,17 @@ public class xApiLoginAndroidTest {
 
     @Test
     public void changeText_sameActivity() {
+        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        try {
+            if(!uiDevice.isScreenOn())
+            {
+                uiDevice.wakeUp();
+            }
+        }
+        catch (RemoteException e){
+            e.printStackTrace();
+        }
+
         // Type text and then press the button.
         onView(withId(R.id.editTextLogin)).perform(clearText());
         onView(withId(R.id.editTextLogin))
