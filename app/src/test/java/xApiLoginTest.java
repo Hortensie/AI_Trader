@@ -21,6 +21,10 @@ import static junit.framework.Assert.assertTrue;
 
 /**
  * Created by Piotr on 2017-01-02.
+ * basic robolectric unit tests to validate
+ * 1 - login edit text
+ * 2 - password edit text
+ * 3 - button to start xapi trading input class
  */
 @Config(sdk = Build.VERSION_CODES.LOLLIPOP,manifest = "src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
