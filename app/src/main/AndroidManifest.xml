@@ -21,9 +21,6 @@
         </activity>
         <activity android:name=".xApiLogin" />
         <activity android:name=".xApiTradingInput" />
-        <activity
-            android:name=".tradingSymbol"
-            android:label="@string/title_activity_trading_symbol"></activity>
     </application>
 
 </manifest>

@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import java.util.List;
 
-import pro.xstore.api.message.codes.PERIOD_CODE;
 import pro.xstore.api.message.command.APICommandFactory;
 import pro.xstore.api.message.command.ChartRangeCommand;
 import pro.xstore.api.message.error.APICommandConstructionException;

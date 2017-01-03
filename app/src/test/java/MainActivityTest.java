@@ -4,10 +4,8 @@
  */
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 // Static imports for assertion methods
@@ -57,7 +55,7 @@ public class MainActivityTest {
         }
 
     @Test
-    public void validateOnClickToStartxApiLoginClass() {
+    public void validateOnClickToStartXApiLoginClass() {
 
             Button button = (Button) activity.findViewById( R.id.buttonXApi );
             button.performClick();

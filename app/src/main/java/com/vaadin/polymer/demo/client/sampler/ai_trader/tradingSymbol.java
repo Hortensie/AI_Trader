@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
 
 public class tradingSymbol extends Activity  {
 

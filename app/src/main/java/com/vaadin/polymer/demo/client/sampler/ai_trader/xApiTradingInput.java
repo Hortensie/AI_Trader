@@ -10,8 +10,8 @@ import android.widget.TextView;
 public class xApiTradingInput extends Activity implements View.OnClickListener {
 
     public TextView startDate;
-    public TextView endDate;
-    DateCalendar objectDateCalendar = new DateCalendar(this);
+    private TextView endDate;
+    private final DateCalendar objectDateCalendar = new DateCalendar(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
