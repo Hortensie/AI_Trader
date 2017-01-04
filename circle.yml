@@ -45,6 +45,8 @@ test:
       #    timeout: 1200
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
+      - ./gradlew createDebugCoverageReport
+      - ./gradlew createReleaseCoverageReport
       #build the code and generate a unsighned release apk.
       #- ./gradlew assembleRelease
 
