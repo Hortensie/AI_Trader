@@ -4,6 +4,9 @@ machine:
     ANDROID_NDK: $HOME/android-ndk-r12b
     ANDROID_NDK_HOME: $ANDROID_NDK
     PATH: $PATH:$ANDROID_NDK
+    #timeout for slow emulator
+    ADB_INSTALL_TIMEOUT: 60
+
 
 dependencies:
   cache_directories:
@@ -38,7 +41,8 @@ test:
       - adb shell input keyevent 82
       - sleep 5
       #instrumentaion test code coverege reports
-      - ./gradlew connectedCheck
+      - (./gradlew connectedAndroidTest):
+          timeout: 1200
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
       #build the code and generate a release apk.
