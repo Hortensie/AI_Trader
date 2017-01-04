@@ -15,3 +15,14 @@ Anyone is welcome to join this project (contact szczesny.piotr@outlook.com)
 | Android master   | [![CircleCI](https://circleci.com/gh/Hortensie/AI_Trader.svg?style=shield)](https://circleci.com/gh/Hortensie/AI_Trader/tree/master) |
 | Code Coverage develop | [![codecov](https://codecov.io/gh/Hortensie/AI_Trader/branch/develop/graph/badge.svg)](https://codecov.io/gh/Hortensie/AI_Trader) |
 | Code Coverage master  | [![codecov](https://codecov.io/gh/Hortensie/AI_Trader/branch/master/graph/badge.svg)](https://codecov.io/gh/Hortensie/AI_Trader) |
+
+
+Following tools are being used in this project:
+
+- Android Studio witdh SDK / NDK support
+- Version Control GitHub + GitFlow / Circle CI
+- Testing via Junit4 / Robolectric / Mockito / Espresso (UI)
+- Codecov reports via codecov.io
+- Google Engine (Firebase db)
+- OOP practices like (OCP/DRY/SRP/LSP)
+- more incoming like Vulkan API to draw charts or GPU for machine learning
