@@ -2,7 +2,7 @@
 
 **Artificial Intelligence Trader**
 
-Concept for this application is to provide interface to financial trading data (historical from Cloud FireBase db, streaming via REST API) and to build machine learning algorithms to predict future price.
+Concept for this application is to provide interface to financial trading data (historical from Cloud Firebase db, streaming via REST API) and to build machine learning algorithms to predict future price.
 
 Software development fully support Agile practices (eg. DevOps, Design Thinking) while backlog and upcoming sprints can be checked via public [trello board](https://trello.com/b/cDSR6XFI/ai-trader-sprints).
 
@@ -25,4 +25,4 @@ Following tools are being used in this project:
 - Codecov reports via codecov.io
 - Google Engine (Firebase db)
 - OOP practices like (OCP/DRY/SRP/LSP)
-- more incoming like Vulkan API to draw charts or GPU for machine learning
+- more incoming like Vulkan API to draw charts or GPU processing for machine learning
