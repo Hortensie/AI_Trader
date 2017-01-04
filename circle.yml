@@ -31,22 +31,19 @@ dependencies:
 test:
   override:
       #start the emulator
-      #- emulator -avd circleci-android23 -no-audio -no-window:
-      #    background: true
-      #    parallel: true
+      - emulator -avd circleci-android23 -no-audio -no-window:
+          background: true
+          parallel: true
       #wait for it to have booted
-      #- circle-android wait-for-boot
-      #- sleep 5
+      - circle-android wait-for-boot
+      - sleep 5
       #click menu button
-      #- adb shell input keyevent 82
-      #- sleep 5
+      - adb shell input keyevent 82
+      - sleep 5
       #instrumentaion test code coverege reports
-      #- (./gradlew connectedCheck -PdisablePreDex):
-      #    timeout: 1200
+      - ./gradlew connectedCheck
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
-      - ./gradlew createDebugCoverageReport
-      - ./gradlew createReleaseCoverageReport
       #build the code and generate a unsighned release apk.
       #- ./gradlew assembleRelease
 
