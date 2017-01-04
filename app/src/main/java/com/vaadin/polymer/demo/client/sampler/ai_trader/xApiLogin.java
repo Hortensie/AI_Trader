@@ -41,7 +41,7 @@ public class xApiLogin extends Activity implements View.OnClickListener {
         globalSyncs = globalSyncss;
     }
 
-    private void xApiLoginToServer(long login, String password) {
+    public boolean xApiLoginToServer(long login, String password) {
 
         try {
             globalSyncs = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
@@ -59,15 +59,18 @@ public class xApiLogin extends Activity implements View.OnClickListener {
                 setGlobalSyncs(globalSyncs);
                 Toast toastSync = Toast.makeText(getApplicationContext(),"Global sync was set",Toast.LENGTH_LONG);
                 toastSync.show();
+
             }
             else
             {
                 Log.d("json", "user not logged in, FIRST");
+                return false;
             }
 
         } catch (IOException|APICommandConstructionException|APICommunicationException|APIReplyParseException|APIErrorResponse e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     @Override

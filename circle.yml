@@ -42,3 +42,5 @@ test:
       - ./gradlew connectedAndroidTest
       #build the code and generate a release apk.
       - ./gradlew assembleRelease
+  post:
+      - bash <(curl -s https://codecov.io/bash)

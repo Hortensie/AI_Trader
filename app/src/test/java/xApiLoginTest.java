@@ -10,6 +10,7 @@ import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiTradingInput;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.Shadows;
@@ -18,6 +19,8 @@ import org.robolectric.annotation.Config;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Piotr on 2017-01-02.
@@ -65,4 +68,25 @@ public class xApiLoginTest {
         Intent intent = Shadows.shadowOf(xApiLogin).peekNextStartedActivity();
         assertEquals(xApiTradingInput.class.getCanonicalName(),intent.getComponent().getClassName());
     }
+
+    /*
+    @Test
+
+    public void testAuthenticate() {
+
+        xApiLogin authenticatorMock;
+        //AuthenticatorApplication authenticator;
+        long username = 10073026;
+        String password = "devil666";
+        authenticatorMock = Mockito.mock(xApiLogin.class);
+        //authenticator = new AuthenticatorApplication(authenticatorMock);
+        when(authenticatorMock.xApiLoginToServer(username, password)).thenReturn(false);
+
+        boolean actual = authenticatorMock.xApiLoginToServer(username, password);
+        assertFalse(actual);
+
+    }
+
+*/
+
 }
