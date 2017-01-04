@@ -39,9 +39,10 @@ test:
       - sleep 5
       #click menu button
       - adb shell input keyevent 82
+      - sleep 5
       #instrumentaion test code coverege reports
-      - (./gradlew connectedCheck -PdisablePreDex):
-          timeout: 1200
+      #- (./gradlew connectedCheck -PdisablePreDex):
+      #    timeout: 1200
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
       #build the code and generate a release apk.
