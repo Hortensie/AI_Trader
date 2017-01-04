@@ -5,12 +5,6 @@
  */
 
 
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import android.app.Activity;
 import android.graphics.Point;
 import android.os.RemoteException;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +15,11 @@ import android.support.test.uiautomator.UiDevice;
 
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiLogin;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
@@ -46,7 +45,9 @@ public class xApiLoginAndroidTest {
     public void setup()
     {
         //test activity Fix
-        Activity xApiLogin = mActivityRule.getActivity();
+        mActivityRule.getActivity();
+
+
     }
 
     @Before
@@ -78,17 +79,7 @@ public class xApiLoginAndroidTest {
 
     @Test
     public void changeText_sameActivity() {
-        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        try {
-            if(!uiDevice.isScreenOn())
-            {
-                uiDevice.wakeUp();
-            }
-        }
-        catch (RemoteException e){
-            e.printStackTrace();
-        }
-
+        CurrentActivityUtil.getCurrentActivity();
         // Type text and then press the button.
         onView(withId(R.id.editTextLogin)).perform(clearText());
         onView(withId(R.id.editTextLogin))

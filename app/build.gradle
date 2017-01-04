@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-//jacoco dependency to generate unit test coverege report
 apply plugin: 'jacoco-android'
 
 android {
@@ -16,6 +15,9 @@ android {
             cmake {
                 cppFlags ""
             }
+        }
+        jackOptions {
+            enabled true
         }
     }
     buildTypes {
@@ -41,6 +43,10 @@ android {
         paid {}
     }
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
