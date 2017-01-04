@@ -4,14 +4,9 @@
  * 0.2 Release fix
  */
 
-
-import android.graphics.Point;
-import android.os.RemoteException;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.test.uiautomator.UiDevice;
 import android.view.WindowManager;
 
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
@@ -45,7 +40,7 @@ public class xApiLoginAndroidTest {
     @Before
     public void setUp()
     {
-        xApiLogin activity = mActivityRule.getActivity();
+        final xApiLogin activity = mActivityRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
