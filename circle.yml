@@ -40,7 +40,10 @@ test:
       - ./gradlew testReleaseUnitTest
       #run tests  against the emulator (UI tests)
       - ./gradlew connectedAndroidTest
+      #instrumentaion test code coverege reports
+      - ./gradlew connectedCheck
       #build the code and generate a release apk.
       - ./gradlew assembleRelease
+
   post:
       - bash <(curl -s https://codecov.io/bash)
