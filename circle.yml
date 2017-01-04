@@ -42,6 +42,8 @@ test:
       #- ./gradlew connectedAndroidTest
       #instrumentaion test code coverege reports
       - ./gradlew connectedCheck
+      #jacoco unit test coverege report generation
+      - ./gradlew jacocoTestReport
       #build the code and generate a release apk.
       - ./gradlew assembleRelease
 

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+//jacoco dependency to generate unit test coverege report
+apply plugin: 'jacoco-android'
 
 android {
     compileSdkVersion 25
@@ -22,6 +23,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        //jacoco dependency to generate unit test coverege report
         debug {
             testCoverageEnabled true
         }
@@ -32,6 +34,11 @@ android {
         cmake {
             path "CMakeLists.txt"
         }
+    }
+    //jacoco dependency to generate unit test coverege report
+    productFlavors {
+        free {}
+        paid {}
     }
 
 }
