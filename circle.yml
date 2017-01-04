@@ -34,6 +34,7 @@ test:
       #wait for it to have booted
       - circle-android wait-for-boot
       - sleep 5
+      #click menu button
       - adb shell input keyevent 82
       - sleep 5
       #instrumentaion test code coverege reports

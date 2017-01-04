@@ -12,6 +12,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.uiautomator.UiDevice;
+import android.view.WindowManager;
 
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiLogin;
@@ -42,33 +43,18 @@ public class xApiLoginAndroidTest {
             xApiLogin.class);
 
     @Before
-    public void setup()
+    public void setUp()
     {
-        //test activity Fix
-        mActivityRule.getActivity();
-
-
-    }
-
-    @Before
-    public void init(){
-        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        Point[] coordinates = new Point[4];
-        coordinates[0]=new Point(248,1520);
-        coordinates[1]=new Point(248,929);
-        coordinates[2]=new Point(796,1520);
-        coordinates[3]=new Point(796,929);
-
-        try {
-            if(!uiDevice.isScreenOn())
-            {
-                uiDevice.wakeUp();
-                uiDevice.swipe(coordinates, 10);
+        xApiLogin activity = mActivityRule.getActivity();
+        Runnable wakeUpDevice = new Runnable() {
+            public void run() {
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                        WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                        WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
             }
-        }
-        catch (RemoteException e){
-            e.printStackTrace();
-        }
+        };
+        activity.runOnUiThread(wakeUpDevice);
+
     }
 
     @Before
@@ -79,7 +65,7 @@ public class xApiLoginAndroidTest {
 
     @Test
     public void changeText_sameActivity() {
-        CurrentActivityUtil.getCurrentActivity();
+
         // Type text and then press the button.
         onView(withId(R.id.editTextLogin)).perform(clearText());
         onView(withId(R.id.editTextLogin))

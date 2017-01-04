@@ -44,7 +44,6 @@ public class xApiTradingInput extends Activity implements View.OnClickListener {
 
                 break;
             default:
-                Log.d("error","Buttons are not working");
                 break;
         }
     }
