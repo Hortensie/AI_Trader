@@ -52,19 +52,19 @@ public class MainActivityTest {
         assertTrue("TextView contains incorrect text",
                 "Test".equals(tvHelloWorld.getText().toString()));
 
-        }
+    }
 
     @Test
     public void validateOnClickToStartXApiLoginClass() {
 
-            Button button = (Button) activity.findViewById( R.id.buttonXApi );
-            button.performClick();
-            Intent intent = Shadows.shadowOf(activity).peekNextStartedActivity();
-            assertEquals(xApiLogin.class.getCanonicalName(), intent.getComponent().getClassName());
-
-        }
+        Button button = (Button) activity.findViewById( R.id.buttonXApi );
+        button.performClick();
+        Intent intent = Shadows.shadowOf(activity).peekNextStartedActivity();
+        assertEquals(xApiLogin.class.getCanonicalName(), intent.getComponent().getClassName());
 
     }
+
+}
 
 
 
