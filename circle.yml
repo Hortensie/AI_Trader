@@ -39,7 +39,7 @@ test:
       #run local unit tests
       - ./gradlew testReleaseUnitTest
       #run tests  against the emulator (UI tests)
-      - ./gradlew connectedAndroidTest
+      #- ./gradlew connectedAndroidTest
       #instrumentaion test code coverege reports
       - ./gradlew connectedCheck
       #build the code and generate a release apk.
