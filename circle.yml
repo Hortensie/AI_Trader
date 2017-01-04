@@ -45,8 +45,8 @@ test:
       #    timeout: 1200
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
-      #build the code and generate a release apk.
-      - ./gradlew assembleRelease
+      #build the code and generate a unsighned release apk.
+      #- ./gradlew assembleRelease
 
   post:
       - bash <(curl -s https://codecov.io/bash)
