@@ -36,10 +36,6 @@ test:
       - sleep 5
       - adb shell input keyevent 82
       - sleep 5
-      #run local unit tests
-      - ./gradlew testReleaseUnitTest
-      #run tests  against the emulator (UI tests)
-      #- ./gradlew connectedAndroidTest
       #instrumentaion test code coverege reports
       - ./gradlew connectedCheck
       #jacoco unit test coverege report generation
