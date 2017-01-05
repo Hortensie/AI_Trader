@@ -4,6 +4,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
 
 android {
+    //set
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
