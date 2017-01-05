@@ -1,3 +1,5 @@
+import com.android.ddmlib.DdmPreferences
+
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
 
@@ -11,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //Sets the timeout value for adb connection.
+        DdmPreferences.setTimeOut(60000)
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -18,17 +22,16 @@ android {
         }
     }
     buildTypes {
-        release {
+        //jacoco dependency to generate unit test coverege report
+         debug {
+            testCoverageEnabled true
+        }
+        /*release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testCoverageEnabled true
         }
-        //jacoco dependency to generate unit test coverege report
-        debug {
-            testCoverageEnabled true
-        }
-
-
+        */
     }
     externalNativeBuild {
         cmake {
@@ -37,13 +40,19 @@ android {
     }
     //jacoco dependency to generate unit test coverege report
     productFlavors {
-        free {}
-        paid {}
+        free {
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+        }
+        paid {
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-paid"
+        }
     }
     //android emulator is just to slow and adb command times out when doing connectedCheck
-    adbOptions {
-        timeOutInMs 60000 // set timeout to 1 minute
-    }
+    //adbOptions {
+     //   timeOutInMs 60 * 1000 // set timeout to 1 minute
+    //}
 }
 
 dependencies {
@@ -66,7 +75,5 @@ dependencies {
     androidTestCompile 'com.android.support:support-annotations:25.1.0'
     androidTestCompile("org.robolectric:robolectric:3.1.4",'junit:junit:4.12','org.assertj:assertj-core:2.6.0','org.mockito:mockito-core:2.5.3')
 }
-
-
 
 apply plugin: 'com.google.gms.google-services'
