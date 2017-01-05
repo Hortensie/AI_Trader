@@ -43,7 +43,7 @@ test:
       #instrumentaion test code coverege reports
       #- ./gradlew connectedCheck -PdisablePreDex
       #jacoco unit test coverege report generation
-      - ./gradlew jacocoTestReport
+      - ./gradlew testReleaseUnitTest
       #build the code and generate a unsighned release apk.
       #- ./gradlew assembleRelease
 

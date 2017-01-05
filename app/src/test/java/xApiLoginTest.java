@@ -10,7 +10,6 @@ import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiTradingInput;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.Shadows;
@@ -19,8 +18,6 @@ import org.robolectric.annotation.Config;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by Piotr on 2017-01-02.
@@ -32,7 +29,7 @@ import static org.mockito.Mockito.when;
 @Config(sdk = Build.VERSION_CODES.LOLLIPOP,manifest = "src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
 
-public class xApiLoginTestOff {
+public class xApiLoginTest {
 
     private xApiLogin xApiLogin;
 

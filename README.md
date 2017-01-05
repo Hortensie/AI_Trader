@@ -22,7 +22,7 @@ Following tools are being used in this project:
 - Android Studio witdh SDK / NDK support
 - Version Control GitHub + GitFlow / Circle CI
 - Testing via Junit4 / Robolectric / Mockito / Espresso (UI)
-- Codecov reports via codecov.io
+- Code coverage
 - Google Engine (Firebase db)
 - OOP practices like (OCP/DRY/SRP/LSP)
 - more incoming like Vulkan API to draw charts or GPU processing for machine learning

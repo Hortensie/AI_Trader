@@ -1,7 +1,7 @@
-import com.android.ddmlib.DdmPreferences
+//import com.android.ddmlib.DdmPreferences
 
 apply plugin: 'com.android.application'
-apply plugin: 'jacoco-android'
+//apply plugin: 'jacoco-android'
 
 android {
     compileSdkVersion 25
@@ -14,31 +14,25 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //Sets the timeout value for adb connection.
-        DdmPreferences.setTimeOut(60000)
+        //DdmPreferences.setTimeOut(60000)
         externalNativeBuild {
             cmake {
                 cppFlags ""
             }
         }
-        jackOptions {
-            enabled true
-        }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
     buildTypes {
-        //jacoco dependency to generate unit test coverege report
          debug {
             testCoverageEnabled true
-        }
-        /*release {
+            //minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+         }
+        release {
+            testCoverageEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            testCoverageEnabled true
         }
-        */
     }
     externalNativeBuild {
         cmake {
@@ -46,23 +40,19 @@ android {
         }
     }
     //jacoco dependency to generate unit test coverege report
-    productFlavors {
-        free {
-        }
-        paid {
-        }
-    }
-    //android emulator is just to slow and adb command times out when doing connectedCheck
-    //adbOptions {
-     //   timeOutInMs 60 * 1000 // set timeout to 1 minute
-    //}
+  //  productFlavors {
+     //   free {  }
+    //    paid {  }
+  //  }
+
+
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+   // androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    //    exclude group: 'com.android.support', module: 'support-annotations'
+    //})
     testCompile("org.robolectric:robolectric:3.1.4",'junit:junit:4.12','org.assertj:assertj-core:2.6.0','org.mockito:mockito-core:2.5.3')
     //  compile 'com.google.firebase:firebase-database:10.0.1'
     compile files('libs/xAPIJavaWrapper_2_4_9/bin/xAPIJavaWrapper_2_4_9.jar')
@@ -70,13 +60,14 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     //  compile 'com.google.firebase:firebase-core:10.0.1'
-    androidTestCompile 'com.android.support.test:runner:0.5'
+    //androidTestCompile 'com.android.support.test:runner:0.5'
     // Set this dependency to use JUnit 4 rules
-    androidTestCompile 'com.android.support.test:rules:0.5'
+    //androidTestCompile 'com.android.support.test:rules:0.5'
     // Set this dependency to build and run UI Automator tests
-    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
-    androidTestCompile 'com.android.support:support-annotations:25.1.0'
-    androidTestCompile("org.robolectric:robolectric:3.1.4",'junit:junit:4.12','org.assertj:assertj-core:2.6.0','org.mockito:mockito-core:2.5.3')
+    //androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    //androidTestCompile 'com.android.support:support-annotations:25.1.0'
+    //androidTestCompile("org.robolectric:robolectric:3.1.4",'junit:junit:4.12','org.assertj:assertj-core:2.6.0','org.mockito:mockito-core:2.5.3')
 }
+
 
 apply plugin: 'com.google.gms.google-services'
