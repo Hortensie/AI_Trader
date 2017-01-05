@@ -20,6 +20,13 @@ android {
                 cppFlags ""
             }
         }
+        jackOptions {
+            enabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
         //jacoco dependency to generate unit test coverege report
@@ -41,10 +48,8 @@ android {
     //jacoco dependency to generate unit test coverege report
     productFlavors {
         free {
-
         }
         paid {
-
         }
     }
     //android emulator is just to slow and adb command times out when doing connectedCheck
