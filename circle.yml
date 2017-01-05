@@ -41,7 +41,7 @@ test:
       - adb shell input keyevent 82
       - sleep 5
       #instrumentaion test code coverege reports
-      - ./gradlew connectedCheck
+      - ./gradlew connectedCheck -PdisablePreDex
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
       #build the code and generate a unsighned release apk.
