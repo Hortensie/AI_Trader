@@ -19,9 +19,9 @@ dependencies:
     #-- Intall Android SDK Build-tools, revision 25.0.1 --
     - echo y | android update sdk --no-ui --all --filter build-tools-25.0.2,android-25,extra-android-m2repository
     #---Install CMake--
-    #- wget https://github.com/Commit451/android-cmake-installer/releases/download/1.1.0/install-cmake.sh
-    #- chmod +x install-cmake.sh
-    #- ./install-cmake.sh
+    - wget https://github.com/Commit451/android-cmake-installer/releases/download/1.1.0/install-cmake.sh
+    - chmod +x install-cmake.sh
+    - ./install-cmake.sh
     #----install gradlew dependencies
     - chmod +x gradlew
     - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
