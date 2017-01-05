@@ -41,12 +41,10 @@ android {
     //jacoco dependency to generate unit test coverege report
     productFlavors {
         free {
-            applicationIdSuffix ".free"
-            versionNameSuffix "-free"
+
         }
         paid {
-            applicationIdSuffix ".paid"
-            versionNameSuffix "-paid"
+
         }
     }
     //android emulator is just to slow and adb command times out when doing connectedCheck
