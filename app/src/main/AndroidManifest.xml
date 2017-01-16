@@ -23,6 +23,7 @@
         <activity android:name=".xApiUiInput" />
         <activity android:name=".TradingSymbol" />
         <activity android:name=".PeriodSelector"/>
+
     </application>
 
 </manifest>
