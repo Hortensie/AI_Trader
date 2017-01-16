@@ -14,20 +14,15 @@ import java.util.Objects;
  * Created by Piotr on 2016-12-02.
  * Provides interface to FireBase database by:
  * Saving data
- * Getting data as List<Object> based on child String
+ * Getting data as List<Object> based on various child String
  */
-//
+
 class FireBaseDb
 {
     private static List<String> internalCopy= new ArrayList<>();
 
     static List<String> getInternalCopy() {
 
-       /* for (int i=0;i<internalCopy.size();i++)
-        {
-            Log.d("json internal copy", String.valueOf(internalCopy.get(i)));
-        }
-        */
         return internalCopy;
     }
 
@@ -56,13 +51,12 @@ class FireBaseDb
                     for (int i=0;i<listObject.size();i++)
                     {
                         internalCopy.add(String.valueOf(listObject.get(i)));
-                        //Log.d("json from FireBase", String.valueOf(listObject.get(i)));
                     }
                 }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+            //on cancel
             }
         });
 

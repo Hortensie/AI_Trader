@@ -65,7 +65,7 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.MyViewHold
 
         @Override
         public void onClick(View v) {
-
+            //on click
                 //getPosition();
         }
     }
