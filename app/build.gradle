@@ -2,6 +2,7 @@
 
 apply plugin: 'com.android.application'
 //apply plugin: 'jacoco-android'
+//apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 25
@@ -12,7 +13,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //Sets the timeout value for adb connection.
         //DdmPreferences.setTimeOut(60000)
         externalNativeBuild {
@@ -44,8 +45,11 @@ android {
      //   free {  }
     //    paid {  }
   //  }
-
-
+ //   jacocoTestReport {
+   //     reports {
+   //         xml.enabled true
+   //     }
+//}
 }
 
 dependencies {
@@ -54,12 +58,12 @@ dependencies {
     //    exclude group: 'com.android.support', module: 'support-annotations'
     //})
     testCompile("org.robolectric:robolectric:3.1.4",'junit:junit:4.12','org.assertj:assertj-core:2.6.0','org.mockito:mockito-core:2.5.3')
-    //  compile 'com.google.firebase:firebase-database:10.0.1'
+    compile 'com.google.firebase:firebase-database:10.0.1'
     compile files('libs/xAPIJavaWrapper_2_4_9/bin/xAPIJavaWrapper_2_4_9.jar')
     compile files('libs/xAPIJavaWrapper_2_4_9/lib/json-simple-1.1.1.jar')
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
-    //  compile 'com.google.firebase:firebase-core:10.0.1'
+    compile 'com.google.firebase:firebase-core:10.0.1'
     //androidTestCompile 'com.android.support.test:runner:0.5'
     // Set this dependency to use JUnit 4 rules
     //androidTestCompile 'com.android.support.test:rules:0.5'

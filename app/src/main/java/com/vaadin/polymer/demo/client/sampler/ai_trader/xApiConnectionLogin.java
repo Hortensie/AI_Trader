@@ -3,7 +3,6 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,16 +20,16 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
 /**
  * Created by Piotr on 2016-12-18.
- * comment
+ * Class that uses xstore.api to connect to Demo financial server
  */
 
-public class xApiLogin extends Activity implements View.OnClickListener {
+public class xApiConnectionLogin extends Activity implements View.OnClickListener {
 
     private static SyncAPIConnector globalSyncs;
     private EditText inputLogin;
     private EditText inputPassword;
 
-      public xApiLogin() {
+      public xApiConnectionLogin() {
     }
 
     public static SyncAPIConnector getGlobalSyncs() {
@@ -41,36 +40,16 @@ public class xApiLogin extends Activity implements View.OnClickListener {
         globalSyncs = globalSyncss;
     }
 
-    public boolean xApiLoginToServer(long login, String password) {
+    public Credentials setLogin (Long login, String password)
+    {
+        return new Credentials(login,password);
 
-        try {
-            globalSyncs = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
-            // Create new credentials
-            // Insert your credentials
-            Credentials credentials = new Credentials(login, password);
-            LoginResponse loginResponse = APICommandFactory.executeLoginCommand(globalSyncs, credentials);
-            if (loginResponse.getStatus())
-            {
-                Toast toastLogged = Toast.makeText(getApplicationContext(),"User logged in",Toast.LENGTH_SHORT);
-                toastLogged.show();
-                Log.d("json", "user logged in, FIRST");
-                //if user was successfully logged in call Async Task to retrieve financial data
-                //and save it to FireBase database
-                setGlobalSyncs(globalSyncs);
-                Toast toastSync = Toast.makeText(getApplicationContext(),"Global sync was set",Toast.LENGTH_LONG);
-                toastSync.show();
+    }
 
-            }
-            else
-            {
-                Log.d("json", "user not logged in, FIRST");
-                return false;
-            }
-
-        } catch (IOException|APICommandConstructionException|APICommunicationException|APIReplyParseException|APIErrorResponse e) {
-            e.printStackTrace();
-        }
-        return true;
+    public LoginResponse xApiLoginToServer(Credentials credentials, SyncAPIConnector syncAPIConnector) throws APIErrorResponse, APICommunicationException, APIReplyParseException, APICommandConstructionException, IOException {
+        LoginResponse loginResponse = APICommandFactory.executeLoginCommand(syncAPIConnector, credentials);
+        setGlobalSyncs(syncAPIConnector);
+        return loginResponse;
     }
 
     @Override
@@ -79,11 +58,9 @@ public class xApiLogin extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_x_api_logi);
 
         Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        Button buttonGetdata = (Button) findViewById(R.id.buttonGetData);
         inputLogin = (EditText) findViewById(R.id.editTextLogin);
         inputPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonLogin.setOnClickListener(this);
-        buttonGetdata.setOnClickListener(this);
 
     }
 
@@ -95,12 +72,20 @@ public class xApiLogin extends Activity implements View.OnClickListener {
             case R.id.buttonLogin:
                 //call AsyncTask in order to login and retrieve data from xAPI and then save it @Firebase Database
                 long login = Long.parseLong(inputLogin.getText().toString());
-                xApiLoginToServer(login, inputPassword.getText().toString());
-                break;
-            case R.id.buttonGetData:
-                Intent intent = new Intent(this,xApiTradingInput.class);
-                startActivity(intent);
-                break;
+                try {
+                    LoginResponse loginResponse = xApiLoginToServer(setLogin(login, inputPassword.getText().toString()), new SyncAPIConnector(ServerData.ServerEnum.DEMO));
+                    if (loginResponse.getStatus()) {
+                        Toast toastLogged = Toast.makeText(getApplicationContext(), "User logged in", Toast.LENGTH_SHORT);
+                        toastLogged.show();
+                        Intent intent = new Intent(this, xApiUiInput.class);
+                        startActivity(intent);
+                    }
+
+                } catch (APIErrorResponse | APICommunicationException | APIReplyParseException | APICommandConstructionException | IOException apiErrorResponse) {
+                    apiErrorResponse.printStackTrace();
+                }
+
+            break;
             default:
                 break;
         }

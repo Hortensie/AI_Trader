@@ -1,7 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Material">
+    <!-- your theme inherits from the material theme -->
+    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
         <!-- theme customizations -->
+
     </style>
+
+    <style name="AppTheme.Base" parent="android:Theme.Material.Light.DarkActionBar">
+
+
+    </style>
+
 </resources>

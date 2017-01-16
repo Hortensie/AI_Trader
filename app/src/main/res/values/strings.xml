@@ -1,21 +1,22 @@
 <resources>
     <string name="app_name">AI_Trader</string>
-    <string name="login_xapi">login</string>
+    <string name="login_xapi">10111018</string>
     <string name="load_historical_financial_data">Get Data</string>
-    <string name="password_xapi">password</string>
+    <string name="password_xapi">9d222175</string>
     <string name="login_hint">please enter login</string>
     <string name="password_hint">please enter password</string>
     <string name="data_symbol">symbol</string>
-    <string name="data_start_date">Timestamp in milliseconds [start date]</string>
-    <string name="data_end_date">Timestamp in milliseconds [end date]</string>
     <string name="hint_data_symbol">eg. EURUSD</string>
     <string name="button_get_data">Get Data</string>
-    <string name="string_cplusplus">Hello World!</string>
+    <string name="string_cplusplus">AI Trader World</string>
     <string name="start_date">Start Date</string>
     <string name="end_date">End Date</string>
     <string name="button_setStartDate">Set Start Date</string>
-    <string name="button_SetEndDate">Pick End Date</string>
+    <string name="button_SetEndDate">Set End Date</string>
     <string name="button_loginToXApi">Login to xAPI</string>
+    <string name="button_login">Login</string>
     <string name="title_activity_trading_symbol">tradingSymbol</string>
-    <string name="textview_testtext">Test</string>
+    <string name="textview_testtext">Welcome to AI Trader</string>
+    <string name="button_historicalData">AI Tester</string>
+    <string name="welcome_login">Welcome to xAPI</string>
 </resources>

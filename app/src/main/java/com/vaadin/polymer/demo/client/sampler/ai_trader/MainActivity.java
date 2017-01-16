@@ -12,21 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /** Created by Piotr on 2017-01-03
- * GitFlow information about branches.
-        git -c core.quotepath=false flow init -d
-        Using default branch names.
-        Which branch should be used for bringing forth production releases?
-        - master
-        Branch name for production releases: [master]
-        Branch name for "next release" development: [develop]
-        How to name your supporting branch prefixes?
-        Feature branches? [feature/]
-        Bugfix branches? [bugfix/]
-        Release branches? [release/]
-        Hotfix branches? [hotfix/]
-        Support branches? [support/]
-        Version tag prefix? []
-        Hooks and filters directory? [C:/vulk_tu/AI_Trader/.git/hooks]
+ *
 */
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -38,6 +24,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         System.loadLibrary("native-lib");
     }
     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -71,7 +58,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
             case R.id.buttonXApi:
                 getWindow().setExitTransition(new Explode());
-                Intent intent = new Intent(this,xApiLogin.class);
+                Intent intent = new Intent(this,xApiConnectionLogin.class);
+                //Intent intent = new Intent(this,xApiUiInput.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             default:

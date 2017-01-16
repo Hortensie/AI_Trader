@@ -47,5 +47,6 @@ test:
       #build the code and generate a unsighned release apk.
       #- ./gradlew assembleRelease
 
+  #post reports to codecov generator
   post:
       - bash <(curl -s https://codecov.io/bash)

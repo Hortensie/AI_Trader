@@ -9,22 +9,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.vaadin.polymer.demo.client.sampler.ai_trader.xApiTradingInput">
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/data_symbol"
-        android:ems="10"
-        android:id="@+id/editTextDataSymbol"
-        android:hint="@string/hint_data_symbol" />
+    android:gravity="center"
+    tools:context="com.vaadin.polymer.demo.client.sampler.ai_trader.xApiUiInput">
 
     <TextView
         android:text="@string/start_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/data_start_date"
         android:id="@+id/textViewDataStartDate"
         android:textSize="18sp" />
 
@@ -32,29 +23,66 @@
         android:text="@string/end_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/data_end_date"
         android:id="@+id/textViewDataEndDate"
-        android:layout_marginTop="10dp"
         android:textSize="18sp" />
 
     <Button
-        android:text="@string/load_historical_financial_data"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonStream"
-        />
-
-    <Button
+        android:textSize="14dp"
         android:text="@string/button_setStartDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonPickStartDate" />
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/buttonPickStartDate"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"/>
+
+
 
     <Button
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14dp"
         android:text="@string/button_SetEndDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
         android:id="@+id/buttonPickEndDate" />
+
+    <Button
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14dp"
+        android:text="Set Period"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/select_period" />
+
+    <Button
+        android:layout_gravity="right"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14dp"
+        android:text="@string/load_historical_financial_data"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/buttonGetData" />
+
+    <Button
+        android:layout_gravity="right"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14dp"
+        android:text="Get Symbols"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/buttonGetSymbols" />
+
+    <Button
+        android:layout_gravity="left"
+        android:textSize="14dp"
+        android:text="Show Symbols"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/buttonShowSymbols" />
 
 </LinearLayout>

@@ -10,7 +10,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.view.WindowManager;
 
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiLogin;
+import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,13 +34,13 @@ public class xApiLoginAndroidTest {
     private String mStringToBetyped;
 
     @Rule
-    public ActivityTestRule<xApiLogin> mActivityRule = new ActivityTestRule<>(
-            xApiLogin.class);
+    public ActivityTestRule<xApiConnectionLogin> mActivityRule = new ActivityTestRule<>(
+            xApiConnectionLogin.class);
 
     @Before
     public void setUp()
     {
-        final xApiLogin activity = mActivityRule.getActivity();
+        final xApiConnectionLogin activity = mActivityRule.getActivity();
         Runnable wakeUpDevice = new Runnable() {
             public void run() {
                 activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
