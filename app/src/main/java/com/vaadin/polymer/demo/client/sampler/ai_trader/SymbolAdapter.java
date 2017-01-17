@@ -20,6 +20,8 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.MyViewHold
     private LayoutInflater inflater;
     List<SymbolRow> data = Collections.emptyList();
 
+    public SymbolAdapter() {
+    }
 
     public SymbolAdapter(Context context, List<SymbolRow> data) {
         inflater=LayoutInflater.from(context);

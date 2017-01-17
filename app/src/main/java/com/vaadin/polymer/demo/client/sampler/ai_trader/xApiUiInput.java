@@ -3,6 +3,7 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,24 +16,29 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
 
     CalendarSelector calendarSelector = new CalendarSelector(this);
     FireBaseDb fireBaseDb = new FireBaseDb();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_x_api_trading_input);
 
-        Button buttonGetData = (Button) findViewById(R.id.buttonGetData);
-        buttonGetData.setOnClickListener(this);
+        Button buttonGetSymbolsApi = (Button) findViewById(R.id.buttonGetSymbolsApi);
+        buttonGetSymbolsApi.setOnClickListener(this);
         Button buttonPickStartDate = (Button)findViewById(R.id.buttonPickStartDate);
         buttonPickStartDate.setOnClickListener(this);
         Button buttonPickEndDate = (Button)findViewById(R.id.buttonPickEndDate);
         buttonPickEndDate.setOnClickListener(this);
         Button buttonGetSymbols = (Button)findViewById(R.id.buttonGetSymbols);
         buttonGetSymbols.setOnClickListener(this);
-        Button buttonShowSymbols = (Button)findViewById(R.id.buttonShowSymbols);
-        buttonShowSymbols.setOnClickListener(this);
+        Button buttonSetSymbol = (Button)findViewById(R.id.buttonSetSymbol);
+        buttonSetSymbol.setOnClickListener(this);
         Button buttonSetPeriod = (Button)findViewById(R.id.select_period);
         buttonSetPeriod.setOnClickListener(this);
-
+        //button to get historical data from xApi
+        Button buttonHistData = (Button)findViewById(R.id.buttonHistData);
+        buttonHistData.setOnClickListener(this);
         startDate = (TextView) findViewById(R.id.textViewDataStartDate);
         endDate = (TextView) findViewById(R.id.textViewDataEndDate);
 
@@ -42,9 +48,22 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonGetData:
-                //new xApiRangeDataLoader("EURUSD",PERIOD_D1,1451660400000L,1483196400000L).execute(xApiConnectionLogin.getGlobalSyncs());
-                //new xApiRangeDataLoader().execute(xApiConnectionLogin.getGlobalSyncs());
+            case R.id.buttonHistData:
+                if(xApiConnectionLogin.getGlobalSyncs()!=null)
+                {
+                    long selectedStartDate = Long.parseLong(startDate.getText().toString());
+                    Log.d("json start", String.valueOf(selectedStartDate));
+
+                    long selectedEndDate = Long.parseLong(endDate.getText().toString());
+                    new xApiRangeDataLoader("EURUSD",PeriodSelector.getTempValue(),selectedStartDate,selectedEndDate,this).execute(xApiConnectionLogin.getGlobalSyncs());
+                }
+                else
+                {
+                    Toast toastLogged = Toast.makeText(getApplicationContext(),"Server connection lost. Re-try", Toast.LENGTH_SHORT);
+                    toastLogged.show();
+                }
+                break;
+            case R.id.buttonGetSymbolsApi:
                 fireBaseDb.getDataFromFireBaseDb("Symbols");
                 Toast toastSymbols = Toast.makeText(getApplicationContext(),"Symbols were received from database", Toast.LENGTH_SHORT);
                 toastSymbols.show();
@@ -66,9 +85,17 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
                     new xApiSymbolLoader(this).execute(xApiConnectionLogin.getGlobalSyncs());
                 }
                 break;
-            case R.id.buttonShowSymbols:
-                Intent intent = new Intent(this,TradingSymbol.class);
-                startActivity(intent);
+            case R.id.buttonSetSymbol:
+                //works either FireBaseDb.getInternalCopy().size()==0
+                if(TradingSymbol.getSymbols().size()==0)
+                {
+                    Toast toastLogged = Toast.makeText(getApplicationContext(),"No symbols available, Get them first from db", Toast.LENGTH_SHORT);
+                    toastLogged.show();
+                }
+                else {
+                    Intent intent = new Intent(this, TradingSymbol.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.select_period:
                 Intent setPeriod = new Intent(this,PeriodSelector.class);

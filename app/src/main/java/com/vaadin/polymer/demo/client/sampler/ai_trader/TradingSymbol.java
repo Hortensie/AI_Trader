@@ -1,7 +1,7 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -10,6 +10,8 @@ import java.util.List;
 
 public class TradingSymbol extends Activity  {
 
+
+    RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,8 @@ public class TradingSymbol extends Activity  {
 
         mRecyclerView.setAdapter(adapter);
         //use a linear layout manager
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
     }
 

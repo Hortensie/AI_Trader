@@ -54,7 +54,7 @@ class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePicker
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         this.fYear=year;
-        this.fMonth=month+1;
+        this.fMonth=month;
         this.fDay=dayOfMonth;
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);

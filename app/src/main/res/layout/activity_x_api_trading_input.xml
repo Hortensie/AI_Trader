@@ -27,7 +27,7 @@
         android:textSize="18sp" />
 
     <Button
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:text="@string/button_setStartDate"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
@@ -40,7 +40,7 @@
     <Button
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:text="@string/button_SetEndDate"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
@@ -49,40 +49,50 @@
     <Button
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
-        android:textSize="14dp"
-        android:text="Set Period"
+        android:textSize="14sp"
+        android:text="@string/set_period"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:id="@+id/select_period" />
 
     <Button
-        android:layout_gravity="right"
+        android:layout_gravity="center"
+        android:textSize="14sp"
+        android:text="@string/show_symbols"
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
-        android:textSize="14dp"
-        android:text="@string/load_historical_financial_data"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
-        android:id="@+id/buttonGetData" />
+        android:id="@+id/buttonSetSymbol" />
+
+    <Button
+        android:layout_gravity="center"
+        android:textSize="14sp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:text="Get Historical Data"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/buttonHistData" />
 
     <Button
         android:layout_gravity="right"
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
-        android:textSize="14dp"
-        android:text="Get Symbols"
+        android:textSize="14sp"
+        android:text="@string/load_symbols_db"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/buttonGetSymbolsApi" />
+
+    <Button
+        android:layout_gravity="right"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:text="@string/get_symbols_from_api"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:id="@+id/buttonGetSymbols" />
-
-    <Button
-        android:layout_gravity="left"
-        android:textSize="14dp"
-        android:text="Show Symbols"
-        android:paddingRight="16dp"
-        android:paddingLeft="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:id="@+id/buttonShowSymbols" />
 
 </LinearLayout>
