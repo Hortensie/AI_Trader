@@ -3,9 +3,7 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -21,16 +19,31 @@ import java.util.TimeZone;
 class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     private final xApiUiInput context;
-    private int fYear,fMonth,fDay;
-    private int fHour,fMinute;
-    private View view;
+    private int fHour,fMinute,fYear,fMonth,fDay,id;
+    private static long startTime,endTime;
 
-    public View getView() {
-        return view;
+    public int getId() {
+        return id;
     }
 
-    public void setView(View view) {
-        this.view = view;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    static long getStartTime() {
+        return startTime;
+    }
+
+    private static void setStartTime(long startTime) {
+        CalendarSelector.startTime = startTime;
+    }
+
+    static long getEndTime() {
+        return endTime;
+    }
+
+    private static void setEndTime(long endTime) {
+        CalendarSelector.endTime = endTime;
     }
 
     CalendarSelector(Context context) {
@@ -40,14 +53,14 @@ class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePicker
 
     private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 
-    void dateCalendarInitialization(View view){
+    void dateCalendarInitialization(int id){
 
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog datePickerDialog = new DatePickerDialog(context,CalendarSelector.this,year,month,day);
         datePickerDialog.show();
-        setView(view);
+        setId(id);
     }
 
 
@@ -69,17 +82,17 @@ class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePicker
         setTimeInMillis();
     }
 
-    private long returnTimeInMillis(View view)
+    private long returnTimeInMillis(int id)
     {
-        TextView tv = (TextView) view;
-        //Log.d("async, non UI","Rok"+fYear);
-        //Log.d("async, non UI","Miesiac"+fMonth);
-        //Log.d("async, non UI","Dzien"+fDay);
-        //Log.d("async, non UI","Godzina"+fHour);
-        //Log.d("async, non UI","Minuta"+fMinute);
         long selectedTime = calendar.getTimeInMillis();
-        //Log.d("async, non UI","Milis"+selectedTime);
-        tv.setText(String.valueOf(selectedTime));
+        if(id == 1)
+        {
+            setStartTime(selectedTime);
+        }
+        else
+        {
+            setEndTime(selectedTime);
+        }
         Toast toastLogged = Toast.makeText(context,"Calendar value was set", Toast.LENGTH_SHORT);
         toastLogged.show();
         return selectedTime;
@@ -94,7 +107,7 @@ class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePicker
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-            returnTimeInMillis(getView());
+            returnTimeInMillis(getId());
             }
         });
     }

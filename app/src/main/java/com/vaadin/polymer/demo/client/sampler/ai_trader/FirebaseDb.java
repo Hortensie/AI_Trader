@@ -33,10 +33,24 @@ class FireBaseDb
         databaseReference= firebaseDatabase.getReference();
     }
 
+    public static String EncodeString(String string) {
+        return string.replace(".", ",");
+    }
+
+    public static String DecodeString(String string) {
+        return string.replace(",", ".");
+    }
+
     void saveDataToFireBaseDb(String base, String name, String value){
 
         databaseReference.child(base).child(name).setValue(value);
 
+    }
+
+    void writeNewSymbol(String symbol, String time, long ctm, double open, double high, double low, double close, double vol) {
+        Symbol newSymbol = new Symbol(ctm, open, high, low, close, vol);
+
+        databaseReference.child(symbol).child(time).setValue(newSymbol);
     }
 
     void getDataFromFireBaseDb(String childName)

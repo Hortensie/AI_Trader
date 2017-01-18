@@ -10,17 +10,16 @@ import java.util.List;
 
 public class TradingSymbol extends Activity  {
 
-
+    RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trading_symbol);
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         SymbolAdapter adapter = new SymbolAdapter(this,getSymbols());
         //SymbolAdapter adapter = new SymbolAdapter(this, fireBaseDb.getDataFromFireBaseDb("Symbols"));
-
         mRecyclerView.setAdapter(adapter);
         //use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);

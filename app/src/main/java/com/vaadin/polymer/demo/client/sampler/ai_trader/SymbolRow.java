@@ -10,5 +10,4 @@ class SymbolRow {
 
     int symbolId;
     String symbolName;
-    String cos="";
 }

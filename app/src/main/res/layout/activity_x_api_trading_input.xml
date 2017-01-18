@@ -12,20 +12,6 @@
     android:gravity="center"
     tools:context="com.vaadin.polymer.demo.client.sampler.ai_trader.xApiUiInput">
 
-    <TextView
-        android:text="@string/start_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewDataStartDate"
-        android:textSize="18sp" />
-
-    <TextView
-        android:text="@string/end_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewDataEndDate"
-        android:textSize="18sp" />
-
     <Button
         android:textSize="14sp"
         android:text="@string/button_setStartDate"
