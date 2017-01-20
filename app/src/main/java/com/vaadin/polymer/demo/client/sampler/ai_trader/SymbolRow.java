@@ -2,7 +2,7 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
 /**
  * Created by Piotr on 2017-01-11.
- * class defines Symbol Row
+ * class defines SymbolRecord Row
  * It is displayed by Recycler Viewer
  */
 

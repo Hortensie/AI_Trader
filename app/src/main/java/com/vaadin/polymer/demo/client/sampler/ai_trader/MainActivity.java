@@ -38,6 +38,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         tv.setText(R.string.textview_testtext);
         Button buttonXApi = (Button) findViewById(R.id.buttonXApi);
         buttonXApi.setOnClickListener(this);
+        //button for AI Trader
+        Button buttonTrader = (Button) findViewById(R.id.historicalData);
+        buttonTrader.setOnClickListener(this);
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
@@ -61,6 +65,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(this,xApiConnectionLogin.class);
                 //Intent intent = new Intent(this,xApiUiInput.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                break;
+            case R.id.historicalData:
+                Intent intentTrader = new Intent(this,CandleChartDrawer.class);
+                startActivity(intentTrader);
                 break;
             default:
                 break;

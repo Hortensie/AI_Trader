@@ -76,7 +76,8 @@ import pro.xstore.api.sync.SyncAPIConnector;
             for (int i = 0; i < eurUsdList.size(); i++) {
                 //save data to cloud FireBase
 
-                firebaseDb.writeNewSymbol(FireBaseDb.EncodeString(symbol),String.valueOf(eurUsdList.get(i).getCtm()),
+                firebaseDb.writeNewSymbol(FireBaseDb.EncodeString(symbol+":"+period_code),
+                                                String.valueOf(eurUsdList.get(i).getCtm()),
                                                 eurUsdList.get(i).getCtm(),
                                                 eurUsdList.get(i).getOpen(),
                                                 eurUsdList.get(i).getHigh(),
