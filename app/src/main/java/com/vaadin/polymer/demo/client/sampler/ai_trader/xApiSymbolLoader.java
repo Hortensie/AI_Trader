@@ -29,20 +29,6 @@ class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<SymbolRecord
         this.context = context;
     }
 
-    /*
-          private String symbol;
-          private PERIOD_CODE period_code;
-          private long startTime;
-          private long endTime;
-
-
-          xApiRangeDataLoader(String symbol, PERIOD_CODE period_code, long startTime, long endTime) {
-              this.symbol = symbol;
-              this.period_code = period_code;
-              this.startTime = startTime;
-              this.endTime = endTime;
-          }
-      */
     @Override
     protected List<SymbolRecord> doInBackground(SyncAPIConnector... params) {
 

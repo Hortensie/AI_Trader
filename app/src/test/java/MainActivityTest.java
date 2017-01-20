@@ -9,6 +9,7 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.vaadin.polymer.demo.client.sampler.ai_trader.CandleChartDrawer;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.MainActivity;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
@@ -65,6 +66,16 @@ public class MainActivityTest {
             assertEquals(xApiConnectionLogin.class.getCanonicalName(), intent.getComponent().getClassName());
 
         }
+
+    @Test
+    public void validateOnClickToStartCandleChartDrawer() {
+
+        Button button = (Button) activity.findViewById( R.id.historicalData );
+        button.performClick();
+        Intent intent = Shadows.shadowOf(activity).peekNextStartedActivity();
+        assertEquals(CandleChartDrawer.class.getCanonicalName(), intent.getComponent().getClassName());
+
+    }
 
     }
 

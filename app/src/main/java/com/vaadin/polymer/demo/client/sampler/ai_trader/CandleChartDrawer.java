@@ -25,7 +25,6 @@ import static android.graphics.Color.WHITE;
 
 public class CandleChartDrawer extends Activity{
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

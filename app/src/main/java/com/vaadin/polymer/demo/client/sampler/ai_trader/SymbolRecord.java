@@ -49,4 +49,28 @@ public class SymbolRecord {
     public void setVol(double vol) {
         this.vol = vol;
     }
+
+    public long getCtm() {
+        return ctm;
+    }
+
+    public double getOpen() {
+        return open;
+    }
+
+    public double getHigh() {
+        return high;
+    }
+
+    public double getLow() {
+        return low;
+    }
+
+    public double getClose() {
+        return close;
+    }
+
+    public double getVol() {
+        return vol;
+    }
 }

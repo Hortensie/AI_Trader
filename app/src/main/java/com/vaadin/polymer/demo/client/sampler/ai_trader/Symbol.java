@@ -28,4 +28,11 @@ public class Symbol{
         this.symbolRecord = symbolRecord;
     }
 
+    public Long getTime() {
+        return time;
+    }
+
+    public SymbolRecord getSymbolRecord() {
+        return symbolRecord;
+    }
 }
