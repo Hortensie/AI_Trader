@@ -36,6 +36,14 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
         Button buttonHistData = (Button)findViewById(R.id.buttonHistData);
         buttonHistData.setOnClickListener(this);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("json","Symbol data received from FireBase");
+        fireBaseDb.getDataFromFireBaseDb("Symbols");
+        super.onResume();
     }
 
     @Override
