@@ -15,7 +15,7 @@ import org.junit.runners.Suite;
                      SymbolRecordTest.class,
                      SymbolTest.class,
                      PeriodSelectorTest.class,
-                     FireBaseDbTest.class
+                     FireBaseHandlerTest.class
 
 
 })

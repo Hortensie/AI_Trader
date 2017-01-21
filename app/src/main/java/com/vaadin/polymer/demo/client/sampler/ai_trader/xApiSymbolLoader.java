@@ -59,9 +59,9 @@ class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<SymbolRecord
         else
         {
             //initialize fire Base connection (instance, reference)
-            FireBaseDb firebaseDb = new FireBaseDb();
+            FireBaseHandler firebaseHandler = new FireBaseHandler();
             for (int i = 0; i < symbolList.size(); i++) {
-               // firebaseDb.saveDataToFireBaseDb("Symbols", String.valueOf(i), symbolList.get(i).getSymbol());
+               // firebaseHandler.saveDataToFireBaseDb("Symbols", String.valueOf(i), symbolList.get(i).getSymbol());
             }
         }
     }

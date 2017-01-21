@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class xApiUiInput extends Activity implements View.OnClickListener {
 
     CalendarSelector calendarSelector = new CalendarSelector(this);
-    FireBaseDb fireBaseDb = new FireBaseDb();
+    FireBaseHandler fireBaseHandler = new FireBaseHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
     @Override
     protected void onResume() {
         Log.d("json","Symbol data received from FireBase");
-        fireBaseDb.getDataFromFireBaseDb("Symbols");
+        fireBaseHandler.getDataFromFireBaseDb("Symbols");
         super.onResume();
     }
 
@@ -69,7 +69,7 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
                 }
                 break;
             case R.id.buttonGetSymbolsApi:
-                fireBaseDb.getDataFromFireBaseDb("Symbols");
+                fireBaseHandler.getDataFromFireBaseDb("Symbols");
                 Toast toastSymbols = Toast.makeText(getApplicationContext(),"Symbols were received from database", Toast.LENGTH_SHORT);
                 toastSymbols.show();
                 break;
@@ -91,7 +91,7 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
                 }
                 break;
             case R.id.buttonSetSymbol:
-                //works either FireBaseDb.getInternalCopy().size()==0
+                //works either FireBaseHandler.getInternalCopy().size()==0
                 if(TradingSymbol.getSymbols().size()==0)
                 {
                     Toast toastLogged = Toast.makeText(getApplicationContext(),"No symbols available, Get them first from db", Toast.LENGTH_SHORT);

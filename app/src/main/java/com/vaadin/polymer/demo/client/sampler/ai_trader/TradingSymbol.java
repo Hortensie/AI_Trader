@@ -19,7 +19,7 @@ public class TradingSymbol extends Activity  {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         SymbolAdapter adapter = new SymbolAdapter(this,getSymbols());
-        //SymbolAdapter adapter = new SymbolAdapter(this, fireBaseDb.getDataFromFireBaseDb("Symbols"));
+        //SymbolAdapter adapter = new SymbolAdapter(this, fireBaseHandler.getDataFromFireBaseDb("Symbols"));
         mRecyclerView.setAdapter(adapter);
         //use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
@@ -31,7 +31,7 @@ public class TradingSymbol extends Activity  {
     public static List<SymbolRow> getSymbols()
     {
         List<SymbolRow> data = new ArrayList<>();
-        List<String> symbols = FireBaseDb.getInternalCopy();
+        List<String> symbols = FireBaseHandler.getInternalCopy();
         int[] icons = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
         for (int i=0;i<symbols.size();i++)
         {

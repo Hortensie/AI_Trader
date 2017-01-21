@@ -29,7 +29,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
  class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,Void> {
 
-        private FireBaseDb fireBaseDb;
+        private FireBaseHandler fireBaseHandler;
         private String symbol;
         private PERIOD_CODE period_code;
         private long startTime;
@@ -56,8 +56,8 @@ import pro.xstore.api.sync.SyncAPIConnector;
                 //Log.d("json EURUSD com req",chartRangeCommand.toString());
                 List<RateInfoRecord> eurUsdList = executeChartRangeCommand.getRateInfos();
                 if(eurUsdList!=null&&eurUsdList.size()!=0) {
-                    fireBaseDb = new FireBaseDb();
-                    fireBaseDb.saveListToFireBaseDataBase(eurUsdList, symbol+":"+period_code, context);
+                    fireBaseHandler = new FireBaseHandler();
+                    fireBaseHandler.saveListToFireBaseDataBase(eurUsdList, symbol+":"+period_code, context);
                 }
                 else
                 {
