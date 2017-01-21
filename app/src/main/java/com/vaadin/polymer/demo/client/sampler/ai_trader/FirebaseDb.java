@@ -1,5 +1,8 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -10,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import pro.xstore.api.message.records.RateInfoRecord;
+
 /**
  * Created by Piotr on 2016-12-02.
  * Provides interface to FireBase database by:
@@ -19,6 +24,9 @@ import java.util.Objects;
 
 class FireBaseDb
 {
+    Symbol newSymbol;
+    SymbolRecord symbolRecord;
+
     private static List<String> internalCopy= new ArrayList<>();
 
     static List<String> getInternalCopy() {
@@ -43,19 +51,32 @@ class FireBaseDb
         return string.replace(",", ".");
     }
 
-    void saveDataToFireBaseDb(String base, String name, String value){
 
-        databaseReference.child(base).child(name).setValue(value);
+    void saveListToFireBaseDataBase (List<RateInfoRecord> records, String base, Context context)
+    {
+        if(context!=null)
+        {
+            for (int i = 0; i < records.size(); i++)
+            {
+                symbolRecord=new SymbolRecord();
+                symbolRecord.setCtm(records.get(i).getCtm());
+                symbolRecord.setClose(records.get(i).getClose());
+                symbolRecord.setLow(records.get(i).getLow());
+                symbolRecord.setHigh(records.get(i).getHigh());
+                symbolRecord.setOpen(records.get(i).getOpen());
+                symbolRecord.setVol(records.get(i).getVol());
+                newSymbol = new Symbol();
+                newSymbol.setTime(records.get(i).getCtm());
+                newSymbol.setSymbolRecord(symbolRecord);
 
-    }
-
-    void writeNewSymbol(String symbol, String time, long ctm, double open, double high, double low, double close, double vol) {
-
-
-        SymbolRecord newSymbolRecord = new SymbolRecord(ctm, open, high, low, close, vol);
-        Symbol newSymbol = new Symbol(ctm,newSymbolRecord);
-
-        databaseReference.child(symbol).child(time).setValue(newSymbol);
+                databaseReference.child(FireBaseDb.EncodeString(base)).child(String.valueOf(records.get(i).getCtm())).setValue(newSymbol);
+            }
+        }
+        else
+        {
+            Toast toastLogged = Toast.makeText(context,"No context", Toast.LENGTH_SHORT);
+            toastLogged.show();
+        }
     }
 
     void getDataFromFireBaseDb(String childName)

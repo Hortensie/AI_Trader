@@ -33,7 +33,7 @@ public class CandleChartDrawer extends Activity{
 
         CandleStickChart candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
         //set background color
-        candleStickChart.setBackgroundColor(BLACK);
+        candleStickChart.setBackgroundColor(WHITE);
         //turn off grid on chart
         //candleStickChart.setDrawGridBackground(false);
 
@@ -48,7 +48,7 @@ public class CandleChartDrawer extends Activity{
 
         XAxis xAxis = candleStickChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(WHITE);
+        xAxis.setTextColor(BLACK);
         xAxis.setAxisMaximum(30f);
         xAxis.setDrawGridLines(false);
         //setting this to true will activate chart logcat output
@@ -64,7 +64,7 @@ public class CandleChartDrawer extends Activity{
         //rightAxis.setEnabled(false);
         //leftAxis.setEnabled(false);
 
-        leftAxis.setTextColor(WHITE);
+        leftAxis.setTextColor(BLACK);
        // rightAxis.setTextColor(WHITE);
 
         ArrayList<CandleEntry> entries = new ArrayList<>();
@@ -91,7 +91,7 @@ public class CandleChartDrawer extends Activity{
         //set candle color
         //dataSet.setColor(WHITE);
         //line color inside candler
-        dataSet.setShadowColor(WHITE);
+        dataSet.setShadowColor(BLACK);
         dataSet.setShadowWidth(0.7f);
         //
         dataSet.setDecreasingColor(RED);

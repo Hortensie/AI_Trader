@@ -2,14 +2,12 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import java.util.List;
 
 import pro.xstore.api.message.codes.PERIOD_CODE;
 import pro.xstore.api.message.command.APICommandFactory;
-import pro.xstore.api.message.command.ChartRangeCommand;
 import pro.xstore.api.message.error.APICommandConstructionException;
 import pro.xstore.api.message.error.APICommunicationException;
 import pro.xstore.api.message.error.APIReplyParseException;
@@ -21,12 +19,17 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
 /**
  * Created by Piotr Szczesny on 2016-12-08.
- * comment
+ * Async Task for retrieving historical data from xAPI server
+ * It retrieves data within specific time frame (from startTime to endTime)
+ * and for selected symbol & period
+ * It gets data and save to FireBase database using saveListToFireBaseDataBase method
+ * If successful toast message with be shown
+ * If there is no data connection with xAPI server will be terminated
  */
 
- class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,List<RateInfoRecord>> {
+ class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,Void> {
 
-
+        private FireBaseDb fireBaseDb;
         private String symbol;
         private PERIOD_CODE period_code;
         private long startTime;
@@ -42,57 +45,41 @@ import pro.xstore.api.sync.SyncAPIConnector;
     }
 
     @Override
-    protected List<RateInfoRecord> doInBackground(SyncAPIConnector... params) {
+    protected Void doInBackground(SyncAPIConnector... params) {
 
-        List<RateInfoRecord> eurUsdList=null;
-        try {
+        try
+        {
                 SyncAPIConnector apiConnector=params[0];
                 ChartRangeInfoRecord record = new ChartRangeInfoRecord(symbol,period_code,startTime,endTime);
-                ChartRangeCommand chartRangeCommand = APICommandFactory.createChartRangeCommand(record);
+                //ChartRangeCommand chartRangeCommand = APICommandFactory.createChartRangeCommand(record);
                 ChartResponse executeChartRangeCommand = APICommandFactory.executeChartRangeCommand(apiConnector,record);
-                Log.d("json EURUSD com req",chartRangeCommand.toString());
-                eurUsdList = executeChartRangeCommand.getRateInfos();
-
-            // Close connection
-            apiConnector.close();
-            Log.d("json","connection closed");
+                //Log.d("json EURUSD com req",chartRangeCommand.toString());
+                List<RateInfoRecord> eurUsdList = executeChartRangeCommand.getRateInfos();
+                if(eurUsdList!=null&&eurUsdList.size()!=0) {
+                    fireBaseDb = new FireBaseDb();
+                    fireBaseDb.saveListToFireBaseDataBase(eurUsdList, symbol+":"+period_code, context);
+                }
+                else
+                {
+                    // Close connection
+                    apiConnector.close();
+                }
         }
          catch (APIReplyParseException|APICommunicationException|APICommandConstructionException|APIErrorResponse e) {
             e.printStackTrace();
         }
-
-        return eurUsdList;
-
+        return null;
     }
 
 
     @Override
-    protected void onPostExecute(List<RateInfoRecord>  eurUsdList) {
-        Log.d("json","onPostExecute");
-        if(eurUsdList!=null&&eurUsdList.size()!=0) {
-
-            //initialize fireBase connection (instance, reference)
-            FireBaseDb firebaseDb = new FireBaseDb();
-            for (int i = 0; i < eurUsdList.size(); i++) {
-                //save data to cloud FireBase
-
-                firebaseDb.writeNewSymbol(FireBaseDb.EncodeString(symbol+":"+period_code),
-                                                String.valueOf(eurUsdList.get(i).getCtm()),
-                                                eurUsdList.get(i).getCtm(),
-                                                eurUsdList.get(i).getOpen(),
-                                                eurUsdList.get(i).getHigh(),
-                                                eurUsdList.get(i).getLow(),
-                                                eurUsdList.get(i).getClose(),
-                                                eurUsdList.get(i).getVol()
-                                        );
-
-            }
-        }
-        else
+    protected void onPostExecute(Void aVoid)
+    {
         {
-            Toast toastLogged = Toast.makeText(context,"No data for selected inputs", Toast.LENGTH_SHORT);
+            Toast toastLogged = Toast.makeText(context,"Data for "+symbol+" successfully saved to database!", Toast.LENGTH_SHORT);
             toastLogged.show();
         }
     }
+
 }
 

@@ -6,7 +6,7 @@
 
     </style>
 
-    <style name="AppTheme.Base" parent="android:ThemeOverlay.Material.Dark">
+    <style name="AppTheme.Base" parent="android:Theme.Material.Light.DarkActionBar">
 
 
     </style>
