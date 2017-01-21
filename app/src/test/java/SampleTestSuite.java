@@ -14,7 +14,8 @@ import org.junit.runners.Suite;
                      xApiLoginMockito.class,
                      SymbolRecordTest.class,
                      SymbolTest.class,
-                     PeriodSelectorTest.class
+                     PeriodSelectorTest.class,
+                     FireBaseDbTest.class
 
 
 })

@@ -22,7 +22,7 @@ import pro.xstore.api.message.records.RateInfoRecord;
  * Getting data as List<Object> based on various child String
  */
 
-class FireBaseDb
+public class FireBaseDb
 {
     Symbol newSymbol;
     SymbolRecord symbolRecord;
@@ -41,7 +41,7 @@ class FireBaseDb
         databaseReference= firebaseDatabase.getReference();
     }
 
-    static String EncodeString(String string) {
+    public static String EncodeString(String string) {
 
         return string.replace(".", ",").replace("[","").replace("]","");
     }
