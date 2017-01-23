@@ -38,7 +38,7 @@ public class xApiConnectionLogin extends Activity implements View.OnClickListene
         return globalSyncs;
     }
 
-    private static void setGlobalSyncs(SyncAPIConnector globalSyncss) {
+    public static void setGlobalSyncs(SyncAPIConnector globalSyncss) {
         globalSyncs = globalSyncss;
     }
 
