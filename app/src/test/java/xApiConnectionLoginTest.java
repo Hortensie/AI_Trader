@@ -24,7 +24,7 @@ import static junit.framework.Assert.assertTrue;
  * basic robolectric unit tests to validate
  * 1 - login edit text
  * 2 - password edit text
- * 3 - button to start xapi trading input class
+ * 3 - button to start xApi trading input class
  */
 @Config(sdk = Build.VERSION_CODES.LOLLIPOP,manifest = "src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
@@ -59,7 +59,7 @@ public class xApiConnectionLoginTest {
     }
 
     @Test
-    public void validateClickButtonToStartxApiTradingInputActivity()
+    public void validateClickButtonToStartXApiTradingInputActivity()
     {
         Button connection = (Button)xApiConnectionLogin.findViewById(R.id.buttonLogin);
         connection.performClick();

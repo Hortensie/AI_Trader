@@ -1,8 +1,8 @@
 //import com.android.ddmlib.DdmPreferences
 
 apply plugin: 'com.android.application'
-//apply plugin: 'jacoco-android'
-//apply plugin: 'jacoco'
+apply plugin: 'jacoco-android'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 25
@@ -41,15 +41,11 @@ android {
         }
     }
     //jacoco dependency to generate unit test coverege report
-  //  productFlavors {
-     //   free {  }
-    //    paid {  }
-  //  }
- //   jacocoTestReport {
-   //     reports {
-   //         xml.enabled true
-   //     }
-//}
+    //productFlavors {
+      //  free {  }
+        //paid {  }
+    //}
+
 }
 
 dependencies {
@@ -76,4 +72,3 @@ dependencies {
 }
 
 
-apply plugin: 'com.google.gms.google-services'

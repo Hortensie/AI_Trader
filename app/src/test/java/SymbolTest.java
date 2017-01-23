@@ -12,6 +12,7 @@ import static org.junit.Assert.assertSame;
 
 public class SymbolTest {
 
+
     @Test
     public void SetterForSymbol ()
 

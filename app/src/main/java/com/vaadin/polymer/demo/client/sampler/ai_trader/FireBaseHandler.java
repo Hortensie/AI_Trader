@@ -43,12 +43,13 @@ public class FireBaseHandler
 
     public static String EncodeString(String string) {
 
-        return string.replace(".", ",").replace("[","").replace("]","");
+        return string.replace(".", ",").replace("[","+").replace("]","-");
     }
 
 
     public static String DecodeString(String string) {
-        return string.replace(",", ".");
+
+        return string.replace(",", ".").replace("+","[").replace("-","]");
     }
 
 

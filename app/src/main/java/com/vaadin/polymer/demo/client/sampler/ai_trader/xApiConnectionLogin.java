@@ -22,7 +22,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
 /**
  * Created by Piotr on 2016-12-18.
- * Class that uses xstore.api to connect to Demo financial server
+ * Class that uses xStore.api to connect to Demo financial server
  */
 
 public class xApiConnectionLogin extends Activity implements View.OnClickListener {
