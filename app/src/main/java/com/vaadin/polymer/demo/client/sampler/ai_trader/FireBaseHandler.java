@@ -1,8 +1,4 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
-
-import android.content.Context;
-import android.widget.Toast;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -10,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,8 +21,6 @@ import pro.xstore.api.message.records.RateInfoRecord;
 
 public class FireBaseHandler
 {
-    Symbol newSymbol;
-    SymbolRecord symbolRecord;
 
     private static List<String> internalCopy= new ArrayList<>();
 
@@ -53,30 +48,30 @@ public class FireBaseHandler
     }
 
 
-    void saveListToFireBaseDataBase (List<RateInfoRecord> records, String base, Context context)
+    List<Symbol> saveApiRecordsToSymbolList (List<RateInfoRecord> records)
     {
-        if(context!=null)
-        {
+            List<Symbol> data = new LinkedList<>();
             for (int i = 0; i < records.size(); i++)
             {
-                symbolRecord=new SymbolRecord();
+                SymbolRecord symbolRecord = new SymbolRecord();
                 symbolRecord.setCtm(records.get(i).getCtm());
                 symbolRecord.setClose(records.get(i).getClose());
                 symbolRecord.setLow(records.get(i).getLow());
                 symbolRecord.setHigh(records.get(i).getHigh());
                 symbolRecord.setOpen(records.get(i).getOpen());
                 symbolRecord.setVol(records.get(i).getVol());
-                newSymbol = new Symbol();
+                Symbol newSymbol = new Symbol();
                 newSymbol.setTime(records.get(i).getCtm());
                 newSymbol.setSymbolRecord(symbolRecord);
-
-                databaseReference.child(FireBaseHandler.EncodeString(base)).child(String.valueOf(records.get(i).getCtm())).setValue(newSymbol);
+                data.add(i,newSymbol);
             }
-        }
-        else
-        {
-            Toast toastLogged = Toast.makeText(context,"No context", Toast.LENGTH_SHORT);
-            toastLogged.show();
+        return data;
+    }
+
+    void saveSymbolListToFireBase(List<Symbol> data, String symbol, String periodCode) {
+
+        for (int i = 0; i < data.size(); i++) {
+            databaseReference.child(FireBaseHandler.EncodeString(symbol)).child(FireBaseHandler.EncodeString(periodCode)).setValue(data);
         }
     }
 

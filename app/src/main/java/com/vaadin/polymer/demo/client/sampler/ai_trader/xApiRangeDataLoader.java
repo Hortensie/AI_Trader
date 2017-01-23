@@ -29,8 +29,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
  class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,Void> {
 
-        private FireBaseHandler fireBaseHandler;
-        private String symbol;
+    private String symbol;
         private PERIOD_CODE period_code;
         private long startTime;
         private long endTime;
@@ -51,13 +50,11 @@ import pro.xstore.api.sync.SyncAPIConnector;
         {
                 SyncAPIConnector apiConnector=params[0];
                 ChartRangeInfoRecord record = new ChartRangeInfoRecord(symbol,period_code,startTime,endTime);
-                //ChartRangeCommand chartRangeCommand = APICommandFactory.createChartRangeCommand(record);
                 ChartResponse executeChartRangeCommand = APICommandFactory.executeChartRangeCommand(apiConnector,record);
-                //Log.d("json EURUSD com req",chartRangeCommand.toString());
                 List<RateInfoRecord> eurUsdList = executeChartRangeCommand.getRateInfos();
                 if(eurUsdList!=null&&eurUsdList.size()!=0) {
-                    fireBaseHandler = new FireBaseHandler();
-                    fireBaseHandler.saveListToFireBaseDataBase(eurUsdList, symbol+":"+period_code, context);
+                    FireBaseHandler fireBaseHandler = new FireBaseHandler();
+                    fireBaseHandler.saveSymbolListToFireBase(fireBaseHandler.saveApiRecordsToSymbolList(eurUsdList),symbol, String.valueOf(period_code));
                 }
                 else
                 {

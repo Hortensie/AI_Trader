@@ -10,12 +10,13 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({MainActivityTest.class,
-                     xApiConnectionLoginTest.class,
+                     //xApiConnectionLoginTest.class,
                      xApiLoginMockito.class,
                      SymbolRecordTest.class,
                      SymbolTest.class,
                      PeriodSelectorTest.class,
-                     FireBaseHandlerTest.class
+                     FireBaseHandlerTest.class,
+                     xApiConnectionLoginTest2.class
 
 
 })
