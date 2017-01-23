@@ -61,5 +61,11 @@ public class xApiConnectionLoginTest2 {
 
    }
 
+    @Test
+    public void validateSetterGetterForGlobalSyncNull() throws IOException {
+        xApiConnectionLogin.setGlobalSyncs(null);
+        Assert.assertNull(xApiConnectionLogin.getGlobalSyncs());
+
+    }
 
 }
