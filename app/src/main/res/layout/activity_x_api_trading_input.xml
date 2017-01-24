@@ -21,8 +21,6 @@
         android:paddingRight="16dp"
         android:paddingLeft="16dp"/>
 
-
-
     <Button
         android:paddingRight="16dp"
         android:paddingLeft="16dp"
@@ -80,5 +78,15 @@
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:id="@+id/buttonGetSymbols" />
+
+    <Button
+        android:layout_gravity="right"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:text="Draw Chart"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/drawCandleChart" />
 
 </LinearLayout>

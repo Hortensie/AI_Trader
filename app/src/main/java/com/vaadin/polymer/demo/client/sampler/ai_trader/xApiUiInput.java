@@ -35,6 +35,9 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
         //button to get historical data from xApi
         Button buttonHistData = (Button)findViewById(R.id.buttonHistData);
         buttonHistData.setOnClickListener(this);
+        //button to start CandleChartDrawer
+        Button buttonCandleChart = (Button)findViewById(R.id.drawCandleChart);
+        buttonCandleChart.setOnClickListener(this);
 
 
     }
@@ -105,6 +108,10 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
             case R.id.select_period:
                 Intent setPeriod = new Intent(this,PeriodSelector.class);
                 startActivity(setPeriod);
+                break;
+            case R.id.drawCandleChart:
+                Intent drawChart = new Intent(this,CandleChartDrawer.class);
+                startActivity(drawChart);
                 break;
             default:
                 break;

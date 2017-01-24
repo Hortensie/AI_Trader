@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.data.CandleEntry;
+
+import java.util.LinkedList;
 import java.util.List;
 
 import pro.xstore.api.message.codes.PERIOD_CODE;
@@ -29,11 +32,13 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
  class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,Void> {
 
-    private String symbol;
+        static List<CandleEntry> dataSet = new LinkedList<>();
+        private String symbol;
         private PERIOD_CODE period_code;
         private long startTime;
         private long endTime;
         private Context context;
+
 
     xApiRangeDataLoader(String symbol, PERIOD_CODE period_code, long startTime, long endTime, Context context) {
         this.symbol = symbol;
@@ -43,9 +48,16 @@ import pro.xstore.api.sync.SyncAPIConnector;
         this.context = context;
     }
 
+    public static List<CandleEntry> getDataSet() {
+        return dataSet;
+    }
+
+    public static void setDataSet(List<CandleEntry> dataSet) {
+        xApiRangeDataLoader.dataSet = dataSet;
+    }
+
     @Override
     protected Void doInBackground(SyncAPIConnector... params) {
-
         try
         {
                 SyncAPIConnector apiConnector=params[0];
@@ -55,6 +67,8 @@ import pro.xstore.api.sync.SyncAPIConnector;
                 if(eurUsdList!=null&&eurUsdList.size()!=0) {
                     FireBaseHandler fireBaseHandler = new FireBaseHandler();
                     fireBaseHandler.saveCandleListToFireBase(fireBaseHandler.saveApiRecordsToCandleEntryList(eurUsdList),symbol,String.valueOf(period_code));
+                    dataSet=fireBaseHandler.saveApiRecordsToCandleEntryList(eurUsdList);
+                    setDataSet(dataSet);
                 }
                 else
                 {
@@ -66,13 +80,15 @@ import pro.xstore.api.sync.SyncAPIConnector;
             e.printStackTrace();
         }
         return null;
+
     }
 
 
     @Override
-    protected void onPostExecute(Void aVoid)
+    protected void onPostExecute(Void avoid)
     {
         {
+
             Toast toastLogged = Toast.makeText(context,"Data for "+symbol+" successfully saved to database!", Toast.LENGTH_SHORT);
             toastLogged.show();
         }

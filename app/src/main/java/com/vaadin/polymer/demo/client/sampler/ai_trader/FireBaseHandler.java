@@ -59,11 +59,11 @@ public class FireBaseHandler
 
             CandleEntry candleEntry = new CandleEntry(
                     i,
-                    (float) records.get(i).getHigh(),
-                    (float) records.get(i).getLow(),
+                    (float) (records.get(i).getHigh()+records.get(i).getOpen()),
+                    (float) (records.get(i).getLow()+records.get(i).getOpen()),
                     (float) records.get(i).getOpen(),
-                    (float) records.get(i).getClose(),
-                     symbolData
+                    (float) (records.get(i).getClose()+records.get(i).getOpen())
+                    ,symbolData
 
             );
 
