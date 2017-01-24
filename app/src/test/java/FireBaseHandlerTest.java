@@ -49,5 +49,4 @@ public class FireBaseHandlerTest {
     {
         assertEquals(input,FireBaseHandler.DecodeString(expected));
     }
-
 }
