@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TradingSymbol extends Activity  {
+public class SymbolRecyclerViewer extends Activity  {
 
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;

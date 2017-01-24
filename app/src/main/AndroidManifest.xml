@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".xApiConnectionLogin" />
         <activity android:name=".xApiUiInput" />
-        <activity android:name=".TradingSymbol" />
+        <activity android:name=".SymbolRecyclerViewer" />
         <activity android:name=".PeriodSelector"/>
         <activity android:name=".CandleChartDrawer"/>
 

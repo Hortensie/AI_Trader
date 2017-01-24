@@ -92,13 +92,13 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
                 break;
             case R.id.buttonSetSymbol:
                 //works either FireBaseHandler.getInternalCopy().size()==0
-                if(TradingSymbol.getSymbols().size()==0)
+                if(SymbolRecyclerViewer.getSymbols().size()==0)
                 {
                     Toast toastLogged = Toast.makeText(getApplicationContext(),"No symbols available, Get them first from db", Toast.LENGTH_SHORT);
                     toastLogged.show();
                 }
                 else {
-                    Intent intent = new Intent(this, TradingSymbol.class);
+                    Intent intent = new Intent(this, SymbolRecyclerViewer.class);
                     startActivity(intent);
                 }
                 break;
