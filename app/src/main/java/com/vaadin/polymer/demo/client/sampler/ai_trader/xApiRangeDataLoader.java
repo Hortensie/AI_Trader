@@ -54,7 +54,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
                 List<RateInfoRecord> eurUsdList = executeChartRangeCommand.getRateInfos();
                 if(eurUsdList!=null&&eurUsdList.size()!=0) {
                     FireBaseHandler fireBaseHandler = new FireBaseHandler();
-                    fireBaseHandler.saveSymbolListToFireBase(fireBaseHandler.saveApiRecordsToSymbolList(eurUsdList),symbol, String.valueOf(period_code));
+                    fireBaseHandler.saveCandleListToFireBase(fireBaseHandler.saveApiRecordsToCandleEntryList(eurUsdList),symbol,String.valueOf(period_code));
                 }
                 else
                 {

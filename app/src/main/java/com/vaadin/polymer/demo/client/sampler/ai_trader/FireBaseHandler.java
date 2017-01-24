@@ -1,4 +1,5 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ public class FireBaseHandler
 {
 
     private static List<String> internalCopy= new ArrayList<>();
+    public boolean test(){return false;};
 
     static List<String> getInternalCopy() {
 
@@ -37,38 +39,40 @@ public class FireBaseHandler
     }
 
     public static String EncodeString(String string) {
-
         return string.replace(".", ",").replace("[","+").replace("]","-");
     }
 
-
     public static String DecodeString(String string) {
-
         return string.replace(",", ".").replace("+","[").replace("-","]");
     }
 
-
-    List<Symbol> saveApiRecordsToSymbolList (List<RateInfoRecord> records)
+    List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records)
     {
-            List<Symbol> data = new LinkedList<>();
-            for (int i = 0; i < records.size(); i++)
-            {
-                SymbolRecord symbolRecord = new SymbolRecord();
-                symbolRecord.setCtm(records.get(i).getCtm());
-                symbolRecord.setClose(records.get(i).getClose());
-                symbolRecord.setLow(records.get(i).getLow());
-                symbolRecord.setHigh(records.get(i).getHigh());
-                symbolRecord.setOpen(records.get(i).getOpen());
-                symbolRecord.setVol(records.get(i).getVol());
-                Symbol newSymbol = new Symbol();
-                newSymbol.setTime(records.get(i).getCtm());
-                newSymbol.setSymbolRecord(symbolRecord);
-                data.add(i,newSymbol);
-            }
+        List<CandleEntry> data = new LinkedList<>();
+        for (int i = 0; i < records.size(); i++)
+        {
+
+            SymbolData symbolData = new SymbolData(
+                    records.get(i).getCtm(),
+                    records.get(i).getVol()
+            );
+
+            CandleEntry candleEntry = new CandleEntry(
+                    i,
+                    (float) records.get(i).getHigh(),
+                    (float) records.get(i).getLow(),
+                    (float) records.get(i).getOpen(),
+                    (float) records.get(i).getClose(),
+                     symbolData
+
+            );
+
+            data.add(i,candleEntry);
+        }
         return data;
     }
 
-    void saveSymbolListToFireBase(List<Symbol> data, String symbol, String periodCode) {
+    void saveCandleListToFireBase(List<CandleEntry> data, String symbol, String periodCode) {
 
         for (int i = 0; i < data.size(); i++) {
             databaseReference.child(FireBaseHandler.EncodeString(symbol)).child(FireBaseHandler.EncodeString(periodCode)).setValue(data);
@@ -95,8 +99,6 @@ public class FireBaseHandler
             //on cancel
             }
         });
-
      }
-
 }
 

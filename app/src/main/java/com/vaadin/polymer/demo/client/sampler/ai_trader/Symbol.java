@@ -2,14 +2,14 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
 /**
  * Created by Piotr on 2017-01-19.
- * public necessery for FireBase to work
+ * public necessary for FireBase to work
  */
 
 public class Symbol{
 
-        public Long time;
+    public Long time;
 
-        public SymbolRecord symbolRecord;
+    public SymbolRecord symbolRecord;
 
 
     public void setTime(Long time) {

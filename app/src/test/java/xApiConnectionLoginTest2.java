@@ -27,6 +27,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
 public class xApiConnectionLoginTest2 {
 
     private xApiConnectionLogin xApiConnectionObject;
+
     private Credentials SUT;
     private SyncAPIConnector connector;
 

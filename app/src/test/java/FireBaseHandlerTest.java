@@ -10,7 +10,8 @@ import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by Piotr on 2017-01-20.
- *
+ * Parametrized unit tests for FIreBaseHandler.class
+ * Test of Decode / Encode functions
  */
 @RunWith(Parameterized.class)
 

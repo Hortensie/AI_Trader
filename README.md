@@ -4,9 +4,9 @@
 
 Concept for this application is to provide interface to financial trading data (historical from Cloud Firebase db, streaming via REST API) and to build machine learning algorithms to predict future price.
 
-Software development fully support Agile practices (eg. DevOps, Design Thinking) while backlog and upcoming sprints can be checked via public [trello board](https://trello.com/b/cDSR6XFI/ai-trader-sprints).
+Software development fully support TDD and Agile practices (eg. DevOps, Design Thinking) while backlog and upcoming sprints can be checked via public [trello board](https://trello.com/b/cDSR6XFI/ai-trader-sprints).
 
-Anyone is welcome to join this project (contact szczesny.piotr@outlook.com)
+Anyone is welcome to join this project (contact szczesny.piotr@outlook.com) to improve your android development skills.
 
 
 | Platform         | Build Status |
@@ -19,10 +19,10 @@ Anyone is welcome to join this project (contact szczesny.piotr@outlook.com)
 
 Following tools are being used in this project:
 
-- Android Studio witdh SDK / NDK support
+- Android Studio with SDK / NDK support
 - Version Control GitHub + GitFlow / Circle CI
 - Testing via Junit4 / Robolectric / Mockito / Espresso (UI)
-- Code coverage
+- Code coverage via codecov.io
 - Google Engine (Firebase db)
-- OOP practices like (OCP/DRY/SRP/LSP)
-- more incoming like Vulkan API to draw charts or GPU processing for machine learning
+- OOP practices like (KISS/OCP/DRY/SRP/LSP)
+- more incoming like Vulkan API to draw charts or GPU processing for machine learning, Spark for queries

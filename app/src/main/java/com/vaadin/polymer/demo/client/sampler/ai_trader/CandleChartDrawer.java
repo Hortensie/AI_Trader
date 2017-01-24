@@ -115,6 +115,7 @@ public class CandleChartDrawer extends Activity{
 
 
 
+
     }
 
 

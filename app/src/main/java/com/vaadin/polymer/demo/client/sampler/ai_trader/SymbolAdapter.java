@@ -22,7 +22,7 @@ class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.MyViewHolder>{
     private LayoutInflater inflater;
     List<SymbolRow> data = Collections.emptyList();
 
-    SymbolAdapter(Context context, List<SymbolRow> data) {
+    public SymbolAdapter(Context context, List<SymbolRow> data) {
         inflater=LayoutInflater.from(context);
         this.data=data;
     }
