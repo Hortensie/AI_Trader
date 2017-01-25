@@ -34,16 +34,16 @@ import pro.xstore.api.sync.SyncAPIConnector;
         private ChartRangeInfo chartRangeInfo;
         private Context context;
 
-    xApiRangeDataLoader(ChartRangeInfo chartRangeInfo, Context context) {
+    public xApiRangeDataLoader(ChartRangeInfo chartRangeInfo, Context context) {
         this.chartRangeInfo = chartRangeInfo;
         this.context = context;
     }
 
-    static List<CandleEntry> getDataSet() {
+    public static List<CandleEntry> getDataSet() {
         return dataSet;
     }
 
-    private static void setDataSet(List<CandleEntry> dataSet) {
+    public static void setDataSet(List<CandleEntry> dataSet) {
         xApiRangeDataLoader.dataSet = dataSet;
     }
 
