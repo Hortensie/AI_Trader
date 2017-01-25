@@ -4,11 +4,15 @@ import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.CandleDataSet;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.CandleChartDrawer;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.graphics.Color.BLACK;
 import static android.graphics.Color.GREEN;
@@ -20,25 +24,32 @@ import static org.mockito.Mockito.when;
 
 /**
  * Created by Piotr on 2017-01-24.
- * Unit Tests for CandleChartDrawer using mocks
+ * Unit Tests for CandleChartDrawer using test spy / mocks
  */
 
 public class CandleChartDrawerTest {
 
     private CandleStickChart candleStickChart;
     private CandleChartDrawer sut;
+    private YAxis yAxis;
+    private XAxis xAxis;
+    private CandleDataSet set;
+    private CandleEntry candleEntry;
 
     @Before
     public void setUp(){
 
         candleStickChart = mock(CandleStickChart.class);
+        //System Under Test
         sut = new CandleChartDrawer();
+        xAxis = mock(XAxis.class);
+        yAxis = mock(YAxis.class);
+        set = mock(CandleDataSet.class);
+        candleEntry = mock(CandleEntry.class);
     }
 
     @Test
     public void validatePrepareXAxis(){
-
-        XAxis xAxis = mock(XAxis.class);
         when(candleStickChart.getXAxis()).thenReturn(xAxis);
         Assert.assertNotNull(xAxis);
         sut.prepareXAxis(candleStickChart);
@@ -51,7 +62,6 @@ public class CandleChartDrawerTest {
 
     @Test
     public void validatePrepareYLeftAxis(){
-        YAxis yAxis = mock(YAxis.class);
         //stub
         when(candleStickChart.getAxisLeft()).thenReturn(yAxis);
         Assert.assertNotNull(yAxis);
@@ -64,7 +74,6 @@ public class CandleChartDrawerTest {
 
     @Test
     public void validatePrepareChart(){
-
         sut.prepareChart(candleStickChart);
         verify(candleStickChart).setBackgroundColor(WHITE);
         verify(candleStickChart).setMaxVisibleValueCount(60);
@@ -74,7 +83,6 @@ public class CandleChartDrawerTest {
 
     @Test
     public void validateAdjustCandleSet(){
-        CandleDataSet set = mock(CandleDataSet.class);
         sut.adjustCandleDataSet(set);
         verify(set).setShadowColor(BLACK);
         verify(set).setShadowWidth(0.7f);
@@ -82,6 +90,53 @@ public class CandleChartDrawerTest {
         verify(set).setDecreasingPaintStyle(Paint.Style.FILL);
         verify(set).setIncreasingColor(GREEN);
         verify(set).setIncreasingPaintStyle(Paint.Style.FILL);
+    }
+
+    @Test
+    public void validatePrepareCandleData(){
+        Assert.assertNotNull(set);
+        sut.prepareCandleData(set);
+        Assert.assertNotNull(set);
+    }
+
+    @Test
+    public void validatePrepareCandleDataSet(){
+        List<CandleEntry> fakeList = new ArrayList<>();
+        //List<CandleEntry> spyList = Mockito.spy(fakeList);
+        fakeList.add(candleEntry);
+        fakeList.add(candleEntry);
+        fakeList.add(candleEntry);
+        Assert.assertEquals(3,fakeList.size());
+
+        String label ="label";
+        Assert.assertNotNull(label);
+        sut.prepareCandleDataSet(fakeList,label);
+        Assert.assertNotNull(sut.prepareCandleDataSet(fakeList,label));
+    }
+
+    @Test
+    public void validateDrawCandleChart(){
+        //DoC - Dependency on Component
+        //Indirect inputs
+        when(candleStickChart.getXAxis()).thenReturn(xAxis);
+        when(candleStickChart.getAxisLeft()).thenReturn(yAxis);
+
+        List<CandleEntry> fakeList = new ArrayList<>();
+        //List<CandleEntry> spyList = Mockito.spy(fakeList);
+        fakeList.add(candleEntry);
+        fakeList.add(candleEntry);
+        fakeList.add(candleEntry);
+        Assert.assertEquals(3,fakeList.size());
+
+        String label ="label";
+
+        Assert.assertNotNull(label);
+        Assert.assertNotNull(fakeList);
+        Assert.assertNotNull(candleStickChart);
+        //direct inputs to system under test (CandleChartDrawer class)
+        sut.drawCandleChart(candleStickChart,fakeList,label);
+        //indirect output
+        verify(candleStickChart).invalidate();
     }
 
 }

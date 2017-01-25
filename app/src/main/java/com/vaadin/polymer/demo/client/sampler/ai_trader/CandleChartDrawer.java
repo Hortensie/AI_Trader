@@ -31,7 +31,7 @@ public class CandleChartDrawer extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.candlechart);
         CandleStickChart candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
-        drawCandleChart(candleStickChart,xApiRangeDataLoader.getDataSet());
+        drawCandleChart(candleStickChart,xApiRangeDataLoader.getDataSet(),"label");
     }
 
     public XAxis prepareXAxis(CandleStickChart candleStickChart){
@@ -71,20 +71,24 @@ public class CandleChartDrawer extends Activity{
         candleStickChart.setAutoScaleMinMaxEnabled(true);
     }
 
-    public void drawCandleChart(CandleStickChart candleStickChart, List<CandleEntry> dataList )
+    public void drawCandleChart(CandleStickChart candleStickChart, List<CandleEntry> dataList, String label )
     {
         prepareChart(candleStickChart);
         prepareXAxis(candleStickChart);
         prepareYLeftAxis(candleStickChart);
-        candleStickChart.setData(prepareCandleData(dataList));
+        candleStickChart.setData(prepareCandleData(prepareCandleDataSet(dataList,label)));
         candleStickChart.invalidate();
     }
 
-    public CandleData prepareCandleData(List<CandleEntry> data){
-        CandleDataSet dataSet = new CandleDataSet(data,"# of Calls");
-        CandleData candleData = new CandleData(dataSet);
+    public CandleDataSet prepareCandleDataSet(List<CandleEntry> data, String label){
+        return  new CandleDataSet(data,label);
+    }
+
+    public CandleData prepareCandleData(CandleDataSet dataSet)
+    {
+        //add colors & shadows for specific data set
         adjustCandleDataSet(dataSet);
-        return  candleData;
+        return new CandleData(dataSet);
     }
 
     public void adjustCandleDataSet(CandleDataSet dataSet){

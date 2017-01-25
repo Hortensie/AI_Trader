@@ -15,11 +15,12 @@ import org.junit.runners.Suite;
                      SymbolTest.class,
                      PeriodSelectorTest.class,
                      FireBaseHandlerTest.class,
+                     xApiConnectionLoginTest.class,
                      xApiConnectionLoginTest2.class,
-                     FireBaseHandlerTest.class,
-                     FireBaseHandlerTestMock.class
+                     FireBaseHandlerTestMock.class,
+                     CandleChartDrawerTest.class
 
 
 })
-public class SampleTestSuite {
+public class AiTraderTestSuite {
 }

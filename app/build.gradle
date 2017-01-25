@@ -40,11 +40,9 @@ android {
             path "CMakeLists.txt"
         }
     }
-    //jacoco dependency to generate unit test coverege report
-    //productFlavors {
-      //  free {  }
-        //paid {  }
-    //}
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 
 }
 
