@@ -39,13 +39,15 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
         Button buttonCandleChart = (Button)findViewById(R.id.drawCandleChart);
         buttonCandleChart.setOnClickListener(this);
 
+        Log.d("json","Symbol data received from FireBase");
+        fireBaseHandler.getDataFromFireBaseDb("Symbols");
 
     }
 
     @Override
     protected void onResume() {
-        Log.d("json","Symbol data received from FireBase");
-        fireBaseHandler.getDataFromFireBaseDb("Symbols");
+        //should be received only once
+
         super.onResume();
     }
 
@@ -57,13 +59,10 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
                 {
                     Intent i = getIntent();
                     String temp_symbol = i.getStringExtra("symbol");
-                    Log.d("json symbol", temp_symbol);
                     long selectedStartDate = CalendarSelector.getStartTime();
-                    Log.d("json start", String.valueOf(selectedStartDate));
                     long selectedEndDate = CalendarSelector.getEndTime();
-                    Log.d("json end", String.valueOf(selectedEndDate));
-
-                    new xApiRangeDataLoader(temp_symbol,PeriodSelector.getTempValue(),selectedStartDate,selectedEndDate,this).execute(xApiConnectionLogin.getGlobalSyncs());
+                    ChartRangeInfo chartRangeInfo = new ChartRangeInfo(temp_symbol,PeriodSelector.getTempValue(),selectedStartDate,selectedEndDate);
+                    new xApiRangeDataLoader(chartRangeInfo,this).execute(xApiConnectionLogin.getGlobalSyncs());
                 }
                 else
                 {

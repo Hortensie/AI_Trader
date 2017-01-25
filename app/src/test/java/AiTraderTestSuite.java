@@ -17,8 +17,8 @@ import org.junit.runners.Suite;
                      FireBaseHandlerTest.class,
                      xApiConnectionLoginTest.class,
                      xApiConnectionLoginTest2.class,
-                     FireBaseHandlerTestMock.class,
-                     CandleChartDrawerTest.class
+                     CandleChartDrawerTest.class,
+                     ChartRangeInfoTest.class
 
 
 })

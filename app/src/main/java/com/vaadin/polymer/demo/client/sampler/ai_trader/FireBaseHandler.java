@@ -24,7 +24,6 @@ public class FireBaseHandler
 {
 
     private static List<String> internalCopy= new ArrayList<>();
-    public boolean test(){return false;};
 
     static List<String> getInternalCopy() {
 
@@ -46,7 +45,7 @@ public class FireBaseHandler
         return string.replace(",", ".").replace("+","[").replace("-","]");
     }
 
-    List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records)
+    List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records, ChartRangeInfo chartRangeInfo)
     {
         List<CandleEntry> data = new LinkedList<>();
         for (int i = 0; i < records.size(); i++)
@@ -54,14 +53,16 @@ public class FireBaseHandler
 
             SymbolData symbolData = new SymbolData(
                     records.get(i).getCtm(),
-                    records.get(i).getVol()
+                    records.get(i).getVol(),
+                    chartRangeInfo
+
             );
 
             CandleEntry candleEntry = new CandleEntry(
                     i,
                     (float) (records.get(i).getHigh()+records.get(i).getOpen()),
                     (float) (records.get(i).getLow()+records.get(i).getOpen()),
-                    (float) records.get(i).getOpen(),
+                    (float)  records.get(i).getOpen(),
                     (float) (records.get(i).getClose()+records.get(i).getOpen())
                     ,symbolData
 
@@ -72,10 +73,11 @@ public class FireBaseHandler
         return data;
     }
 
-    void saveCandleListToFireBase(List<CandleEntry> data, String symbol, String periodCode) {
+    void saveCandleListToFireBase(List<CandleEntry> data, ChartRangeInfo chartRangeInfo) {
 
         for (int i = 0; i < data.size(); i++) {
-            databaseReference.child(FireBaseHandler.EncodeString(symbol)).child(FireBaseHandler.EncodeString(periodCode)).setValue(data);
+            databaseReference.child(EncodeString(chartRangeInfo.getSymbol())).child(EncodeString(chartRangeInfo.getPeriod().toString())).setValue(data);
+
         }
     }
 
