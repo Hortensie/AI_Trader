@@ -28,7 +28,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
  * If there is no data connection with xAPI server will be terminated
  */
 
- class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,Void> {
+ public class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,Void> {
 
         private static List<CandleEntry> dataSet = new LinkedList<>();
         private ChartRangeInfo chartRangeInfo;
