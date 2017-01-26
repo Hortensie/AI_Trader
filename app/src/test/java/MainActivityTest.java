@@ -15,7 +15,6 @@ import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -68,7 +67,6 @@ public class MainActivityTest {
 
         }
 
-    @Ignore
     @Test
     public void validateOnClickToStartCandleChartDrawer() {
 

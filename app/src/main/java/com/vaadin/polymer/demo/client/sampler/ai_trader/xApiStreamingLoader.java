@@ -1,3 +1,4 @@
+/**
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
 import android.os.AsyncTask;
@@ -19,9 +20,9 @@ import pro.xstore.api.sync.Credentials;
 import pro.xstore.api.sync.ServerData;
 import pro.xstore.api.sync.SyncAPIConnector;
 
-/**
+
  * Created by Piotr on 2016-12-11.
- */
+
 
 class xApiStreamingLoader extends AsyncTask<Void,Void,STickRecord> {
 
@@ -94,3 +95,4 @@ class xApiStreamingLoader extends AsyncTask<Void,Void,STickRecord> {
     }
 
 }
+ */

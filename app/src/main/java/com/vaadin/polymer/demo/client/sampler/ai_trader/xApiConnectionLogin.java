@@ -79,7 +79,7 @@ public class xApiConnectionLogin extends Activity implements View.OnClickListene
                     if (loginResponse.getStatus()) {
                         Toast toastLogged = Toast.makeText(getApplicationContext(), "User logged in", Toast.LENGTH_SHORT);
                         toastLogged.show();
-                        Intent intent = new Intent(this, MainLive.class);
+                        Intent intent = new Intent(this, MainOffline.class);
                         startActivity(intent);
                     }
 

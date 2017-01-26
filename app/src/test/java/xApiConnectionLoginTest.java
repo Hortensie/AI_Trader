@@ -1,79 +1,67 @@
-import android.content.Intent;
-import android.os.Build;
-import android.widget.Button;
-import android.widget.EditText;
-
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainLive;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
 
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.Shadows;
-import org.robolectric.annotation.Config;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
+import java.io.IOException;
+
+import pro.xstore.api.message.error.APICommandConstructionException;
+import pro.xstore.api.message.error.APICommunicationException;
+import pro.xstore.api.message.error.APIReplyParseException;
+import pro.xstore.api.message.response.APIErrorResponse;
+import pro.xstore.api.message.response.LoginResponse;
+import pro.xstore.api.sync.Credentials;
+import pro.xstore.api.sync.ServerData;
+import pro.xstore.api.sync.SyncAPIConnector;
+
 
 /**
- * Created by Piotr on 2017-01-02.
- * basic robolectric unit tests to validate
- * 1 - login edit text
- * 2 - password edit text
- * 3 - button to start xApi trading input class
+ * Created by Piotr on 2017-01-23.
+ *
  */
-@Config(sdk = Build.VERSION_CODES.LOLLIPOP,manifest = "src/main/AndroidManifest.xml")
-@RunWith(RobolectricTestRunner.class)
 
 public class xApiConnectionLoginTest {
 
-    private xApiConnectionLogin xApiConnectionLogin;
+    private xApiConnectionLogin xApiConnectionObject;
+    private Credentials SUT;
+    private SyncAPIConnector connector;
 
 
     @Before
-    public void setupActivity(){
-        xApiConnectionLogin = Robolectric.setupActivity(xApiConnectionLogin.class);
+    public void setUp(){
+        xApiConnectionObject = new xApiConnectionLogin();
+        long login = 10111018L;
+        String password = "9d222175";
+        SUT = xApiConnectionObject.setLogin(login, password);
     }
 
-    @Test
-    public void validateLoginEditText(){
-
-
-        EditText loginEditText = (EditText) xApiConnectionLogin.findViewById(R.id.editTextLogin);
-        assertNotNull("EditText could not be found",loginEditText);
-        assertTrue("EditText contains incorrect text",
-                "10111018".equals(loginEditText.getText().toString()));
+    @org.junit.Test
+    public void validateSetLogin() {
+        Assert.assertNotNull(SUT);
     }
 
-    @Test
-    public void validatePasswordEditText()
-    {
-        EditText passwordEditText =(EditText) xApiConnectionLogin.findViewById(R.id.editTextPassword);
-        assertNotNull("EditText could not be found",passwordEditText);
-        assertTrue("EditText contains incorrect text","9d222175".equals(passwordEditText.getText().toString()));
+    @org.junit.Test
+    public void validateXApiLoginToServer() throws APIErrorResponse, APIReplyParseException, APICommandConstructionException, APICommunicationException, IOException {
+        connector = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
+        LoginResponse response;
+        response=xApiConnectionObject.xApiLoginToServer(SUT,connector);
+        Assert.assertTrue(response.getStatus());
 
     }
 
-    @Test
-    public void validateClickButtonToStartXApiTradingInputActivity()
-    {
-        Button connection = (Button)xApiConnectionLogin.findViewById(R.id.buttonLogin);
-        connection.performClick();
-        Intent intent = Shadows.shadowOf(xApiConnectionLogin).peekNextStartedActivity();
-        assertEquals(MainLive.class.getCanonicalName(),intent.getComponent().getClassName());
-    }
+   @org.junit.Test
+   public void validateSetterGetterForGlobalSync() throws IOException {
+   connector = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
+   xApiConnectionLogin.setGlobalSyncs(connector);
+   Assert.assertEquals(connector,xApiConnectionLogin.getGlobalSyncs());
 
-    @Test
-    public void validateClickButtonToGetText()
-    {
-        Button connection = (Button)xApiConnectionLogin.findViewById(R.id.buttonLogin);
-        connection.performClick();
-        EditText loginEditText = (EditText) xApiConnectionLogin.findViewById(R.id.editTextLogin);
-        assertNotNull(loginEditText);
+   }
+
+    @org.junit.Test
+    public void validateSetterGetterForGlobalSyncNull() throws IOException {
+        xApiConnectionLogin.setGlobalSyncs(null);
+        Assert.assertNull(xApiConnectionLogin.getGlobalSyncs());
+
     }
 
 }

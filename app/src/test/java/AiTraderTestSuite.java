@@ -15,11 +15,12 @@ import org.junit.runners.Suite;
                      SymbolTest.class,
                      PeriodSelectorTest.class,
                      FireBaseHandlerTest.class,
-                     xApiConnectionLoginTest.class,
-                     xApiConnectionLoginTest2.class,
                      CandleChartDrawerTest.class,
                      ChartRangeInfoTest.class,
-                     xApiRangeDataLoaderTest.class
+                     xApiRangeDataLoaderTest.class,
+                     CalendarSelectorTest.class,
+                     xApiConnectionLoginTest.class
+                     //MainOfflineTest.class
 
 
 })

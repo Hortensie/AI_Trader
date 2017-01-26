@@ -1,5 +1,6 @@
 import com.vaadin.polymer.demo.client.sampler.ai_trader.FireBaseHandler;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -50,4 +51,12 @@ public class FireBaseHandlerTest {
     {
         assertEquals(input,FireBaseHandler.DecodeString(expected));
     }
+
+    @Test
+    public void validateGetInternalCopy(){
+
+        Assert.assertEquals(0,FireBaseHandler.getInternalCopy().size());
+        Assert.assertNotNull(FireBaseHandler.getInternalCopy());
+    }
+
 }

@@ -25,14 +25,14 @@ public class FireBaseHandler
 
     private static List<String> internalCopy= new ArrayList<>();
 
-    static List<String> getInternalCopy() {
+    public static List<String> getInternalCopy() {
 
         return internalCopy;
     }
 
     private DatabaseReference databaseReference;
 
-    FireBaseHandler() {
+    public FireBaseHandler() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference();
     }
@@ -46,7 +46,7 @@ public class FireBaseHandler
     }
 
     //this function can be moved outside this class
-    List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records, ChartRangeInfo chartRangeInfo)
+    public List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records, ChartRangeInfo chartRangeInfo)
     {
         List<CandleEntry> data = new LinkedList<>();
         for (int i = 0; i < records.size(); i++)

@@ -11,11 +11,11 @@ import android.widget.Toast;
 /** Created by Piotr on 2017-01-26
  * Main activity when user decides to login to xAPI server and get historical financial data
  */
-public class MainLive extends Activity implements View.OnClickListener {
+public class MainOffline extends Activity implements View.OnClickListener {
 
     FireBaseHandler fireBaseHandler = new FireBaseHandler();
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_live);
         Button buttonPeriodSelector = (Button)findViewById(R.id.buttonPeriodSelector);
@@ -27,7 +27,7 @@ public class MainLive extends Activity implements View.OnClickListener {
         Button buttonGetSymbolsApi = (Button) findViewById(R.id.buttonGetSymbolsApi);
         buttonGetSymbolsApi.setOnClickListener(this);
         Log.d("json","Symbol data received from FireBase");
-        fireBaseHandler.getDataFromFireBaseDb("Symbols");
+        //fireBaseHandler.getDataFromFireBaseDb("Symbols");
     }
 
     @Override
