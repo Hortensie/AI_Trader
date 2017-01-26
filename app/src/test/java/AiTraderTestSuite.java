@@ -18,7 +18,8 @@ import org.junit.runners.Suite;
                      xApiConnectionLoginTest.class,
                      xApiConnectionLoginTest2.class,
                      CandleChartDrawerTest.class,
-                     ChartRangeInfoTest.class
+                     ChartRangeInfoTest.class,
+                     xApiRangeDataLoaderTest.class
 
 
 })

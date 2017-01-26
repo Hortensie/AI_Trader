@@ -3,7 +3,6 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,28 +19,19 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
         //set UI layout for this activity (res/layout/)
         setContentView(R.layout.activity_x_api_trading_input);
         //initialize and set onClickListener on all buttons
-        Button buttonGetSymbolsApi = (Button) findViewById(R.id.buttonGetSymbolsApi);
-        buttonGetSymbolsApi.setOnClickListener(this);
+
         Button buttonPickStartDate = (Button)findViewById(R.id.buttonPickStartDate);
         buttonPickStartDate.setOnClickListener(this);
         Button buttonPickEndDate = (Button)findViewById(R.id.buttonPickEndDate);
         buttonPickEndDate.setOnClickListener(this);
-        Button buttonGetSymbols = (Button)findViewById(R.id.buttonGetSymbols);
-        buttonGetSymbols.setOnClickListener(this);
         Button buttonSetSymbol = (Button)findViewById(R.id.buttonSetSymbol);
         buttonSetSymbol.setOnClickListener(this);
-        Button buttonSetPeriod = (Button)findViewById(R.id.select_period);
-        buttonSetPeriod.setOnClickListener(this);
         //button to get historical data from xApi
         Button buttonHistData = (Button)findViewById(R.id.buttonHistData);
         buttonHistData.setOnClickListener(this);
         //button to start CandleChartDrawer
         Button buttonCandleChart = (Button)findViewById(R.id.drawCandleChart);
         buttonCandleChart.setOnClickListener(this);
-
-        Log.d("json","Symbol data received from FireBase");
-        fireBaseHandler.getDataFromFireBaseDb("Symbols");
-
     }
 
     @Override
@@ -70,27 +60,12 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
                     toastLogged.show();
                 }
                 break;
-            case R.id.buttonGetSymbolsApi:
-                fireBaseHandler.getDataFromFireBaseDb("Symbols");
-                Toast toastSymbols = Toast.makeText(getApplicationContext(),"Symbols were received from database", Toast.LENGTH_SHORT);
-                toastSymbols.show();
-                break;
+
             case R.id.buttonPickStartDate:
                 calendarSelector.dateCalendarInitialization(1);
                 break;
             case R.id.buttonPickEndDate:
                 calendarSelector.dateCalendarInitialization(2);
-                break;
-            case R.id.buttonGetSymbols:
-                if(xApiConnectionLogin.getGlobalSyncs()==null)
-                {
-                    Toast toastLogged = Toast.makeText(getApplicationContext(),"Server connection lost, re-login", Toast.LENGTH_SHORT);
-                    toastLogged.show();
-                }
-                else
-                {
-                    new xApiSymbolLoader(this).execute(xApiConnectionLogin.getGlobalSyncs());
-                }
                 break;
             case R.id.buttonSetSymbol:
                 //works either FireBaseHandler.getInternalCopy().size()==0
@@ -103,10 +78,6 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
                     Intent intent = new Intent(this, SymbolRecyclerViewer.class);
                     startActivity(intent);
                 }
-                break;
-            case R.id.select_period:
-                Intent setPeriod = new Intent(this,PeriodSelector.class);
-                startActivity(setPeriod);
                 break;
             case R.id.drawCandleChart:
                 Intent drawChart = new Intent(this,CandleChartDrawer.class);

@@ -23,4 +23,8 @@
     <string name="set_period">Set Period</string>
     <string name="get_symbols_from_api">Get Symbols from API</string>
     <string name="show_symbols">Set Symbol</string>
+    <string name="live_view">Select period and get historical data</string>
+    <string name="button_period_selector">Period selector</string>
+    <string name="get_data_from_xAapi">Get Historical Data</string>
+    <string name="live_functions">Other functions</string>
 </resources>
