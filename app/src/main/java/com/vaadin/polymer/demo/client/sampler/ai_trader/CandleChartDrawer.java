@@ -3,6 +3,7 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 import android.app.Activity;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -31,7 +32,13 @@ public class CandleChartDrawer extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.candlechart);
         CandleStickChart candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
-        drawCandleChart(candleStickChart,xApiRangeDataLoader.getDataSet(),"label");
+        if(xApiRangeDataLoader.getDataSet()!=null&&xApiRangeDataLoader.getDataSet().size()!=0) {
+            drawCandleChart(candleStickChart, xApiRangeDataLoader.getDataSet(), "label");
+        }
+        else {
+            Toast toastLogged = Toast.makeText(this,"There is no data to draw, get first from db!", Toast.LENGTH_SHORT);
+            toastLogged.show();
+        }
     }
 
     public XAxis prepareXAxis(CandleStickChart candleStickChart){
