@@ -3,9 +3,9 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.vaadin.polymer.demo.client.sampler.ai_trader.MainLive;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiUiInput;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -64,7 +64,7 @@ public class xApiConnectionLoginTest {
         Button connection = (Button)xApiConnectionLogin.findViewById(R.id.buttonLogin);
         connection.performClick();
         Intent intent = Shadows.shadowOf(xApiConnectionLogin).peekNextStartedActivity();
-        assertEquals(xApiUiInput.class.getCanonicalName(),intent.getComponent().getClassName());
+        assertEquals(MainLive.class.getCanonicalName(),intent.getComponent().getClassName());
     }
 
     @Test
