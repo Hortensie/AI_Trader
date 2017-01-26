@@ -4,6 +4,8 @@
 
 Concept for this application is to provide interface to financial trading data (historical from Cloud Firebase db, streaming via REST API) and to build machine learning algorithms to predict future price.
 
+AI Trader will provide platform to test various financial strategies before going live with your real money.
+
 Software development fully support TDD and Agile practices (eg. DevOps, Design Thinking) while backlog and upcoming sprints can be checked via public [trello board](https://trello.com/b/cDSR6XFI/ai-trader-sprints).
 
 Anyone is welcome to join this project (contact szczesny.piotr@outlook.com) to improve your android development skills.
