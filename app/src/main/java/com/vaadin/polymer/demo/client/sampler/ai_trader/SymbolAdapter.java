@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by Piotr on 2016-12-30.
+ *
  */
 
 class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.MyViewHolder>{
@@ -22,7 +23,7 @@ class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.MyViewHolder>{
     private LayoutInflater inflater;
     List<SymbolRow> data = Collections.emptyList();
 
-    public SymbolAdapter(Context context, List<SymbolRow> data) {
+    SymbolAdapter(Context context, List<SymbolRow> data) {
         inflater=LayoutInflater.from(context);
         this.data=data;
     }

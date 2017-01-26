@@ -16,7 +16,7 @@ import java.util.TimeZone;
  * within specific historical date/time range
  */
 
-class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
+public class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     private final xApiUiInput context;
     private int fHour,fMinute,fYear,fMonth,fDay,id;
@@ -30,30 +30,30 @@ class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePicker
         this.id = id;
     }
 
-    static long getStartTime() {
+    public static long getStartTime() {
         return startTime;
     }
 
-    private static void setStartTime(long startTime) {
+    public static void setStartTime(long startTime) {
         CalendarSelector.startTime = startTime;
     }
 
-    static long getEndTime() {
+    public static long getEndTime() {
         return endTime;
     }
 
-    private static void setEndTime(long endTime) {
+    public static void setEndTime(long endTime) {
         CalendarSelector.endTime = endTime;
     }
 
-    CalendarSelector(Context context) {
+    public CalendarSelector(Context context) {
         this.context = (xApiUiInput)context;
 
     }
 
     private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 
-    void dateCalendarInitialization(int id){
+    public void dateCalendarInitialization(int id){
 
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -99,7 +99,7 @@ class CalendarSelector implements DatePickerDialog.OnDateSetListener, TimePicker
 
     }
 
-    private void setTimeInMillis()
+    public void setTimeInMillis()
     {
         calendar.set(fYear, fMonth, fDay,
                 fHour, fMinute, 0);

@@ -12,11 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /** Created by Piotr on 2017-01-03
- *
+ * Main activity (user see it at first)
 */
 
 public class MainActivity extends Activity implements View.OnClickListener {
-
 
     // Used to load the 'native-lib' library on application startup.
     /*
@@ -47,7 +46,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     }
 
-
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
@@ -63,7 +61,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.buttonXApi:
                 getWindow().setExitTransition(new Explode());
                 Intent intent = new Intent(this,xApiConnectionLogin.class);
-                //Intent intent = new Intent(this,xApiUiInput.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.historicalData:

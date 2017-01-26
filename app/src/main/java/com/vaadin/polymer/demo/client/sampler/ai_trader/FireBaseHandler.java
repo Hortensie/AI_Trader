@@ -45,6 +45,7 @@ public class FireBaseHandler
         return string.replace(",", ".").replace("+","[").replace("-","]");
     }
 
+    //this function can be moved outside this class
     List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records, ChartRangeInfo chartRangeInfo)
     {
         List<CandleEntry> data = new LinkedList<>();

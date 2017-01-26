@@ -10,7 +10,6 @@ import android.widget.Toast;
 public class xApiUiInput extends Activity implements View.OnClickListener {
 
     CalendarSelector calendarSelector = new CalendarSelector(this);
-    FireBaseHandler fireBaseHandler = new FireBaseHandler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
