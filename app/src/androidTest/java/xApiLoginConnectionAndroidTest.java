@@ -29,7 +29,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 
-public class xApiLoginAndroidTest {
+public class xApiLoginConnectionAndroidTest {
 
     private String mStringToBeTyped;
 
