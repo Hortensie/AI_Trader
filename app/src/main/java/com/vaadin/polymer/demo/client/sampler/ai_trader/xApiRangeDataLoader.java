@@ -57,7 +57,11 @@ import pro.xstore.api.sync.SyncAPIConnector;
                 List<RateInfoRecord> eurUsdList = executeChartRangeCommand.getRateInfos();
                 if(eurUsdList!=null&&eurUsdList.size()!=0)
                 {
-                    saveDataToFireBase(eurUsdList,chartRangeInfo);
+                    FireBaseHandler fireBaseHandler = new FireBaseHandler();
+                    ApiCandleConverter apiCandleConverter = new ApiCandleConverter();
+                    fireBaseHandler.saveCandleListToFireBase(apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo),chartRangeInfo);
+                    dataSet= apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo);
+                    setDataSet(dataSet);
                 }
                 else
                 {
@@ -75,20 +79,18 @@ import pro.xstore.api.sync.SyncAPIConnector;
     @Override
     protected void onPostExecute(Void avoid)
     {
+        if(xApiRangeDataLoader.dataSet!=null&&xApiRangeDataLoader.dataSet.size()!=0)
         {
             Toast toastLogged = Toast.makeText(context,"Data successfully saved to database!", Toast.LENGTH_SHORT);
             toastLogged.show();
         }
+        else
+        {
+            Toast toastLogged = Toast.makeText(context,"Not all input values where set, re-try!", Toast.LENGTH_SHORT);
+            toastLogged.show();
+        }
     }
 
-    private void saveDataToFireBase(List<RateInfoRecord> eurUsdList, ChartRangeInfo chartRangeInfo)
-    {
-        FireBaseHandler fireBaseHandler = new FireBaseHandler();
-        ApiCandleConverter apiCandleConverter = new ApiCandleConverter();
 
-        fireBaseHandler.saveCandleListToFireBase(apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo),chartRangeInfo);
-        dataSet= apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo);
-        setDataSet(dataSet);
-    }
 }
 

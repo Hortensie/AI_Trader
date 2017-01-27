@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 /**
  * Created by Piotr on 2016-12-02.
  * Provides interface to FireBase database by:
@@ -24,13 +25,12 @@ public class FireBaseHandler
     private static List<String> internalCopy= new ArrayList<>();
 
     public static List<String> getInternalCopy() {
-
         return internalCopy;
     }
 
     private DatabaseReference databaseReference;
 
-    public FireBaseHandler() {
+    FireBaseHandler() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference();
     }
@@ -42,8 +42,6 @@ public class FireBaseHandler
     public static String DecodeString(String string) {
         return string.replace(",", ".").replace("+","[").replace("-","]");
     }
-
-
 
     void saveCandleListToFireBase(List<CandleEntry> data, ChartRangeInfo chartRangeInfo) {
 

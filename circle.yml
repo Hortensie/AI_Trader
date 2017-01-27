@@ -29,25 +29,25 @@ dependencies:
     #- echo "ndk.dir=/home/ubuntu/android-ndk-r12b" > local.properties
 
 test:
-  override:
+  pre:
       #start the emulator
-      #- emulator -avd circleci-android23 -no-audio -no-window:
-      #    background: true
+      - emulator -avd circleci-android22 -no-audio -no-window:
+          background: true
       #    parallel: true
       #wait for it to have booted
-      #- circle-android wait-for-boot
+      - circle-android wait-for-boot
       #- sleep 5
-      #click menu button
-      #- adb shell input keyevent 82
-      #- sleep 5
-      #instrumentaion test code coverege reports
-      #- ./gradlew connectedCheck -PdisablePreDex
+      #wait for it to have booted
+      - sleep 30
+      - adb shell input keyevent 82
+  override:
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
+      #instrumentaion test code coverege reports
+      - ./gradlew connectedCheck -PdisablePreDex
       #- ./gradlew testReleaseUnitTest
       #build the code and generate a unsighned release apk.
       #- ./gradlew assembleRelease
-
 
   #post reports to codecov generator
   post:

@@ -13,7 +13,8 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //dependency to run Espresso Instrumental tests
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //Sets the timeout value for adb connection.
         //DdmPreferences.setTimeOut(60000)
         externalNativeBuild {
@@ -26,11 +27,10 @@ android {
     buildTypes {
          debug {
             testCoverageEnabled true
-            //minifyEnabled false
-            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
          }
         release {
-            testCoverageEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -41,6 +41,7 @@ android {
         }
     }
     testOptions {
+        //dependency to avoid mocking every possible method
         unitTests.returnDefaultValues = true
     }
 
@@ -62,10 +63,11 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
     //dependency for google crash analyzer
     //compile 'com.google.firebase:firebase-crash:10.0.1'
-    /*
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    /*
     androidTestCompile("org.robolectric:robolectric:3.1.4",
             'junit:junit:4.12','org.assertj:assertj-core:2.6.0',
             'org.mockito:mockito-core:2.5.3',

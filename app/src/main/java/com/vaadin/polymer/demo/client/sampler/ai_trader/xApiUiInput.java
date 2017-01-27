@@ -36,7 +36,8 @@ public class xApiUiInput extends Activity implements View.OnClickListener {
     @Override
     protected void onResume() {
         //should be received only once
-
+        FireBaseHandler fireBaseHandler = new FireBaseHandler();
+        fireBaseHandler.getDataFromFireBaseDb("Symbols");
         super.onResume();
     }
 

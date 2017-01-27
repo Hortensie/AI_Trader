@@ -1,8 +1,8 @@
 /**
  * Created by Piotr on 2017-01-02.
- * Expresso UI test to valide if password editText can be used to add new value
+ * Espresso UI test to validate if password editText can be used to add new value
  * 0.2 Release fix
-
+ */
 
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -31,7 +31,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class xApiLoginAndroidTest {
 
-    private String mStringToBetyped;
+    private String mStringToBeTyped;
 
     @Rule
     public ActivityTestRule<xApiConnectionLogin> mActivityRule = new ActivityTestRule<>(
@@ -55,7 +55,7 @@ public class xApiLoginAndroidTest {
     @Before
     public void initValidString() {
         // Specify a valid string.
-        mStringToBetyped = "10073026";
+        mStringToBeTyped = "10073026";
     }
 
     @Test
@@ -64,13 +64,12 @@ public class xApiLoginAndroidTest {
         // Type text and then press the button.
         onView(withId(R.id.editTextLogin)).perform(clearText());
         onView(withId(R.id.editTextLogin))
-                .perform(typeText(mStringToBetyped), closeSoftKeyboard());
+                .perform(typeText(mStringToBeTyped), closeSoftKeyboard());
         //onView(withId(R.id.changeTextBt)).perform(click());
 
         // Check that the text was changed.
         onView(withId(R.id.editTextLogin))
-                .check(matches(withText(mStringToBetyped)));
+                .check(matches(withText(mStringToBeTyped)));
     }
 
 }
- */
