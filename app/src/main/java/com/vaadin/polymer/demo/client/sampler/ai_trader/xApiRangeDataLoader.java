@@ -84,8 +84,10 @@ import pro.xstore.api.sync.SyncAPIConnector;
     private void saveDataToFireBase(List<RateInfoRecord> eurUsdList, ChartRangeInfo chartRangeInfo)
     {
         FireBaseHandler fireBaseHandler = new FireBaseHandler();
-        fireBaseHandler.saveCandleListToFireBase(fireBaseHandler.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo),chartRangeInfo);
-        dataSet= fireBaseHandler.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo);
+        ApiCandleConverter apiCandleConverter = new ApiCandleConverter();
+
+        fireBaseHandler.saveCandleListToFireBase(apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo),chartRangeInfo);
+        dataSet= apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo);
         setDataSet(dataSet);
     }
 }

@@ -1,4 +1,5 @@
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
+
 import com.github.mikephil.charting.data.CandleEntry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -7,11 +8,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-
-import pro.xstore.api.message.records.RateInfoRecord;
 
 /**
  * Created by Piotr on 2016-12-02.
@@ -45,34 +43,7 @@ public class FireBaseHandler
         return string.replace(",", ".").replace("+","[").replace("-","]");
     }
 
-    //this function can be moved outside this class
-    public List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records, ChartRangeInfo chartRangeInfo)
-    {
-        List<CandleEntry> data = new LinkedList<>();
-        for (int i = 0; i < records.size(); i++)
-        {
 
-            SymbolData symbolData = new SymbolData(
-                    records.get(i).getCtm(),
-                    records.get(i).getVol(),
-                    chartRangeInfo
-
-            );
-
-            CandleEntry candleEntry = new CandleEntry(
-                    i,
-                    (float) (records.get(i).getHigh()+records.get(i).getOpen()),
-                    (float) (records.get(i).getLow()+records.get(i).getOpen()),
-                    (float)  records.get(i).getOpen(),
-                    (float) (records.get(i).getClose()+records.get(i).getOpen())
-                    ,symbolData
-
-            );
-
-            data.add(i,candleEntry);
-        }
-        return data;
-    }
 
     void saveCandleListToFireBase(List<CandleEntry> data, ChartRangeInfo chartRangeInfo) {
 

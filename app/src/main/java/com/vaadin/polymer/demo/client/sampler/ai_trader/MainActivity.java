@@ -43,7 +43,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
     }
 
     /**
@@ -57,7 +56,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
 
         switch (view.getId()) {
-
             case R.id.buttonXApi:
                 getWindow().setExitTransition(new Explode());
                 Intent intent = new Intent(this,xApiConnectionLogin.class);

@@ -19,7 +19,8 @@ import org.junit.runners.Suite;
                      ChartRangeInfoTest.class,
                      xApiRangeDataLoaderTest.class,
                      CalendarSelectorTest.class,
-                     xApiConnectionLoginTest.class
+                     xApiConnectionLoginTest.class,
+                     ApiCandleConverterTest.class
                      //MainOfflineTest.class
 
 
