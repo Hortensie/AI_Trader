@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
 
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({MainActivityTest.class,
+@Suite.SuiteClasses({
                      SymbolDataTest.class,
                      SymbolRecordTest.class,
                      SymbolTest.class,
@@ -20,7 +20,9 @@ import org.junit.runners.Suite;
                      xApiRangeDataLoaderTest.class,
                      CalendarSelectorTest.class,
                      xApiConnectionLoginTest.class,
-                     ApiCandleConverterTest.class
+                     ApiCandleConverterTest.class,
+                     //MainActivityRobolectricTest.class,
+                     //xApiConnectionLoginRobolectricTest.class
                      //MainOfflineTest.class
 
 

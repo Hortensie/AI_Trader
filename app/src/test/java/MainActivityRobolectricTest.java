@@ -1,7 +1,7 @@
 /**
  * Created by Piotr on 2017-01-02.
  * Robolectric local tests for MainActivity.class
- */
+
 
 
 import android.content.Intent;
@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(RobolectricTestRunner.class)
 
 
-public class MainActivityTest {
+public class MainActivityRobolectricTest {
 
     private MainActivity activity;
 
@@ -79,5 +79,5 @@ public class MainActivityTest {
 
     }
 
-
+ */
 
