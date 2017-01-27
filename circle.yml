@@ -44,7 +44,8 @@ test:
       #jacoco unit test coverege report generation
       - ./gradlew jacocoTestReport
       #instrumentaion test code coverege reports
-      - ./gradlew connectedCheck -PdisablePreDex
+      - ./gradlew connectedAndroidCheck -PdisablePreDex
+          timeout: 360
       #- ./gradlew testReleaseUnitTest
       #build the code and generate a unsighned release apk.
       #- ./gradlew assembleRelease
