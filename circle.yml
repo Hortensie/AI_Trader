@@ -30,6 +30,7 @@ dependencies:
 
 test:
   pre:
+      - ./gradlew jacocoTestReport
       #start the emulator
       - emulator -avd circleci-android22 -no-audio -no-window:
           background: true
@@ -50,7 +51,6 @@ test:
       #- ./gradlew assembleRelease
 
   override:
-    - ./gradlew jacocoTestReport
     - ./gradlew connectedAndroidTest --info:
         timeout: 360
   #post reports to codecov generator
