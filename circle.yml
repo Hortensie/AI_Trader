@@ -40,15 +40,19 @@ test:
       #wait for it to have booted
       - sleep 30
       - adb shell input keyevent 82
-  override:
+  #override:
       #jacoco unit test coverege report generation
-      - ./gradlew jacocoTestReport
+
       #instrumentaion test code coverege reports
-      - ./gradlew connectedAndroidCheck -PdisablePreDex
+     # - ./gradlew connectedAndroidCheck -PdisablePreDex
       #- ./gradlew testReleaseUnitTest
       #build the code and generate a unsighned release apk.
       #- ./gradlew assembleRelease
 
+  override:
+    - ./gradlew jacocoTestReport
+    - ./gradlew connectedAndroidTest --info:
+        timeout: 360
   #post reports to codecov generator
   post:
       - bash <(curl -s https://codecov.io/bash)
