@@ -1,4 +1,3 @@
-/*
 import android.content.Intent;
 import android.os.Build;
 import android.widget.Button;
@@ -26,7 +25,7 @@ import static junit.framework.Assert.assertTrue;
  * 1 - login edit text
  * 2 - password edit text
  * 3 - button to start xApi trading input class
-
+ */
 
 @Config(sdk = Build.VERSION_CODES.LOLLIPOP,manifest = "src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
@@ -79,4 +78,3 @@ public class xApiConnectionLoginRobolectricTest {
     }
 
 }
- */

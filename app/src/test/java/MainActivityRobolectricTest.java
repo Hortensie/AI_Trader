@@ -1,7 +1,7 @@
 /**
  * Created by Piotr on 2017-01-02.
  * Robolectric local tests for MainActivity.class
-
+ */
 
 
 import android.content.Intent;
@@ -79,5 +79,5 @@ public class MainActivityRobolectricTest {
 
     }
 
- */
+
 

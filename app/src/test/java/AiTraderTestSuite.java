@@ -21,8 +21,8 @@ import org.junit.runners.Suite;
                      CalendarSelectorTest.class,
                      xApiConnectionLoginTest.class,
                      ApiCandleConverterTest.class,
-                     //MainActivityRobolectricTest.class,
-                     //xApiConnectionLoginRobolectricTest.class
+                     MainActivityRobolectricTest.class,
+                     xApiConnectionLoginRobolectricTest.class
                      //MainOfflineTest.class
 
 

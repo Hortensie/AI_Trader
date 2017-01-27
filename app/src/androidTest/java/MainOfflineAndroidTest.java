@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.containsString;
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainOfflineEspressoTest {
+public class MainOfflineAndroidTest {
 
     @Rule
     public ActivityTestRule<MainOffline> activityTestRule = new ActivityTestRule(MainOffline.class);
