@@ -40,7 +40,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         //button for AI Trader
         Button buttonTrader = (Button) findViewById(R.id.historicalData);
         buttonTrader.setOnClickListener(this);
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }

@@ -5,7 +5,7 @@
 
     </style>
 
-    <style name="AppTheme.Base" parent="android:Theme.Material.Light.DarkActionBar">
+    <style name="AppTheme.Base" parent="android:Theme.Material.Light.NoActionBar">
         <!-- theme customizations -->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#3F51B5</item>
