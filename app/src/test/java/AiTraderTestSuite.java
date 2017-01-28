@@ -22,7 +22,8 @@ import org.junit.runners.Suite;
                      xApiConnectionLoginTest.class,
                      ApiCandleConverterTest.class,
                      MainActivityRobolectricTest.class,
-                     xApiConnectionLoginRobolectricTest.class
+                     xApiConnectionLoginRobolectricTest.class,
+                     xApiSymbolLoaderTest.class
                      //MainOfflineTest.class
 
 

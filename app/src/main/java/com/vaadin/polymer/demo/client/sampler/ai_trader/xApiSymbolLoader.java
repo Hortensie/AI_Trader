@@ -17,15 +17,15 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
 /**
  * Created by Piotr Szczesny on 2016-12-08.
- * Class that uses xstore.api to connect to financial server
+ * Class that uses xStore.api to connect to financial server
  * and get all available symbols (list) *
  */
 
-class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<SymbolRecord>> {
+public class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<SymbolRecord>> {
 
     private Context context;
 
-    xApiSymbolLoader(Context context) {
+    public xApiSymbolLoader(Context context) {
         this.context = context;
     }
 
