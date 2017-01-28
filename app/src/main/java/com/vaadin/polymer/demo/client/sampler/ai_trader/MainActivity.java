@@ -61,7 +61,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.historicalData:
-                Intent intentTrader = new Intent(this,MainOffline.class);
+                Intent intentTrader = new Intent(this,CandleChartDrawer.class);
                 startActivity(intentTrader);
                 break;
             default:
