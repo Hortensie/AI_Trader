@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
@@ -50,11 +51,9 @@ public class MainActivityTester {
         button5.perform(click());
 
         ViewInteraction radioButton = onView(
-                allOf(withId(R.id.PERIOD_H1), withText("PERIOD_H1"),
-                        withParent(allOf(withId(R.id.period_selector),
-                                withParent(withId(android.R.id.content)))),
-                        isDisplayed()));
-        radioButton.perform(click());
+                allOf(withId(R.id.PERIOD_M1), withText("PERIOD_M1"),
+                        withParent(withId(R.id.period_selector))));
+        radioButton.perform(scrollTo(), click());
 
         ViewInteraction button7 = onView(
                 allOf(withId(R.id.buttonHistData), withText("Get Historical Data"),

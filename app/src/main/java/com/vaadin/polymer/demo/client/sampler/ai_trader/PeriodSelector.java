@@ -1,3 +1,4 @@
+
 package com.vaadin.polymer.demo.client.sampler.ai_trader;
 
 import android.app.Activity;
