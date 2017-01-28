@@ -1,9 +1,7 @@
-import android.content.Intent;
 import android.os.Build;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainOffline;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
 
@@ -12,10 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.Shadows;
 import org.robolectric.annotation.Config;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
@@ -57,15 +53,6 @@ public class xApiConnectionLoginRobolectricTest {
         assertNotNull("EditText could not be found",passwordEditText);
         assertTrue("EditText contains incorrect text","9d222175".equals(passwordEditText.getText().toString()));
 
-    }
-
-    @Test
-    public void validateClickButtonToStartXApiTradingInputActivity()
-    {
-        Button connection = (Button)xApiConnectionLogin.findViewById(R.id.buttonLogin);
-        connection.performClick();
-        Intent intent = Shadows.shadowOf(xApiConnectionLogin).peekNextStartedActivity();
-        assertEquals(MainOffline.class.getCanonicalName(),intent.getComponent().getClassName());
     }
 
     @Test

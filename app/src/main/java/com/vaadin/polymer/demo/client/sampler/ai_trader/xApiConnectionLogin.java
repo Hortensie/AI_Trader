@@ -84,7 +84,7 @@ public class xApiConnectionLogin extends Activity implements View.OnClickListene
                     }
                 } catch (APIErrorResponse | APICommunicationException | APIReplyParseException | APICommandConstructionException | IOException apiErrorResponse) {
                     apiErrorResponse.printStackTrace();
-                    Toast toastLogged = Toast.makeText(this,"xAPI server not available, please try later or use Db AI Trader", Toast.LENGTH_SHORT);
+                    Toast toastLogged = Toast.makeText(this,"xAPI server not responding, please try later or use Db AI Trader", Toast.LENGTH_SHORT);
                     toastLogged.show();
                 }
 
