@@ -11,8 +11,10 @@ import pro.xstore.api.message.error.APIReplyParseException;
 import pro.xstore.api.message.response.APIErrorResponse;
 import pro.xstore.api.message.response.LoginResponse;
 import pro.xstore.api.sync.Credentials;
-import pro.xstore.api.sync.ServerData;
 import pro.xstore.api.sync.SyncAPIConnector;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 
 /**
@@ -23,35 +25,40 @@ import pro.xstore.api.sync.SyncAPIConnector;
 public class xApiConnectionLoginTest {
 
     private xApiConnectionLogin xApiConnectionObject;
-    private Credentials SUT;
+    private Credentials mockCredentials;
     private SyncAPIConnector connector;
-
+    private long login = 10111018L;
+    private String password = "9d222175";
+    private LoginResponse response;
 
     @Before
     public void setUp(){
         xApiConnectionObject = new xApiConnectionLogin();
-        long login = 10111018L;
-        String password = "9d222175";
-        SUT = xApiConnectionObject.setLogin(login, password);
+        response = mock(LoginResponse.class);
+        connector = mock(SyncAPIConnector.class);
+        mockCredentials=mock(Credentials.class);
     }
 
     @org.junit.Test
     public void validateSetLogin() {
-        Assert.assertNotNull(SUT);
+        xApiConnectionObject.setLogin(login,password);
+        Assert.assertNotNull(mockCredentials);
     }
 
     @org.junit.Test
     public void validateXApiLoginToServer() throws APIErrorResponse, APIReplyParseException, APICommandConstructionException, APICommunicationException, IOException {
-        connector = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
-        LoginResponse response;
-        response=xApiConnectionObject.xApiLoginToServer(SUT,connector);
-        Assert.assertTrue(response.getStatus());
 
+        try {
+            response=xApiConnectionObject.xApiLoginToServer(mockCredentials,connector);
+            verify(response).getStatus();
+        }
+        catch (APIErrorResponse | APICommunicationException | APIReplyParseException | APICommandConstructionException | IOException apiErrorResponse) {
+            apiErrorResponse.printStackTrace();
+        }
     }
 
    @org.junit.Test
    public void validateSetterGetterForGlobalSync() throws IOException {
-   connector = new SyncAPIConnector(ServerData.ServerEnum.DEMO);
    xApiConnectionLogin.setGlobalSyncs(connector);
    Assert.assertEquals(connector,xApiConnectionLogin.getGlobalSyncs());
 
