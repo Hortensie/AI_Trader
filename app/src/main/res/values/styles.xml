@@ -1,13 +1,19 @@
 <resources>
 
     <!-- your theme inherits from the material theme -->
-    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
-        <!-- theme customizations -->
+    <style name="AppTheme" parent="AppTheme.Base">
 
     </style>
 
     <style name="AppTheme.Base" parent="android:Theme.Material.Light.DarkActionBar">
-
+        <!-- theme customizations -->
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#3F51B5</item>
+        <!-- Light Indigo -->
+        <item name="colorPrimaryDark">#3949AB</item>
+        <!-- Dark Indigo -->
+        <item name="colorAccent">#00B0FF</item>
+        <!-- Blue -->
 
     </style>
 

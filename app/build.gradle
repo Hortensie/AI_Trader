@@ -67,7 +67,7 @@ dependencies {
     //dependency for google crash analyzer
     //compile 'com.google.firebase:firebase-crash:10.0.1'
     compile 'com.android.support:support-annotations:25.1.0'
-
+    compile 'com.android.support:design:25.1.0'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

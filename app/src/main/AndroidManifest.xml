@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.Base">
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +24,7 @@
         <activity android:name=".SymbolRecyclerViewer" />
         <activity android:name=".PeriodSelector" />
         <activity android:name=".CandleChartDrawer" />
-        <activity android:name=".MainOffline"></activity>
+        <activity android:name=".MainOffline"/>
     </application>
 
 </manifest>
