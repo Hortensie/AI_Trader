@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /** Created by Piotr on 2017-01-03
- * Main activity (user see it at first)
+ * Main activity (user see it at first) master
 */
 
 public class MainActivity extends Activity implements View.OnClickListener {
