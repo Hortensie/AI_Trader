@@ -1,0 +1,64 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PeriodSelector" >
+
+        <RadioGroup
+            android:id="@+id/period_selector"
+            android:layout_gravity="center"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:paddingTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <RadioButton android:id="@+id/PERIOD_M1"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_M1"/>
+
+        <RadioButton android:id="@+id/PERIOD_M5"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_M5"/>
+
+        <RadioButton android:id="@+id/PERIOD_M15"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_M15"/>
+
+        <RadioButton android:id="@+id/PERIOD_M30"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_M30"/>
+
+        <RadioButton android:id="@+id/PERIOD_H1"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_H1"/>
+
+        <RadioButton android:id="@+id/PERIOD_H4"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_H4"/>
+
+        <RadioButton android:id="@+id/PERIOD_D1"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_D1"/>
+
+        <RadioButton android:id="@+id/PERIOD_W1"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_W1"/>
+
+        <RadioButton android:id="@+id/PERIOD_MN1"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="PERIOD_MN1"/>
+
+
+    </RadioGroup>
+
+</ScrollView>
+

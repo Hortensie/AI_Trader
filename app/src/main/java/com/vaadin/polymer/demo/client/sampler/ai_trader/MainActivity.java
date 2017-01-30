@@ -3,8 +3,8 @@ package com.vaadin.polymer.demo.client.sampler.ai_trader;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.StrictMode;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
@@ -12,25 +12,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /** Created by Piotr on 2017-01-03
- * GitFlow information about branches.
-        git -c core.quotepath=false flow init -d
-        Using default branch names.
-        Which branch should be used for bringing forth production releases?
-        - master
-        Branch name for production releases: [master]
-        Branch name for "next release" development: [develop]
-        How to name your supporting branch prefixes?
-        Feature branches? [feature/]
-        Bugfix branches? [bugfix/]
-        Release branches? [release/]
-        Hotfix branches? [hotfix/]
-        Support branches? [support/]
-        Version tag prefix? []
-        Hooks and filters directory? [C:/vulk_tu/AI_Trader/.git/hooks]
+ * Main activity (user see it at first)
 */
 
 public class MainActivity extends Activity implements View.OnClickListener {
-
 
     // Used to load the 'native-lib' library on application startup.
     /*
@@ -38,6 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         System.loadLibrary("native-lib");
     }
     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,11 +37,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         tv.setText(R.string.textview_testtext);
         Button buttonXApi = (Button) findViewById(R.id.buttonXApi);
         buttonXApi.setOnClickListener(this);
+        //button for AI Trader
+        Button buttonTrader = (Button) findViewById(R.id.historicalData);
+        buttonTrader.setOnClickListener(this);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
     }
-
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
@@ -68,11 +55,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
 
         switch (view.getId()) {
-
             case R.id.buttonXApi:
                 getWindow().setExitTransition(new Explode());
-                Intent intent = new Intent(this,xApiLogin.class);
+                Intent intent = new Intent(this,xApiConnectionLogin.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                break;
+            case R.id.historicalData:
+                Intent intentTrader = new Intent(this,CandleChartDrawer.class);
+                startActivity(intentTrader);
                 break;
             default:
                 break;

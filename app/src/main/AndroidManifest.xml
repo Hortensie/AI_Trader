@@ -19,8 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".xApiLogin" />
-        <activity android:name=".xApiTradingInput" />
+        <activity android:name=".xApiConnectionLogin" />
+        <activity android:name=".xApiUiInput" />
+        <activity android:name=".SymbolRecyclerViewer" />
+        <activity android:name=".PeriodSelector" />
+        <activity android:name=".CandleChartDrawer" />
+        <activity android:name=".MainOffline"/>
     </application>
 
 </manifest>

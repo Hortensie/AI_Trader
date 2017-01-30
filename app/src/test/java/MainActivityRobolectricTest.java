@@ -8,10 +8,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
-// Static imports for assertion methods
+
+import com.vaadin.polymer.demo.client.sampler.ai_trader.CandleChartDrawer;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.MainActivity;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiLogin;
+import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,11 +26,13 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
+// Static imports for assertion methods
+
 @Config(sdk = Build.VERSION_CODES.LOLLIPOP,manifest = "src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
 
 
-public class MainActivityTest {
+public class MainActivityRobolectricTest {
 
     private MainActivity activity;
 
@@ -50,7 +53,7 @@ public class MainActivityTest {
         TextView tvHelloWorld = (TextView) activity.findViewById(R.id.sample_text);
         assertNotNull("TextView could not be found", tvHelloWorld);
         assertTrue("TextView contains incorrect text",
-                "Test".equals(tvHelloWorld.getText().toString()));
+                "Welcome to AI Trader".equals(tvHelloWorld.getText().toString()));
 
         }
 
@@ -60,9 +63,19 @@ public class MainActivityTest {
             Button button = (Button) activity.findViewById( R.id.buttonXApi );
             button.performClick();
             Intent intent = Shadows.shadowOf(activity).peekNextStartedActivity();
-            assertEquals(xApiLogin.class.getCanonicalName(), intent.getComponent().getClassName());
+            assertEquals(xApiConnectionLogin.class.getCanonicalName(), intent.getComponent().getClassName());
 
         }
+
+    @Test
+    public void validateOnClickToStartCandleChartDrawer() {
+
+        Button button = (Button) activity.findViewById( R.id.historicalData );
+        button.performClick();
+        Intent intent = Shadows.shadowOf(activity).peekNextStartedActivity();
+        assertEquals(CandleChartDrawer.class.getCanonicalName(), intent.getComponent().getClassName());
+
+    }
 
     }
 

@@ -4,14 +4,13 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="com.vaadin.polymer.demo.client.sampler.ai_trader.MainActivity">
 
     <TextView
+        android:paddingBottom="20dp"
+        android:layout_gravity="center"
         android:id="@+id/sample_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,10 +18,23 @@
         android:elevation="5dp"/>
 
     <Button
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:layout_gravity="center"
         android:text="@string/button_loginToXApi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
         android:id="@+id/buttonXApi" />
 
+    <Button
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+        android:text="@string/button_historicalData"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:id="@+id/historicalData" />
 
 </LinearLayout>
