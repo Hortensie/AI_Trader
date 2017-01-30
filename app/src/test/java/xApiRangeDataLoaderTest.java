@@ -53,6 +53,4 @@ public class xApiRangeDataLoaderTest {
         Assert.assertNotNull(xApiRangeDataLoader.getDataSet());
     }
 
-
-
 }
