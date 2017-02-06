@@ -4,7 +4,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainOffline;
+import com.vaadin.polymer.demo.client.sampler.ai_trader.MainApiActivity;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 
 import org.junit.Rule;
@@ -26,7 +26,7 @@ import static org.hamcrest.Matchers.allOf;
 public class PeriodSelectorScrollViewAndroidTest {
 
     @Rule
-    public ActivityTestRule<MainOffline> mActivityTestRule = new ActivityTestRule<>(MainOffline.class);
+    public ActivityTestRule<MainApiActivity> mActivityTestRule = new ActivityTestRule<>(MainApiActivity.class);
 
     @Test
     public void periodSelectorScrollViewAndroidTest() {

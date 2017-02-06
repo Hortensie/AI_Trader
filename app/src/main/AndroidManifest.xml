@@ -24,8 +24,9 @@
         <activity android:name=".SymbolRecyclerViewer" />
         <activity android:name=".PeriodSelector" />
         <activity android:name=".CandleChartDrawer" />
-        <activity android:name=".MainOffline"/>
+        <activity android:name=".MainApiActivity"/>
         <activity android:name=".RxJavaTest"/>
+        <activity android:name=".MainAiTraderActivity"/>
     </application>
 
 </manifest>

@@ -1,17 +1,17 @@
 
 /*
  * Created by Piotr on 2017-01-26.
- * unit test for MainOffline.class
+ * unit test for MainApiActivity.class
 
 
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainOffline;
+import com.vaadin.polymer.demo.client.sampler.ai_trader.MainApiActivity;
 
 import org.junit.Before;
 
 public class MainOfflineTest {
 
-    private MainOffline testedActivity;
+    private MainApiActivity testedActivity;
 
     @Before
     public void setUp(){

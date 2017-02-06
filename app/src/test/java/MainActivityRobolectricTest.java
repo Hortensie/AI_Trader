@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.vaadin.polymer.demo.client.sampler.ai_trader.CandleChartDrawer;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.MainActivity;
+import com.vaadin.polymer.demo.client.sampler.ai_trader.MainAiTraderActivity;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
 
@@ -68,12 +69,12 @@ public class MainActivityRobolectricTest {
         }
 
     @Test
-    public void validateOnClickToStartCandleChartDrawer() {
+    public void validateOnClickToStartMainAiTraderActivity() {
 
         Button button = (Button) activity.findViewById( R.id.historicalData );
         button.performClick();
         Intent intent = Shadows.shadowOf(activity).peekNextStartedActivity();
-        assertEquals(CandleChartDrawer.class.getCanonicalName(), intent.getComponent().getClassName());
+        assertEquals(MainAiTraderActivity.class.getCanonicalName(), intent.getComponent().getClassName());
 
     }
 

@@ -11,7 +11,7 @@ import android.widget.Toast;
 /** Created by Piotr on 2017-01-26
  * Main activity when user decides to login to xAPI server and get historical financial data
  */
-public class MainOffline extends Activity implements View.OnClickListener {
+public class MainApiActivity extends Activity implements View.OnClickListener {
 
     FireBaseHandler fireBaseHandler = new FireBaseHandler();
     @Override

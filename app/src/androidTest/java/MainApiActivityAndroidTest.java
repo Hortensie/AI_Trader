@@ -2,7 +2,7 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainOffline;
+import com.vaadin.polymer.demo.client.sampler.ai_trader.MainApiActivity;
 import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
 
 import org.junit.Rule;
@@ -18,14 +18,14 @@ import static org.hamcrest.Matchers.containsString;
 
 /**
  * Created by Piotr on 2017-01-27.
- * Espresso test for MainOffline.class
+ * Espresso test for MainApiActivity.class
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainOfflineAndroidTest {
+public class MainApiActivityAndroidTest {
 
     @Rule
-    public ActivityTestRule<MainOffline> activityTestRule = new ActivityTestRule(MainOffline.class);
+    public ActivityTestRule<MainApiActivity> activityTestRule = new ActivityTestRule(MainApiActivity.class);
 
     @Test
     public void validateTextView(){
