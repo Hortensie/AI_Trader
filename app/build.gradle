@@ -22,7 +22,8 @@ android {
                 cppFlags ""
             }
         }
-        //required by java8 compiler
+        //required by java8 compiler - lambda
+        /*
         jackOptions{
             enabled true
         }
@@ -30,6 +31,7 @@ android {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
         }
+        */
     }
 
     buildTypes {

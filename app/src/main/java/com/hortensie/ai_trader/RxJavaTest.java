@@ -26,11 +26,11 @@ public class RxJavaTest extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rxjava);
-        view= (TextView) findViewById(R.id.rxJava);
-        view2= (TextView) findViewById(R.id.rxJava2);
+        view = (TextView) findViewById(R.id.rxJava);
+        view2 = (TextView) findViewById(R.id.rxJava2);
 
-
-        fetchData
+/*
+       fetchData
                 .subscribeOn(Schedulers.newThread()) // Create a new Thread
                 .observeOn(AndroidSchedulers.mainThread()) // Use the UI thread
                 .subscribe(s -> {
@@ -69,6 +69,7 @@ public class RxJavaTest extends Activity {
                                                       e.onNext(fetchData2("2nd onNext"));
 
     });
+    */
 
-
+    }
 }
