@@ -1,4 +1,4 @@
-import com.vaadin.polymer.demo.client.sampler.ai_trader.FireBaseHandler;
+import com.hortensie.ai_trader.FireBaseHandler;
 
 import org.junit.Assert;
 import org.junit.Test;

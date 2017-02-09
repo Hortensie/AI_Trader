@@ -1,5 +1,5 @@
-import com.vaadin.polymer.demo.client.sampler.ai_trader.ChartRangeInfo;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.SymbolData;
+import com.hortensie.ai_trader.ChartRangeInfo;
+import com.hortensie.ai_trader.SymbolData;
 
 import org.junit.Assert;
 import org.junit.Before;

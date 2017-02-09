@@ -9,11 +9,11 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.CandleChartDrawer;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainActivity;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainAiTraderActivity;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
+import com.hortensie.ai_trader.CandleChartDrawer;
+import com.hortensie.ai_trader.MainActivity;
+import com.hortensie.ai_trader.MainAiTraderActivity;
+import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.xApiConnectionLogin;
 
 import org.junit.Before;
 import org.junit.Test;

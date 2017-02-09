@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:573582055632:android:97727c56576ffb24",
         "android_client_info": {
-          "package_name": "com.vaadin.polymer.demo.client.sampler.ai_trader"
+          "package_name": "com.hortensie.ai_trader"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "573582055632-36nhfeli2mnjp2gbe1r7tnrcj5ortvkm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.vaadin.polymer.demo.client.sampler.ai_trader",
+            "package_name": "com.hortensie.ai_trader",
             "certificate_hash": "F7077DA74C8207B44FFB82D0316AC2629105763E"
           }
         },

@@ -1,4 +1,4 @@
-import com.vaadin.polymer.demo.client.sampler.ai_trader.PeriodSelector;
+import com.hortensie.ai_trader.PeriodSelector;
 
 import org.junit.Test;
 

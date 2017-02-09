@@ -5,7 +5,7 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.CandleChartDrawer;
+import com.hortensie.ai_trader.CandleChartDrawer;
 
 import org.junit.Assert;
 import org.junit.Before;

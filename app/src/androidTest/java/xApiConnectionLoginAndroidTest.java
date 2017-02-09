@@ -9,8 +9,8 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.WindowManager;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
+import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.xApiConnectionLogin;
 
 import org.junit.Before;
 import org.junit.Rule;

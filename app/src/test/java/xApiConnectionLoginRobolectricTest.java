@@ -2,8 +2,8 @@ import android.os.Build;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
+import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.xApiConnectionLogin;
 
 import org.junit.Before;
 import org.junit.Test;

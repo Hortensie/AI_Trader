@@ -8,7 +8,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.vaadin.polymer.demo.client.sampler.ai_trader"
+        applicationId "com.hortensie.ai_trader"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
@@ -21,6 +21,14 @@ android {
             cmake {
                 cppFlags ""
             }
+        }
+        //required by java8 compiler
+        jackOptions{
+            enabled true
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
         }
     }
 
@@ -56,18 +64,26 @@ dependencies {
                 'junit:junit:4.12','org.assertj:assertj-core:2.6.0',
                 'org.mockito:mockito-core:2.5.3'
     )
+    //dagger 2 dependencies
+    compile 'com.google.dagger:dagger:2.9'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
+    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'javax.inject:javax.inject:1'
+    //google fire base
     compile 'com.google.firebase:firebase-database:10.0.1'
+    compile 'com.google.firebase:firebase-core:10.0.1'
+    //xtb xAPI financial data
     compile files('libs/xAPIJavaWrapper_2_4_9/bin/xAPIJavaWrapper_2_4_9.jar')
     compile files('libs/xAPIJavaWrapper_2_4_9/lib/json-simple-1.1.1.jar')
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:recyclerview-v7:25.1.0'
-    compile 'com.google.firebase:firebase-core:10.0.1'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:recyclerview-v7:25.1.1'
     //dependency for MPAndroidChart
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
     //dependency for google crash analyzer
     //compile 'com.google.firebase:firebase-crash:10.0.1'
-    compile 'com.android.support:support-annotations:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:support-annotations:25.1.1'
+    compile 'com.android.support:design:25.1.1'
+    //rxJava 2
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
@@ -84,7 +100,7 @@ dependencies {
     */
     //Espresso dependency
     androidTestCompile 'com.android.support.test:runner:0.5'
-    androidTestCompile 'com.android.support:support-annotations:25.1.0'
+    androidTestCompile 'com.android.support:support-annotations:25.1.1'
     // JUnit4 Rules
     androidTestCompile 'com.android.support.test:rules:0.5'
     //Espresso Contributor for DatePicker, RecyclerView, Drawer actions, Accessibility checks, CountingIdlingResource

@@ -1,5 +1,5 @@
-import com.vaadin.polymer.demo.client.sampler.ai_trader.Symbol;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.SymbolRecord;
+import com.hortensie.ai_trader.Symbol;
+import com.hortensie.ai_trader.SymbolRecord;
 
 import org.junit.Test;
 

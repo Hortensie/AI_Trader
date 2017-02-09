@@ -4,8 +4,8 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.MainApiActivity;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.R;
+import com.hortensie.ai_trader.MainApiActivity;
+import com.hortensie.ai_trader.R;
 
 import org.junit.Rule;
 import org.junit.Test;

@@ -1,8 +1,8 @@
 import android.content.Context;
 
 import com.github.mikephil.charting.data.CandleEntry;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.ChartRangeInfo;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiRangeDataLoader;
+import com.hortensie.ai_trader.ChartRangeInfo;
+import com.hortensie.ai_trader.xApiRangeDataLoader;
 
 import org.junit.Assert;
 import org.junit.Before;

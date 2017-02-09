@@ -1,6 +1,6 @@
 import android.content.Context;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiSymbolLoader;
+import com.hortensie.ai_trader.xApiSymbolLoader;
 
 import org.junit.Assert;
 import org.junit.Test;

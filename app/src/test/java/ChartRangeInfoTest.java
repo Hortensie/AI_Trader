@@ -1,4 +1,4 @@
-import com.vaadin.polymer.demo.client.sampler.ai_trader.ChartRangeInfo;
+import com.hortensie.ai_trader.ChartRangeInfo;
 
 import org.junit.Assert;
 import org.junit.Before;

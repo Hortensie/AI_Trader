@@ -2,8 +2,8 @@ import android.app.TimePickerDialog;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import com.vaadin.polymer.demo.client.sampler.ai_trader.CalendarSelector;
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiUiInput;
+import com.hortensie.ai_trader.CalendarSelector;
+import com.hortensie.ai_trader.xApiUiInput;
 
 import org.junit.Assert;
 import org.junit.Before;

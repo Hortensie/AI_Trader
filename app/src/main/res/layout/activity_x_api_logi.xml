@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center"
-    tools:context="com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin">
+    tools:context="com.hortensie.ai_trader.xApiConnectionLogin">
 
 
     <TextView

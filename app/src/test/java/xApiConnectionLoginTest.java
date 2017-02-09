@@ -1,4 +1,4 @@
-import com.vaadin.polymer.demo.client.sampler.ai_trader.xApiConnectionLogin;
+import com.hortensie.ai_trader.xApiConnectionLogin;
 
 import org.junit.Assert;
 import org.junit.Before;
