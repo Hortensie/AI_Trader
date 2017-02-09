@@ -22,16 +22,16 @@ android {
                 cppFlags ""
             }
         }
-        //required by java8 compiler - lambda
+        //required by java8 compiler - lambda expressions
         /*
         jackOptions{
             enabled true
-        }
+        }*/
         compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
+            //sourceCompatibility JavaVersion.VERSION_1_8
+           // targetCompatibility JavaVersion.VERSION_1_8
         }
-        */
+
     }
 
     buildTypes {
