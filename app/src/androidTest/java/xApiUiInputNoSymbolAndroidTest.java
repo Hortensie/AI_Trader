@@ -5,7 +5,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
 import com.hortensie.ai_trader.R;
-import com.hortensie.ai_trader.xApiUiInput;
+import com.hortensie.ai_trader.xAPI.xApiUiInput;
 
 import org.junit.Rule;
 import org.junit.Test;

@@ -4,7 +4,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
-import com.hortensie.ai_trader.MainApiActivity;
+import com.hortensie.ai_trader.xAPI.MainApiActivity;
 import com.hortensie.ai_trader.R;
 
 import org.junit.Rule;

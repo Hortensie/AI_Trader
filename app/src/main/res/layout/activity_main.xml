@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="com.hortensie.ai_trader.MainActivity">
+    tools:context="com.hortensie.ai_trader.xAPI.MainActivity">
 
     <TextView
         android:paddingBottom="20dp"

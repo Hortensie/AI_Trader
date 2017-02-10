@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".xAPI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -19,14 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".xApiConnectionLogin" />
-        <activity android:name=".xApiUiInput" />
-        <activity android:name=".SymbolRecyclerViewer" />
-        <activity android:name=".PeriodSelector" />
-        <activity android:name=".CandleChartDrawer" />
-        <activity android:name=".MainApiActivity"/>
+        <activity android:name=".xAPI.xApiConnectionLogin" />
+        <activity android:name=".xAPI.xApiUiInput" />
+        <activity android:name=".xAPI.SymbolRecyclerViewer" />
+        <activity android:name=".xAPI.PeriodSelector" />
+        <activity android:name=".xAPI.CandleChartDrawer" />
+        <activity android:name=".xAPI.MainApiActivity"/>
         <activity android:name=".DbTester.view.RxView"/>
-        <activity android:name=".MainAiTraderActivity"/>
+        <activity android:name=".xAPI.MainAiTraderActivity"/>
     </application>
 
 </manifest>
