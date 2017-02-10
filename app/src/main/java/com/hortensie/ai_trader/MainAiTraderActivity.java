@@ -1,11 +1,11 @@
 package com.hortensie.ai_trader;
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Explode;
 import android.view.View;
 import android.widget.Button;
+
+import com.hortensie.ai_trader.DbTester.view.RxView;
 
 /**
  * Created by szczesny on 2017-02-06.
@@ -36,7 +36,7 @@ public class MainAiTraderActivity extends Activity implements View.OnClickListen
                 startActivity(intentCandleDrawer);
                 break;
             case R.id.rxJavaTester:
-                Intent intentTrader = new Intent(this,RxJavaTest.class);
+                Intent intentTrader = new Intent(this,RxView.class);
                 startActivity(intentTrader);
                 break;
             default:

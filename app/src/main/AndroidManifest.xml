@@ -25,7 +25,7 @@
         <activity android:name=".PeriodSelector" />
         <activity android:name=".CandleChartDrawer" />
         <activity android:name=".MainApiActivity"/>
-        <activity android:name=".RxJavaTest"/>
+        <activity android:name=".DbTester.view.RxView"/>
         <activity android:name=".MainAiTraderActivity"/>
     </application>
 
