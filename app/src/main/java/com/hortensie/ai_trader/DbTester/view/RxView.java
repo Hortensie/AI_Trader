@@ -3,6 +3,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.hortensie.ai_trader.DbTester.presenter.RxPresenter;
 import com.hortensie.ai_trader.R;
 
 /**
@@ -14,6 +15,7 @@ public class RxView extends Activity {
 
     TextView view;
     TextView view2;
+    //RxPresenter rxPresenter=new RxPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

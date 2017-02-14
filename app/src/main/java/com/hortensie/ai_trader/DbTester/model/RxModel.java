@@ -5,13 +5,13 @@ package com.hortensie.ai_trader.DbTester.model;
  * is a data access layer such as database API or remote server API.
  */
 
-public class RxModel {
+public class RxModel implements RxModelInterface {
 
-    private String fetchData(String s) {
+    public String fetchData(String s) {
         return "RxJava Thread";
     }
 
-    private String fetchData2(String s) {
+    public String fetchData2(String s) {
         return s;
     }
 
