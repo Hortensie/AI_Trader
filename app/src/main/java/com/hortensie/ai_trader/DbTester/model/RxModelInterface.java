@@ -7,5 +7,4 @@ package com.hortensie.ai_trader.DbTester.model;
 public interface RxModelInterface {
 
     String fetchData(String s);
-    String fetchData2(String s);
 }

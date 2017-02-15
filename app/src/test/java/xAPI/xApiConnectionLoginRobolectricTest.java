@@ -45,7 +45,7 @@ public class xApiConnectionLoginRobolectricTest {
         EditText loginEditText = (EditText) xApiConnectionLogin.findViewById(R.id.editTextLogin);
         assertNotNull("EditText could not be found",loginEditText);
         assertTrue("EditText contains incorrect text",
-                "10111018".equals(loginEditText.getText().toString()));
+                "10143372".equals(loginEditText.getText().toString()));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class xApiConnectionLoginRobolectricTest {
     {
         EditText passwordEditText =(EditText) xApiConnectionLogin.findViewById(R.id.editTextPassword);
         assertNotNull("EditText could not be found",passwordEditText);
-        assertTrue("EditText contains incorrect text","9d222175".equals(passwordEditText.getText().toString()));
+        assertTrue("EditText contains incorrect text","6dd8093f".equals(passwordEditText.getText().toString()));
 
     }
 

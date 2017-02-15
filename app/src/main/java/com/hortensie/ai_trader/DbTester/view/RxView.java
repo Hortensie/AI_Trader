@@ -1,9 +1,11 @@
 package com.hortensie.ai_trader.DbTester.view;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.hortensie.ai_trader.DbTester.presenter.RxPresenter;
+import com.hortensie.ai_trader.DbTester.presenter.RxPresenterInterface;
 import com.hortensie.ai_trader.R;
 
 /**
@@ -11,17 +13,23 @@ import com.hortensie.ai_trader.R;
  * s a layer that displays data and reacts to user actions. On Android, this could be an Activity, a Fragment, an android.view.View or a Dialog.
  */
 
-public class RxView extends Activity {
+public class RxView extends Activity implements RxViewInterface{
 
     TextView view;
-    TextView view2;
-    //RxPresenter rxPresenter=new RxPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rxjava);
         view = (TextView) findViewById(R.id.rxJava);
-        view2 = (TextView) findViewById(R.id.rxJava2);
+        RxPresenterInterface rxPresenterInterface2 = new RxPresenter();
+        rxPresenterInterface2.newThread();
     }
+
+    @Override
+    public void updateUi(String s) {
+        Log.d("RxJava","Back RxView "+s);
+        //view.setText(s); // Change a View
+    }
+
 }

@@ -7,11 +7,9 @@ package com.hortensie.ai_trader.DbTester.model;
 
 public class RxModel implements RxModelInterface {
 
-    public String fetchData(String s) {
-        return "RxJava Thread";
-    }
 
-    public String fetchData2(String s) {
+
+    public String fetchData(String s) {
         return s;
     }
 
