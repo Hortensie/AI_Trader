@@ -15,21 +15,20 @@ import com.hortensie.ai_trader.R;
 
 public class RxView extends Activity implements RxViewInterface{
 
-    TextView view;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rxjava);
-        view = (TextView) findViewById(R.id.rxJava);
-        RxPresenterInterface rxPresenterInterface2 = new RxPresenter();
-        rxPresenterInterface2.newThread();
+        textView = (TextView) findViewById(R.id.rxJava);
+        RxPresenterInterface rxPresenterInterface2 = new RxPresenter(this);
+        rxPresenterInterface2.showData();
     }
 
     @Override
     public void updateUi(String s) {
-        Log.d("RxJava","Back RxView "+s);
-        //view.setText(s); // Change a View
+        textView.setText(s); // Change a View
     }
 
 }

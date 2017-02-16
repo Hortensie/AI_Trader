@@ -6,5 +6,5 @@ package com.hortensie.ai_trader.DbTester.presenter;
 
 public interface RxPresenterInterface {
 
-    void newThread();
+    void showData();
 }

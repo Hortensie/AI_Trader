@@ -1,5 +1,11 @@
 package com.hortensie.ai_trader.DbTester.model;
 
+import android.util.Log;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+
 /**
  * Created by szczesny on 2017-02-09.
  * is a data access layer such as database API or remote server API.
@@ -8,9 +14,20 @@ package com.hortensie.ai_trader.DbTester.model;
 public class RxModel implements RxModelInterface {
 
 
+    @Override
+    public Observable<String> getData() {
+        return Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> e) throws Exception {
+                try {
 
-    public String fetchData(String s) {
-        return s;
+                    e.onNext("Home sweet home"); // Emit the contents of the URL
+
+                    e.onComplete(); // Nothing more to emit
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
     }
-
 }

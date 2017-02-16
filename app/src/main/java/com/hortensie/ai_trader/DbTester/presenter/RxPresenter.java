@@ -21,28 +21,17 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxPresenter implements RxPresenterInterface {
 
-      public void newThread()
+
+    RxModelInterface modelInterface=new RxModel();
+    RxViewInterface viewInterface;
+
+    public RxPresenter(RxViewInterface viewInterface) {
+        this.viewInterface = viewInterface;
+    }
+
+    public void showData()
     {
-       final RxModelInterface modelInterface=new RxModel();
-       final RxViewInterface viewInterface=new RxView();
-
-       Log.d("RxJava","Thread - inside RxPresenter");
-
-        Observable<String> fetchData = Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> e) throws Exception {
-                try {
-                    String data = modelInterface.fetchData("Input");
-                    e.onNext(data); // Emit the contents of the URL
-                    Log.d("RxJava","Thread - inside RxPresenter subscribe "+data);
-                    e.onComplete(); // Nothing more to emit
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
-        });
-
-        fetchData
+        modelInterface.getData()
                 .subscribeOn(Schedulers.newThread()) // Create a new Thread
                 .observeOn(AndroidSchedulers.mainThread()) // Use the UI thread
                 .subscribe(new Consumer<String>() {
