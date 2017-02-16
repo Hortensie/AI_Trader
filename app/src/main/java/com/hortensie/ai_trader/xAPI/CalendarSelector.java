@@ -71,6 +71,7 @@ public class CalendarSelector implements DatePickerDialog.OnDateSetListener, Tim
         this.fDay=dayOfMonth;
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
+        //once date is set time picker pops up
         TimePickerDialog timePickerDialog = new TimePickerDialog(context,CalendarSelector.this, hour, minute,true);
         timePickerDialog.show();
     }
@@ -79,9 +80,11 @@ public class CalendarSelector implements DatePickerDialog.OnDateSetListener, Tim
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         this.fHour=hourOfDay;
         this.fMinute=minute;
+        //once time is set call function that convert data into time in millis (required by xStore.API)
         setTimeInMillis();
     }
 
+    //method returns time based on id (start time = 1 , end time = 2)
     private long returnTimeInMillis(int id)
     {
         long selectedTime = calendar.getTimeInMillis();
@@ -104,6 +107,7 @@ public class CalendarSelector implements DatePickerDialog.OnDateSetListener, Tim
         calendar.set(fYear, fMonth, fDay,
                 fHour, fMinute, 0);
 
+        //once time is set sent value back to Ui thread
         context.runOnUiThread(new Runnable() {
             @Override
             public void run() {

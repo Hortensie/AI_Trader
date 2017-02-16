@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Created by Piotr on 2016-12-30.
- *
+ *  Adapter for RecyclerView
  */
 
 class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.MyViewHolder>{
@@ -45,6 +45,8 @@ class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.MyViewHolder>{
         final SymbolRow current = data.get(position);
         holder.title.setText(current.symbolName);
         holder.icon.setImageResource(current.symbolId);
+
+        //listener for clicking specific row inside RecyclerView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

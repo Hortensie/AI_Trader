@@ -9,7 +9,9 @@ import com.hortensie.ai_trader.DbTester.view.RxView;
 import com.hortensie.ai_trader.R;
 
 /**
- * Created by szczesny on 2017-02-06.
+ * Created by Piotr Szczesny on 2017-02-16.
+ * Class where user can draw CandleChart based on local data
+ * Class where RxJava 2 & MVP design pattern is being used
  */
 
 public class MainAiTraderActivity extends Activity implements View.OnClickListener {

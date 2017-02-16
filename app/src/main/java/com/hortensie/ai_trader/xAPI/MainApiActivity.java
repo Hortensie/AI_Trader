@@ -11,6 +11,9 @@ import com.hortensie.ai_trader.R;
 
 /** Created by Piotr on 2017-01-26
  * Main activity when user decides to login to xAPI server and get historical financial data
+ * User (Admin) can get symbols from xApi
+ * User (Admin) can get symbols from FireBase
+ * User can select period time
  */
 public class MainApiActivity extends Activity implements View.OnClickListener {
 
@@ -34,7 +37,7 @@ public class MainApiActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
+            //set period time
             case R.id.buttonPeriodSelector:
                 Intent setPeriod = new Intent(this,PeriodSelector.class);
                 startActivity(setPeriod);

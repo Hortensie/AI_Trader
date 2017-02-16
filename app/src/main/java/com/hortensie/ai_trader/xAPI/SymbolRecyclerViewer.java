@@ -9,6 +9,11 @@ import com.hortensie.ai_trader.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Piotr on 2017-02-16.
+ * Recycler Viewer activity that defines required adapter/manager and method that feeds viewer
+ *
+ */
 public class SymbolRecyclerViewer extends Activity  {
 
     RecyclerView mRecyclerView;
@@ -28,15 +33,18 @@ public class SymbolRecyclerViewer extends Activity  {
 
     }
 
-
+    //method that feeds RecyclerViewer with symbol data
     public static List<SymbolRow> getSymbols()
     {
         List<SymbolRow> data = new ArrayList<>();
+        //get local copy symbol list from static variable
         List<String> symbols = FireBaseHandler.getInternalCopy();
+        //icon set
         int[] icons = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
         for (int i=0;i<symbols.size();i++)
         {
             SymbolRow current = new SymbolRow();
+            //set same icon for each row
             current.symbolId=icons[0];
             current.symbolName= symbols.get(i);
             data.add(current);

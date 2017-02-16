@@ -1,10 +1,13 @@
 package com.hortensie.ai_trader.xAPI;
+
 /**
- * Created by Piotr on 2017-01-18.
+ * Created by Piotr on 2017-02-16.
+ * Financial Symbol Record
  */
 
 public class SymbolRecord {
 
+    //public as required by FireBase database
     public long ctm;
     public double open;
     public double high;
@@ -12,7 +15,7 @@ public class SymbolRecord {
     public double close;
     public double vol;
 
-    // Default constructor required for calls to DataSnapshot.getValue
+    // Default constructor required for calls to DataSnapshot.getValue (FireBase database)
     public SymbolRecord() {
     }
 

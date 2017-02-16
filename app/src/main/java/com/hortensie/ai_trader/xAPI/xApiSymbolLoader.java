@@ -20,6 +20,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
  * and get all available symbols (list) *
  */
 
+//Async Task that return List of SymbolRecords and use SyncAPIConnector to retrieve data from xAPI server
 public class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<SymbolRecord>> {
 
     private Context context;
@@ -55,14 +56,15 @@ public class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<Symbo
             Toast toastLogged = Toast.makeText(context,"No connection, please try later", Toast.LENGTH_SHORT);
             toastLogged.show();
         }
-        else
+        /*else
         {
             //initialize fire Base connection (instance, reference)
-            FireBaseHandler firebaseHandler = new FireBaseHandler();
+            FireBaseHandler fireBaseHandler = new FireBaseHandler();
             for (int i = 0; i < symbolList.size(); i++) {
-               // firebaseHandler.saveDataToFireBaseDb("Symbols", String.valueOf(i), symbolList.get(i).getSymbol());
+               fireBaseHandler.saveDataToFireBaseDb("Symbols", String.valueOf(i), symbolList.get(i).getSymbol());
             }
         }
+        */
     }
 
 }

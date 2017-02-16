@@ -33,6 +33,8 @@ public class CandleChartDrawer extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.candlechart);
         CandleStickChart candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
+
+        //draw candleChart only when there is local  data
         if(xApiRangeDataLoader.getDataSet()!=null&&xApiRangeDataLoader.getDataSet().size()!=0) {
             drawCandleChart(candleStickChart, xApiRangeDataLoader.getDataSet(), "label");
         }
@@ -42,6 +44,7 @@ public class CandleChartDrawer extends Activity{
         }
     }
 
+    //method responsible for setting x axis (position, color, grids)
     public XAxis prepareXAxis(CandleStickChart candleStickChart){
         XAxis xAxis = candleStickChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -51,6 +54,7 @@ public class CandleChartDrawer extends Activity{
         return xAxis;
     }
 
+    //method responsible for setting Y Left axis (grid, color)
     public YAxis prepareYLeftAxis(CandleStickChart candleStickChart){
         YAxis leftAxis = candleStickChart.getAxisLeft();
         //set maximum value for x (zoom)
@@ -66,6 +70,7 @@ public class CandleChartDrawer extends Activity{
         return leftAxis;
     }
 
+    //method that prepare candle chart (background color etc)
     public void prepareChart(CandleStickChart candleStickChart){
         candleStickChart.setBackgroundColor(WHITE);
         //turn off grid on chart

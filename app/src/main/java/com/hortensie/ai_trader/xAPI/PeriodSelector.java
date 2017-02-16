@@ -12,6 +12,11 @@ import pro.xstore.api.message.codes.PERIOD_CODE;
 
 public class PeriodSelector extends Activity {
 
+    /**
+     * Created by Piotr on 2017-02-16.
+     * Class provide RadioGroup where user can select specific period time
+     */
+
     static PERIOD_CODE tempValue;
 
     public static PERIOD_CODE getTempValue() {

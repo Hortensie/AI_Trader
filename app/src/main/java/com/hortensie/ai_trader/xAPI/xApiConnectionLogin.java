@@ -28,6 +28,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
 public class xApiConnectionLogin extends Activity implements View.OnClickListener {
 
+    //static variable to hold connection to xApi server
     private static SyncAPIConnector globalSyncs;
     private EditText inputLogin;
     private EditText inputPassword;
@@ -43,6 +44,7 @@ public class xApiConnectionLogin extends Activity implements View.OnClickListene
         globalSyncs = globalSyncss;
     }
 
+    //method that return credential object required by login command
     public Credentials setLogin (Long login, String password)
     {
         return new Credentials(login,password);
@@ -71,12 +73,13 @@ public class xApiConnectionLogin extends Activity implements View.OnClickListene
     public void onClick(View view) {
 
         switch (view.getId()) {
-
+            //call AsyncTask in order to login and retrieve data from xAPI and then save it @Firebase Database
             case R.id.buttonLogin:
-                //call AsyncTask in order to login and retrieve data from xAPI and then save it @Firebase Database
+                //get Login Id from edit text widget
                 long login = Long.parseLong(inputLogin.getText().toString());
                 try {
                     LoginResponse loginResponse = xApiLoginToServer(setLogin(login, inputPassword.getText().toString()), new SyncAPIConnector(ServerData.ServerEnum.DEMO));
+                    //if login is successful
                     if (loginResponse.getStatus()) {
                         Toast toastLogged = Toast.makeText(getApplicationContext(), "User logged in", Toast.LENGTH_SHORT);
                         toastLogged.show();

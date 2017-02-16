@@ -33,6 +33,8 @@ import pro.xstore.api.sync.SyncAPIConnector;
         private ChartRangeInfo chartRangeInfo;
         private Context context;
 
+    //class constructor with 2 parameters
+    // input from xApiUiInput class and context for toast message
     public xApiRangeDataLoader(ChartRangeInfo chartRangeInfo, Context context) {
         this.chartRangeInfo = chartRangeInfo;
         this.context = context;
@@ -52,19 +54,23 @@ import pro.xstore.api.sync.SyncAPIConnector;
         try
         {
                 SyncAPIConnector apiConnector=params[0];
+                //command to get chart range data from xAPI
                 ChartResponse executeChartRangeCommand = APICommandFactory.executeChartRangeCommand(apiConnector,chartRangeInfo);
+                //save data as RateInfoRecord List
                 List<RateInfoRecord> eurUsdList = executeChartRangeCommand.getRateInfos();
+                //if there is data from xAPI server convert it to CandleChart object and save in FireBase db
                 if(eurUsdList!=null&&eurUsdList.size()!=0)
                 {
                     FireBaseHandler fireBaseHandler = new FireBaseHandler();
                     ApiCandleConverter apiCandleConverter = new ApiCandleConverter();
                     fireBaseHandler.saveCandleListToFireBase(apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo),chartRangeInfo);
                     dataSet= apiCandleConverter.saveApiRecordsToCandleEntryList(eurUsdList,chartRangeInfo);
+                    //once data is converted save it in static variable so CandleChart drawer can have local input
                     setDataSet(dataSet);
                 }
                 else
                 {
-                    //Close connection
+                    //Close connection if there is no data on xAPI server
                     apiConnector.close();
                 }
         }
@@ -78,6 +84,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
     @Override
     protected void onPostExecute(Void avoid)
     {
+        //if there was data inform user
         if(xApiRangeDataLoader.dataSet!=null&&xApiRangeDataLoader.dataSet.size()!=0)
         {
             Toast toastLogged = Toast.makeText(context,"Data successfully saved to database!", Toast.LENGTH_SHORT);

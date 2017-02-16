@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         //button for AI Trader
         Button buttonTrader = (Button) findViewById(R.id.historicalData);
         buttonTrader.setOnClickListener(this);
+        //?
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
@@ -56,11 +57,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
 
         switch (view.getId()) {
+            //option to login to xAPI server in order to get financial data
             case R.id.buttonXApi:
                 getWindow().setExitTransition(new Explode());
                 Intent intent = new Intent(this,xApiConnectionLogin.class);
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
+            //option to draw Candle Chart & test RxJava 2
             case R.id.historicalData:
                 Intent intentTrader = new Intent(this,MainAiTraderActivity.class);
                 startActivity(intentTrader);

@@ -29,19 +29,23 @@ public class FireBaseHandler
 
     private DatabaseReference databaseReference;
 
+    //constructor also initiate FireBase instance & FireBase reference
     FireBaseHandler() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference();
     }
 
+    //class encode strings as FireBase does not recognize signs like . [ ]
     public static String EncodeString(String string) {
         return string.replace(".", ",").replace("[","+").replace("]","-");
     }
 
+    //decoding class
     public static String DecodeString(String string) {
         return string.replace(",", ".").replace("+","[").replace("-","]");
     }
 
+    //method that save Candle List (received from xAPI server) to FireBase
     void saveCandleListToFireBase(List<CandleEntry> data, ChartRangeInfo chartRangeInfo) {
 
         for (int i = 0; i < data.size(); i++) {
@@ -50,6 +54,7 @@ public class FireBaseHandler
         }
     }
 
+    //method that retrieve data from FireBase
     void getDataFromFireBaseDb(String childName)
     {
      databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
@@ -61,6 +66,7 @@ public class FireBaseHandler
 
                     for (int i=0;i<listObject.size();i++)
                     {
+                        //store data in static variable
                         internalCopy.add(String.valueOf(listObject.get(i)));
                     }
                 }

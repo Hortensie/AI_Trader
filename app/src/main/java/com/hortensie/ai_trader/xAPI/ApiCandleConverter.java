@@ -10,6 +10,7 @@ import pro.xstore.api.message.records.RateInfoRecord;
 /**
  * Created by Piotr on 2017-01-27.
  * Class that convert xAPI data to CandleEntry required by Chart Drawer
+ * This class shows structure of data that is saved to FireBase
  */
 
 public class ApiCandleConverter {
@@ -28,6 +29,7 @@ public class ApiCandleConverter {
 
             );
 
+            //main object (candleEntry) that is listed in data base
             CandleEntry candleEntry = new CandleEntry(
                     i,
                     (float) (records.get(i).getHigh()+records.get(i).getOpen()),

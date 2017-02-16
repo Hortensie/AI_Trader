@@ -6,6 +6,7 @@ package com.hortensie.ai_trader.xAPI;
 
 public class SymbolData {
 
+    //public required by FireBase database
     public Long time;
     public double vol;
     public ChartRangeInfo chartRangeInfo;
