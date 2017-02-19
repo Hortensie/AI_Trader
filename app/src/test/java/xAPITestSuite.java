@@ -6,12 +6,10 @@ import xAPI.CalendarSelectorTest;
 import xAPI.CandleChartDrawerTest;
 import xAPI.ChartRangeInfoTest;
 import xAPI.FireBaseHandlerTest;
-import xAPI.MainActivityRobolectricTest;
 import xAPI.PeriodSelectorTest;
 import xAPI.SymbolDataTest;
 import xAPI.SymbolRecordTest;
 import xAPI.SymbolTest;
-import xAPI.xApiConnectionLoginRobolectricTest;
 import xAPI.xApiConnectionLoginTest;
 import xAPI.xApiRangeDataLoaderTest;
 import xAPI.xApiSymbolLoaderTest;
@@ -36,8 +34,6 @@ import xAPI.xApiSymbolLoaderTest;
                      CalendarSelectorTest.class,
                      xApiConnectionLoginTest.class,
                      ApiCandleConverterTest.class,
-                     MainActivityRobolectricTest.class,
-                     xApiConnectionLoginRobolectricTest.class,
                      xApiSymbolLoaderTest.class
 
 

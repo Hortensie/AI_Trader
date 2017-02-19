@@ -5,11 +5,12 @@ apply plugin: 'jacoco-android'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.hortensie.ai_trader"
-        minSdkVersion 21
+        minSdkVersion 18
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -17,6 +18,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //Sets the timeout value for adb connection.
         //DdmPreferences.setTimeOut(60000)
+        //vector assets for images
+        vectorDrawables.useSupportLibrary = true
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -33,7 +36,20 @@ android {
         }
 
     }
-
+    //do not check .png files so strictly
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    //in order to have subdirectories for layouts
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/dBTester',
+                            'src/main/res',
+                            'src/main/res/layouts/xAPI'
+                    ]
+        }
+    }
     buildTypes {
          debug {
             testCoverageEnabled true
@@ -77,14 +93,16 @@ dependencies {
     //xtb xAPI financial data
     compile files('libs/xAPIJavaWrapper_2_4_9/bin/xAPIJavaWrapper_2_4_9.jar')
     compile files('libs/xAPIJavaWrapper_2_4_9/lib/json-simple-1.1.1.jar')
+    //material design
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support:recyclerview-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
+    compile 'com.android.support:cardview-v7:25.1.1'
     //dependency for MPAndroidChart
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.1'
     //dependency for google crash analyzer
     //compile 'com.google.firebase:firebase-crash:10.0.1'
     compile 'com.android.support:support-annotations:25.1.1'
-    compile 'com.android.support:design:25.1.1'
     //rxJava 2
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     // Because RxAndroid releases are few and far between, it is recommended you also

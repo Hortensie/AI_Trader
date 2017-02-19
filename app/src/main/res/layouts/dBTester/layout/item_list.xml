@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/md_keylines">
+
+    <ImageView
+        android:id="@+id/list_avatar"
+        android:layout_width="@dimen/avator_size"
+        android:layout_height="@dimen/avator_size"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/a_avator" />
+
+    <TextView
+        android:id="@+id/list_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/md_keylines"
+        android:layout_toRightOf="@+id/list_avatar"
+        tools:text="@string/item_title"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="@dimen/article_subheading" />
+
+    <TextView
+        android:id="@+id/list_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list_title"
+        android:layout_marginLeft="@dimen/md_keylines"
+        android:layout_toRightOf="@+id/list_avatar"
+        android:textColor="@color/medium_grey"
+        android:ellipsize="end"
+        tools:text="@string/item_desc"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="@dimen/list_body"
+        android:maxLines="1" />
+</RelativeLayout>

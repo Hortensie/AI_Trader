@@ -1,10 +1,10 @@
-package com.hortensie.ai_trader.DbTester.presenter;
+package com.hortensie.ai_trader.dbTester.presenter;
 
 import android.util.Log;
 
-import com.hortensie.ai_trader.DbTester.model.RxModel;
-import com.hortensie.ai_trader.DbTester.model.RxModelInterface;
-import com.hortensie.ai_trader.DbTester.view.RxViewInterface;
+import com.hortensie.ai_trader.dbTester.model.RxModel;
+import com.hortensie.ai_trader.dbTester.model.RxModelInterface;
+import com.hortensie.ai_trader.dbTester.view.RxViewInterface;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;

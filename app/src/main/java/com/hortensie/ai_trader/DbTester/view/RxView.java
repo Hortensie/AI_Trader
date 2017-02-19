@@ -1,10 +1,11 @@
-package com.hortensie.ai_trader.DbTester.view;
+package com.hortensie.ai_trader.dbTester.view;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.hortensie.ai_trader.DbTester.presenter.RxPresenter;
-import com.hortensie.ai_trader.DbTester.presenter.RxPresenterInterface;
+import com.hortensie.ai_trader.dbTester.presenter.RxPresenter;
+import com.hortensie.ai_trader.dbTester.presenter.RxPresenterInterface;
 import com.hortensie.ai_trader.R;
 
 /**
@@ -12,7 +13,7 @@ import com.hortensie.ai_trader.R;
  * Layer that displays data and reacts to user actions. This could be an Activity, a Fragment, an android.view.View or a Dialog.
  */
 
-public class RxView extends Activity implements RxViewInterface{
+public class RxView extends AppCompatActivity implements RxViewInterface{
 
     TextView textView;
 

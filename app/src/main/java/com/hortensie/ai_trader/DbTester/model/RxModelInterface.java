@@ -1,4 +1,4 @@
-package com.hortensie.ai_trader.DbTester.model;
+package com.hortensie.ai_trader.dbTester.model;
 
 import io.reactivex.Observable;
 

@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hortensie.ai_trader.dbTester.view.MainDbTester;
 import com.hortensie.ai_trader.R;
 
 /** Created by Piotr on 2017-01-03
@@ -30,7 +31,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         // enable transitions animation
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_main);
 
         // Example of a call to a native method
@@ -59,13 +60,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (view.getId()) {
             //option to login to xAPI server in order to get financial data
             case R.id.buttonXApi:
-                getWindow().setExitTransition(new Explode());
+                //getWindow().setExitTransition(new Explode());
                 Intent intent = new Intent(this,xApiConnectionLogin.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                //startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                startActivity(intent);
                 break;
             //option to draw Candle Chart & test RxJava 2
             case R.id.historicalData:
-                Intent intentTrader = new Intent(this,MainAiTraderActivity.class);
+                Intent intentTrader = new Intent(this,MainDbTester.class);
                 startActivity(intentTrader);
                 break;
             default:
