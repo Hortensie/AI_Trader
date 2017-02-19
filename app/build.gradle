@@ -46,7 +46,8 @@ android {
                     [
                             'src/main/res/layouts/dBTester',
                             'src/main/res',
-                            'src/main/res/layouts/xAPI'
+                            'src/main/res/layouts/xAPI',
+                            'src/main/res/layouts/global_generic',
                     ]
         }
     }

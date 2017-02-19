@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="xapi_menu1">xAPI</string>
+    <string name="dbviewer_menu2">AI_Viewer</string>
+    <string name="dbtester_menu3">AI_Tester</string>
+</resources>

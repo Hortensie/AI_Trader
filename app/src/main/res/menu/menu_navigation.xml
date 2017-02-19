@@ -2,16 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/xAPI_menu"
             android:icon="@drawable/ic_home_black_24dp"
             android:tint="@color/button_grey"
-            android:title="One" />
+            android:title="@string/xapi_menu1" />
         <item
+            android:id="@+id/dBViewer_menu"
             android:icon="@drawable/ic_favorite_black_24dp"
             android:tint="@color/button_grey"
-            android:title="Two" />
+            android:title="@string/dbviewer_menu2" />
         <item
+            android:id="@+id/dBTester_menu"
             android:icon="@drawable/ic_bookmark_border_black_24dp"
             android:tint="@color/button_grey"
-            android:title="Three" />
+            android:title="@string/dbtester_menu3" />
     </group>
 </menu>

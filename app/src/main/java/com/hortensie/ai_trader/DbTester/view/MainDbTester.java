@@ -19,9 +19,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import com.hortensie.ai_trader.R;
 import com.hortensie.ai_trader.xAPI.CandleChartDrawer;
+import com.hortensie.ai_trader.xAPI.xApiConnectionLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import java.util.List;
  * Class where RxJava 2 & MVP design pattern is being used
  */
 
-public class MainDbTester extends AppCompatActivity implements View.OnClickListener {
+public class MainDbTester extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
@@ -41,12 +41,6 @@ public class MainDbTester extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_aitrader);
-
-        //button listeners
-        Button candleDrawer = (Button)findViewById(R.id.candleDrawer);
-        Button rxJavaTester = (Button)findViewById(R.id.rxJavaTester);
-        candleDrawer.setOnClickListener(this);
-        rxJavaTester.setOnClickListener(this);
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -60,7 +54,7 @@ public class MainDbTester extends AppCompatActivity implements View.OnClickListe
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        // Create Navigation drawer and inlfate layout
+        // Create Navigation drawer and inflate layout
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
 
@@ -81,9 +75,19 @@ public class MainDbTester extends AppCompatActivity implements View.OnClickListe
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // Set item in checked state
                         menuItem.setChecked(true);
-
-                        // TODO: handle navigation
-
+                        switch (menuItem.getItemId()){
+                            case R.id.xAPI_menu:
+                                startActivity(new Intent(getApplicationContext(),xApiConnectionLogin.class));
+                                break;
+                            case R.id.dBViewer_menu:
+                                startActivity(new Intent(getApplicationContext(),CandleChartDrawer.class));
+                                break;
+                            case R.id.dBTester_menu:
+                                startActivity(new Intent(getApplicationContext(),RxView.class));
+                                break;
+                            default:
+                                break;
+                        }
                         // Closing drawer on item click
                         mDrawerLayout.closeDrawers();
                         return true;
@@ -104,7 +108,7 @@ public class MainDbTester extends AppCompatActivity implements View.OnClickListe
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new ListContentFragment(), "List");
+        adapter.addFragment(new ListContentFragment(), "Symbols");
         adapter.addFragment(new TileContentFragment(), "Tile");
         adapter.addFragment(new CardContentFragment(), "Card");
         viewPager.setAdapter(adapter);
@@ -114,7 +118,7 @@ public class MainDbTester extends AppCompatActivity implements View.OnClickListe
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public Adapter(FragmentManager manager) {
+        Adapter(FragmentManager manager) {
             super(manager);
         }
 
@@ -128,7 +132,7 @@ public class MainDbTester extends AppCompatActivity implements View.OnClickListe
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
@@ -151,32 +155,25 @@ public class MainDbTester extends AppCompatActivity implements View.OnClickListe
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == android.R.id.home) {
-            mDrawerLayout.openDrawer(GravityCompat.START);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            //draw CandleChart
-            case R.id.candleDrawer:
-                startActivity(new Intent(this,CandleChartDrawer.class));
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                return true;
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
-            //start MPV RxJava 2 part
-            case R.id.rxJavaTester:
-                startActivity(new Intent(this,RxView.class));
+            case R.id.xAPI_menu:
+                startActivity(new Intent(getApplicationContext(),xApiConnectionLogin.class));
+                break;
+            case R.id.dBViewer_menu:
+                startActivity(new Intent(getApplicationContext(),CandleChartDrawer.class));
+                break;
+            case R.id.dBTester_menu:
+                startActivity(new Intent(getApplicationContext(),RxView.class));
                 break;
             default:
                 break;
         }
+        return super.onOptionsItemSelected(item);
     }
-
 
 }
