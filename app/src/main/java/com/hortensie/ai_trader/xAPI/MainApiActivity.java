@@ -57,6 +57,7 @@ public class MainApiActivity extends Activity implements View.OnClickListener {
                 }
                 else
                 {
+                    Log.d("RxJava","Starting AsyncTask");
                     new xApiSymbolLoader(this).execute(xApiConnectionLogin.getGlobalSyncs());
                 }
                 break;

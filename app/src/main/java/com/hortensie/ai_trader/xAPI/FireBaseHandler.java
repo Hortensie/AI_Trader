@@ -5,10 +5,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import pro.xstore.api.message.records.SymbolRecord;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import pro.xstore.api.message.records.*;
 
 
 /**
@@ -30,7 +32,7 @@ public class FireBaseHandler
     private DatabaseReference databaseReference;
 
     //constructor also initiate FireBase instance & FireBase reference
-    FireBaseHandler() {
+    public FireBaseHandler() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference();
     }
@@ -52,6 +54,15 @@ public class FireBaseHandler
             databaseReference.child(EncodeString(chartRangeInfo.getSymbol())).child(EncodeString(chartRangeInfo.getPeriod().toString())).setValue(data);
 
         }
+    }
+
+    //method that save Symbol List and all informations about symbols to FireBase db
+    void saveSymbolListToFireBase(List<ListSymbolRecord> data) {
+      databaseReference.child("SymbolList").child("Symbols").setValue(data);
+        //for (int i = 0; i < data.size(); i++) {
+          //  databaseReference.child("SymbolList").child(EncodeString(data.get(i).getSymbol())).setValue(data);
+
+        //}
     }
 
     //method that retrieve data from FireBase

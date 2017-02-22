@@ -1,6 +1,7 @@
 package com.hortensie.ai_trader.xAPI;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.List;
@@ -56,15 +57,16 @@ public class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<Symbo
             Toast toastLogged = Toast.makeText(context,"No connection, please try later", Toast.LENGTH_SHORT);
             toastLogged.show();
         }
-        /*else
+        else
         {
+            Log.d("RxJava","Symbol list available");
             //initialize fire Base connection (instance, reference)
             FireBaseHandler fireBaseHandler = new FireBaseHandler();
-            for (int i = 0; i < symbolList.size(); i++) {
-               fireBaseHandler.saveDataToFireBaseDb("Symbols", String.valueOf(i), symbolList.get(i).getSymbol());
-            }
+            ListSymbolRecord converter = new ListSymbolRecord();
+            fireBaseHandler.saveSymbolListToFireBase(converter.convertGenericSymbolRecordIntoFireBaseAccepted(symbolList));
+
         }
-        */
+
     }
 
 }

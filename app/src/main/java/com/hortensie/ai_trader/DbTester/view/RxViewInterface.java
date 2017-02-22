@@ -8,4 +8,5 @@ package com.hortensie.ai_trader.dbTester.view;
 public interface RxViewInterface {
 
    void updateUi(String s);
+
 }

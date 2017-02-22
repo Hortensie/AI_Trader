@@ -2,8 +2,8 @@ package com.hortensie.ai_trader.dbTester.presenter;
 
 import android.util.Log;
 
-import com.hortensie.ai_trader.dbTester.model.RxModel;
-import com.hortensie.ai_trader.dbTester.model.RxModelInterface;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.view.RxViewInterface;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -17,13 +17,15 @@ import io.reactivex.schedulers.Schedulers;
 public class RxPresenter implements RxPresenterInterface {
 
 
-    private RxModelInterface modelInterface=new RxModel();
+    private FireBaseModelInterface modelInterface=new FireBaseModel();
     private RxViewInterface viewInterface;
+
 
     //constructor which initialize View Interface
     public RxPresenter(RxViewInterface viewInterface) {
         this.viewInterface = viewInterface;
     }
+
 
     //method that subscribe to Observable object and creates new Thread for operations
     //Once received updates UI on main thread
@@ -35,7 +37,7 @@ public class RxPresenter implements RxPresenterInterface {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Log.d("RxJava","Thread - inside RxPresenter accept");
+                        Log.d("RxJava",s);
                         viewInterface.updateUi(s); // update TextView from activity view
                     }
                 });

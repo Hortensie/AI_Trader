@@ -1,5 +1,9 @@
 package com.hortensie.ai_trader.dbTester.model;
 
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 
 /**
@@ -7,8 +11,9 @@ import io.reactivex.Observable;
  * Interface between Presenter --> Model
  */
 
-public interface RxModelInterface {
+public interface FireBaseModelInterface {
 
     //method that getData from some source and return Observable object which can be used by Presenter
     Observable<String> getData();
+    Observable<List<String>> getDataFromFireBase(final String childName);
 }
