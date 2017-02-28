@@ -64,11 +64,50 @@ public class ListSymbolRecord {
     public ListSymbolRecord() {
     }
 
-    public ListSymbolRecord(String description, String groupName, String categoryName, String symbol) {
+    public ListSymbolRecord(double ask, double bid, String currency, String currencyProfit, String description, int instantMaxVolume, double high, double low, String symbol, long time, int type, String groupName, String categoryName, boolean longOnly, Long starting, Long expiration, int stepRuleId, int stopsLevel, double lotMax, double lotMin, double lotStep, int precision, Long contractSize, Long initialMargin, double marginHedged, boolean marginHedgedStrong, Long marginMaintenance, MARGIN_MODE marginMode, double percentage, PROFIT_MODE profitMode, double spreadRaw, double spreadTable, boolean swapEnable, double swapLong, double swapShort, SWAP_TYPE swapType, SWAP_ROLLOVER_TYPE swapRollover, double tickSize, double tickValue, int quoteId, String timeString, double leverage, boolean currencyPair) {
+        this.ask = ask;
+        this.bid = bid;
+        this.currency = currency;
+        this.currencyProfit = currencyProfit;
         this.description = description;
+        this.instantMaxVolume = instantMaxVolume;
+        this.high = high;
+        this.low = low;
+        this.symbol = symbol;
+        this.time = time;
+        this.type = type;
         this.groupName = groupName;
         this.categoryName = categoryName;
-        this.symbol = symbol;
+        this.longOnly = longOnly;
+        this.starting = starting;
+        this.expiration = expiration;
+        this.stepRuleId = stepRuleId;
+        this.stopsLevel = stopsLevel;
+        this.lotMax = lotMax;
+        this.lotMin = lotMin;
+        this.lotStep = lotStep;
+        this.precision = precision;
+        this.contractSize = contractSize;
+        this.initialMargin = initialMargin;
+        this.marginHedged = marginHedged;
+        this.marginHedgedStrong = marginHedgedStrong;
+        this.marginMaintenance = marginMaintenance;
+        this.marginMode = marginMode;
+        this.percentage = percentage;
+        this.profitMode = profitMode;
+        this.spreadRaw = spreadRaw;
+        this.spreadTable = spreadTable;
+        this.swapEnable = swapEnable;
+        this.swapLong = swapLong;
+        this.swapShort = swapShort;
+        this.swapType = swapType;
+        this.swapRollover = swapRollover;
+        this.tickSize = tickSize;
+        this.tickValue = tickValue;
+        this.quoteId = quoteId;
+        this.timeString = timeString;
+        this.leverage = leverage;
+        this.currencyPair = currencyPair;
     }
 
     public List<ListSymbolRecord> convertGenericSymbolRecordIntoFireBaseAccepted(List<pro.xstore.api.message.records.SymbolRecord> records){
@@ -78,10 +117,49 @@ public class ListSymbolRecord {
         {
             //main object (customSymbol) that is listed in data base
             ListSymbolRecord symbolData = new ListSymbolRecord(
-                    records.get(i).getCategoryName(),
+                    records.get(i).getAsk(),
+                    records.get(i).getBid(),
+                    records.get(i).getCurrency(),
+                    records.get(i).getCurrencyProfit(),
                     records.get(i).getDescription(),
+                    records.get(i).getInstantMaxVolume(),
+                    records.get(i).getHigh(),
+                    records.get(i).getLow(),
+                    records.get(i).getSymbol(),
+                    records.get(i).getTime(),
+                    records.get(i).getType(),
                     records.get(i).getGroupName(),
-                    records.get(i).getSymbol()
+                    records.get(i).getCategoryName(),
+                    records.get(i).getLongOnly(),
+                    records.get(i).getStarting(),
+                    records.get(i).getExpiration(),
+                    records.get(i).getStepRuleId(),
+                    records.get(i).getStopsLevel(),
+                    records.get(i).getLotMax(),
+                    records.get(i).getLotMin(),
+                    records.get(i).getLotStep(),
+                    records.get(i).getPrecision(),
+                    records.get(i).getContractSize(),
+                    records.get(i).getInitialMargin(),
+                    records.get(i).getMarginHedged(),
+                    records.get(i).getMarginHedgedStrong(),
+                    records.get(i).getMarginMaintenance(),
+                    records.get(i).getMarginMode(),
+                    records.get(i).getPercentage(),
+                    records.get(i).getProfitMode(),
+                    records.get(i).getSpreadRaw(),
+                    records.get(i).getSpreadTable(),
+                    records.get(i).isSwapEnable(),
+                    records.get(i).getSwapLong(),
+                    records.get(i).getSwapShort(),
+                    records.get(i).getSwapType(),
+                    records.get(i).getSwap_rollover(),
+                    records.get(i).getTickSize(),
+                    records.get(i).getTickValue(),
+                    records.get(i).getQuoteId(),
+                    records.get(i).getTimeString(),
+                    records.get(i).getLeverage(),
+                    records.get(i).isCurrencyPair()
             );
 
             data.add(i, symbolData);

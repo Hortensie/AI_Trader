@@ -58,7 +58,7 @@ public class FireBaseHandler
 
     //method that save Symbol List and all informations about symbols to FireBase db
     void saveSymbolListToFireBase(List<ListSymbolRecord> data) {
-      databaseReference.child("SymbolList").child("Symbols").setValue(data);
+      databaseReference.child("FinalSymbols").setValue(data);
         //for (int i = 0; i < data.size(); i++) {
           //  databaseReference.child("SymbolList").child(EncodeString(data.get(i).getSymbol())).setValue(data);
 

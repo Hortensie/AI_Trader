@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".xAPI.MainActivity"
+        <activity android:name=".dbTester.view.MainDbTester"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -27,8 +27,7 @@
         <activity android:name=".xAPI.CandleChartDrawer" />
         <activity android:name=".xAPI.MainApiActivity"/>
         <activity android:name=".dbTester.view.RxView"/>
-        <activity android:name=".dbTester.view.MainDbTester"/>
-        <activity android:name=".dbTester.view.DetailActivity"/>
+        <activity android:name=".dbTester.view.DetailActivityView"/>
     </application>
 
 </manifest>

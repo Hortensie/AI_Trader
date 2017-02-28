@@ -1,16 +1,20 @@
 package com.hortensie.ai_trader.dbTester.model;
 
-import java.util.List;
+import android.util.Log;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 
 /**
  * Created by szczesny on 2017-02-09.
@@ -19,11 +23,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FireBaseModel implements FireBaseModelInterface {
 
-    DatabaseReference databaseReference;
+    private DatabaseReference databaseReference;
 
     public FireBaseModel() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference= firebaseDatabase.getReference();
+        databaseReference = firebaseDatabase.getReference();
     }
 
     @Override
@@ -42,34 +46,34 @@ public class FireBaseModel implements FireBaseModelInterface {
     }
 
     @Override
-    public Observable<List<String>> getDataFromFireBase(final String childName){
-
-        return Observable.create(new ObservableOnSubscribe<List<String>>() {
+    public Flowable<DataSnapshot> getDataFromFireBase(final String childName) {
+        return Flowable.create(new FlowableOnSubscribe<DataSnapshot>() {
             @Override
-            public void subscribe(final ObservableEmitter<List<String>> e) throws Exception {
-
-                try {
-                    databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            List<String> listObject = (List<String>) dataSnapshot.getValue();
-                            e.onNext(listObject);
-                            e.onComplete(); // Nothing more to emit
+            public void subscribe(final FlowableEmitter<DataSnapshot> e) throws Exception {
+                databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        /*
+                        for (DataSnapshot snapshot:dataSnapshot.getChildren())
+                        {
+                            Log.d("RxJava Model",snapshot.toString());
+                            e.onNext(snapshot);
                         }
+                        /*/
+                        //Log.d("RxJava Model",dataSnapshot.toString());
+                        e.onNext(dataSnapshot);
+                        e.onComplete();
+                    }
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                        }
-                    });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                }
-                catch (Exception e1)
-                {
-                    e1.printStackTrace();
-                }
-        }
-    });
-}
+                    }
+                });
+            }
+        }, BackpressureStrategy.BUFFER);
+
+    }
 
 }
 

@@ -1,9 +1,14 @@
 package com.hortensie.ai_trader.dbTester.model;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
+import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
@@ -15,5 +20,6 @@ public interface FireBaseModelInterface {
 
     //method that getData from some source and return Observable object which can be used by Presenter
     Observable<String> getData();
-    Observable<List<String>> getDataFromFireBase(final String childName);
+    Flowable<DataSnapshot> getDataFromFireBase(final String childName);
+
 }

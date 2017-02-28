@@ -1,6 +1,8 @@
 package com.hortensie.ai_trader.dbTester.view;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -20,6 +22,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.dbTester.view.Fragments.CardContentFragment;
+import com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragment;
+import com.hortensie.ai_trader.dbTester.view.Fragments.TileContentFragment;
 import com.hortensie.ai_trader.xAPI.CandleChartDrawer;
 import com.hortensie.ai_trader.xAPI.xApiConnectionLogin;
 
@@ -28,8 +33,10 @@ import java.util.List;
 
 /**
  * Created by Piotr Szczesny on 2017-02-16.
- * Class where user can draw CandleChart based on local data
- * Class where RxJava 2 & MVP design pattern is being used
+ * Main application view - initial view
+ * This Class / Activity provides following functions:
+ * - review / selection of financial symbol
+ * - selection of all application functions (viewer, xAPi etc)
  */
 
 public class MainDbTester extends AppCompatActivity {
@@ -41,6 +48,10 @@ public class MainDbTester extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_aitrader);
+
+        //allow network connection for xAPI login
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -63,6 +74,8 @@ public class MainDbTester extends AppCompatActivity {
         if (supportActionBar != null) {
             VectorDrawableCompat indicator =
                     VectorDrawableCompat.create(getResources(), R.drawable.ic_menu, getTheme());
+            //as Tint might product null point exception assert it
+            assert indicator != null;
             indicator.setTint(ResourcesCompat.getColor(getResources(),R.color.white,getTheme()));
             supportActionBar.setHomeAsUpIndicator(indicator);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
@@ -72,7 +85,7 @@ public class MainDbTester extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     // This method will trigger on item Click of navigation menu
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         // Set item in checked state
                         menuItem.setChecked(true);
                         switch (menuItem.getItemId()){
@@ -99,7 +112,7 @@ public class MainDbTester extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Snackbar.make(v, "Hello Snackbar!",
+                Snackbar.make(v, "Hello SnackBar!",
                         Snackbar.LENGTH_LONG).show();
             }
         });
@@ -108,9 +121,9 @@ public class MainDbTester extends AppCompatActivity {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new ListContentFragment(), "Symbols");
-        adapter.addFragment(new TileContentFragment(), "Tile");
         adapter.addFragment(new CardContentFragment(), "Card");
+        adapter.addFragment(new TileContentFragment(), "Tile");
+        adapter.addFragment(new ListContentFragment(), "Symbols");
         viewPager.setAdapter(adapter);
     }
 

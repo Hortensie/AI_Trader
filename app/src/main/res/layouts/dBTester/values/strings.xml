@@ -3,4 +3,13 @@
     <string name="xapi_menu1">xAPI</string>
     <string name="dbviewer_menu2">AI_Viewer</string>
     <string name="dbtester_menu3">AI_Tester</string>
+    <string name="detail_symbol_title">Symbol</string>
+    <string name="detail_currency_title">Currency</string>
+    <string name="detail_category_name">Category Name</string>
+    <string name="category_name_description">category name sample</string>
+    <string name="detail_group_name">Group Name</string>
+    <string name="detail_group_name_description">group name sample</string>
+    <string name="image_view_content_description">image_view_content_description</string>
+    <string name="bid_description">bid sample</string>
+    <string name="bid_name">Bid</string>
 </resources>

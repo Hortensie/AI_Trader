@@ -1,4 +1,4 @@
-package com.hortensie.ai_trader.dbTester.view;
+package com.hortensie.ai_trader.dbTester.view.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.dbTester.view.DetailActivityView;
 
 /**
  * Created by szczesny on 2017-02-18.
@@ -49,8 +50,8 @@ public class TileContentFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    Intent intent = new Intent(context, DetailActivity.class);
-                    intent.putExtra(DetailActivity.EXTRA_POSITION, getAdapterPosition());
+                    Intent intent = new Intent(context, DetailActivityView.class);
+                    intent.putExtra(DetailActivityView.EXTRA_POSITION, getAdapterPosition());
                     context.startActivity(intent);
                 }
             });
