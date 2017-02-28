@@ -29,8 +29,6 @@ public class xApiConnectionLoginTest {
     private xApiConnectionLogin xApiConnectionObject;
     private Credentials mockCredentials;
     private SyncAPIConnector connector;
-    private long login = 10111018L;
-    private String password = "9d222175";
     private LoginResponse response;
 
     @Before
@@ -43,7 +41,9 @@ public class xApiConnectionLoginTest {
 
     @org.junit.Test
     public void validateSetLogin() {
-        xApiConnectionObject.setLogin(login,password);
+        String password = "9d222175";
+        long login = 10111018L;
+        xApiConnectionObject.setLogin(login, password);
         Assert.assertNotNull(mockCredentials);
     }
 

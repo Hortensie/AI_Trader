@@ -1,12 +1,6 @@
 package com.hortensie.ai_trader.dbTester.model;
 
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;

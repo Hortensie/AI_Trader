@@ -1,7 +1,5 @@
 package com.hortensie.ai_trader.xAPI;
 
-import com.github.mikephil.charting.data.CandleEntry;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +7,6 @@ import pro.xstore.api.message.codes.MARGIN_MODE;
 import pro.xstore.api.message.codes.PROFIT_MODE;
 import pro.xstore.api.message.codes.SWAP_ROLLOVER_TYPE;
 import pro.xstore.api.message.codes.SWAP_TYPE;
-import pro.xstore.api.message.records.*;
 
 /**
  * Created by szczesny on 2017-02-22.

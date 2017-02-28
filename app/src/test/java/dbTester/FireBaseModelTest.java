@@ -2,8 +2,6 @@ package dbTester;
 
 import org.junit.Test;
 
-import io.reactivex.Flowable;
-
 /**
  * Created by szczesny on 2017-02-27.
  */

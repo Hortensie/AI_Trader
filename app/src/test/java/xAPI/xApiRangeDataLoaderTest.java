@@ -24,7 +24,6 @@ public class xApiRangeDataLoaderTest {
 
     private Context mockContext;
     private ChartRangeInfo mockChartRangeInfo;
-    private xApiRangeDataLoader sut;
     private CandleEntry candleEntry;
 
     @Before
@@ -38,7 +37,7 @@ public class xApiRangeDataLoaderTest {
     @Test
     public void validateConstructorChartRangeInfoTest(){
 
-        sut=new xApiRangeDataLoader(mockChartRangeInfo,mockContext);
+        xApiRangeDataLoader sut = new xApiRangeDataLoader(mockChartRangeInfo, mockContext);
         Assert.assertNotNull(sut);
     }
 
