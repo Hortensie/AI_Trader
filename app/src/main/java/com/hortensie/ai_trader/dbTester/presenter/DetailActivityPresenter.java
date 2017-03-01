@@ -27,7 +27,7 @@ public class DetailActivityPresenter extends AppCompatActivity implements Detail
     }
 
     @Override
-    public void showDetails() {
+    public void showSymbolDetails() {
         Log.d("RxJava Presenter","inside showDetails");
         //RxJava2 observer
         modelInterface.getDataFromFireBase("FinalSymbols")

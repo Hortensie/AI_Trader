@@ -68,6 +68,7 @@ public class FireBaseModel implements FireBaseModelInterface {
 
                     }
                 });
+                //apply back pressure buffer strategy (model buffer items)
             }
         }, BackpressureStrategy.BUFFER);
 

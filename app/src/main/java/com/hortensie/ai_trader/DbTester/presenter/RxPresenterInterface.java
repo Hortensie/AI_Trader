@@ -1,10 +1,8 @@
 package com.hortensie.ai_trader.dbTester.presenter;
 
-import com.google.firebase.database.DatabaseReference;
-
 /**
  * Created by szczesny on 2017-02-14.
- * Presenter Interface that is a gateway between View -> Presenter
+ * Presenter Interface that is a gateway between  Model <- RxPresenterInterface <- RxView
  */
 
 public interface RxPresenterInterface {

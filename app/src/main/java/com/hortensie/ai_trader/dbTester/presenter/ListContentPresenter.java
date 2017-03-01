@@ -32,7 +32,8 @@ public class ListContentPresenter extends RecyclerView.Adapter<ListContentFragme
     private static final int LENGTH = 200;
     private final Drawable[] mPlaceAvatars;
 
-    public ListContentPresenter(Context context) {
+    public ListContentPresenter(Context context)
+    {
             Resources resources = context.getResources();
             TypedArray a = resources.obtainTypedArray(R.array.place_avator);
         mPlaceAvatars = new Drawable[a.length()];
@@ -40,7 +41,7 @@ public class ListContentPresenter extends RecyclerView.Adapter<ListContentFragme
                 mPlaceAvatars[i] = a.getDrawable(i);
             }
             a.recycle();
-        }
+    }
 
     @Override
     public ListContentFragment.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

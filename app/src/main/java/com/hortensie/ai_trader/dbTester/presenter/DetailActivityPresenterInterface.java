@@ -1,10 +1,12 @@
 package com.hortensie.ai_trader.dbTester.presenter;
 
 /**
- * Created by szczesny on 2017-02-26.
+ * Created by szczesny on 2017-02-14.
+ * Presenter Interface that is a gateway between Model <- DetailActivityPresenterInterface <- DetailActivityView
  */
 
 public interface DetailActivityPresenterInterface {
 
-    void showDetails();
+    //method showSymbolDetails
+    void showSymbolDetails();
 }
