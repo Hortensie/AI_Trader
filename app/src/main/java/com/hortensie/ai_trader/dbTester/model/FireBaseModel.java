@@ -1,5 +1,7 @@
 package com.hortensie.ai_trader.dbTester.model;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -7,6 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import io.reactivex.BackpressureStrategy;
+
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
@@ -44,13 +47,13 @@ public class FireBaseModel implements FireBaseModelInterface {
     }
 
     @Override
-    public Flowable<DataSnapshot> getDataFromFireBase(final String childName) {
-        return Flowable.create(new FlowableOnSubscribe<DataSnapshot>() {
-            @Override
-            public void subscribe(final FlowableEmitter<DataSnapshot> e) throws Exception {
-                databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+        public Flowable<DataSnapshot> getDataFromFireBase(final String childName) {
+            return Flowable.create(new FlowableOnSubscribe<DataSnapshot>() {
+                @Override
+                public void subscribe(final FlowableEmitter<DataSnapshot> e) throws Exception {
+                    databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
                         /*
                         for (DataSnapshot snapshot:dataSnapshot.getChildren())
                         {
@@ -58,21 +61,20 @@ public class FireBaseModel implements FireBaseModelInterface {
                             e.onNext(snapshot);
                         }
                         /*/
-                        //Log.d("RxJava Model",dataSnapshot.toString());
-                        e.onNext(dataSnapshot);
-                        e.onComplete();
-                    }
+                            //Log.d("RxJava Model",dataSnapshot.toString());
+                            e.onNext(dataSnapshot);
+                            e.onComplete();
+                        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
-                //apply back pressure buffer strategy (model buffer items)
-            }
-        }, BackpressureStrategy.BUFFER);
+                        }
+                    });
+                    //apply back pressure buffer strategy (model buffer items)
+                }
+            }, BackpressureStrategy.BUFFER);
 
     }
-
 }
 

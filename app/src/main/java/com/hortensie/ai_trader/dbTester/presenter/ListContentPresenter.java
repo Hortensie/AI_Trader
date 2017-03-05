@@ -7,13 +7,16 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
 import com.google.firebase.database.DataSnapshot;
 import com.hortensie.ai_trader.R;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragment;
+
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -29,7 +32,7 @@ public class ListContentPresenter extends RecyclerView.Adapter<ListContentFragme
     //reference to FireBaseModelInterface
     private FireBaseModelInterface modelInterface=new FireBaseModel();
     // Set numbers of items inside RecyclerView.
-    private static final int LENGTH = 200;
+    private static final int LENGTH = 20;
     private final Drawable[] mPlaceAvatars;
 
     public ListContentPresenter(Context context)
@@ -63,7 +66,7 @@ public class ListContentPresenter extends RecyclerView.Adapter<ListContentFragme
                 //update results on main UI thread
                 .observeOn(AndroidSchedulers.mainThread(),false,LENGTH)
                 //.observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<DataSnapshot>() {
+                .subscribe(new Subscriber <DataSnapshot>() {
                     @Override
                     public void onSubscribe(Subscription s) {
                         //request LENGTH number of items

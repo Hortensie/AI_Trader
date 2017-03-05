@@ -64,7 +64,7 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
         //create object via Detail Activity Interface with connection to current view
         DetailActivityPresenterInterface detailInterface = new DetailActivityPresenter(this);
         //call showDetails method from DetailActivityPresenter interface to print symbol details
-        detailInterface.showDetails();
+        detailInterface.showSymbolDetails();
 
         //initialize picture resources
         TypedArray placePictures = resources.obtainTypedArray(R.array.places_picture);

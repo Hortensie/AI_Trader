@@ -37,7 +37,7 @@ public class DetailActivityPresenter extends AppCompatActivity implements Detail
                     @Override
                     public void onSubscribe(Subscription s) {
                         //request 200 items - same number as recycler viewer row list item
-                        s.request(200);
+                        s.request(20);
                     }
 
                     @Override
