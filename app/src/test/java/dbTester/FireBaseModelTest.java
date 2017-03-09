@@ -19,6 +19,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class FireBaseModelTest {
 
+
     @Test
     public void getDataShouldReturnString(){
 

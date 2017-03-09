@@ -17,13 +17,15 @@ import io.reactivex.schedulers.Schedulers;
 public class RxPresenter implements RxPresenterInterface {
 
 
-    private FireBaseModelInterface modelInterface=new FireBaseModel();
+    private FireBaseModelInterface model;
     private RxViewInterface viewInterface;
 
 
+
     //constructor which initialize View Interface
-    public RxPresenter(RxViewInterface viewInterface) {
+    public RxPresenter(RxViewInterface viewInterface, FireBaseModelInterface model) {
         this.viewInterface = viewInterface;
+        this.model = model;
     }
 
 
@@ -31,7 +33,7 @@ public class RxPresenter implements RxPresenterInterface {
     //Once received updates UI on main thread
     public void showData()
     {
-        modelInterface.getData()
+        model.getData()
                 .subscribeOn(Schedulers.newThread()) // Create a new Thread
                 .observeOn(AndroidSchedulers.mainThread()) // Use the UI thread
                 .subscribe(new Consumer<String>() {

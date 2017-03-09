@@ -2,6 +2,8 @@ package com.hortensie.ai_trader.dbTester.view;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.presenter.RxPresenter;
 import com.hortensie.ai_trader.dbTester.presenter.RxPresenterInterface;
 import com.hortensie.ai_trader.R;
@@ -14,7 +16,7 @@ import com.hortensie.ai_trader.R;
 public class RxView extends CustomAppCompatActivity implements RxViewInterface{
 
     TextView textView;
-
+    private FireBaseModelInterface model=new FireBaseModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,7 @@ public class RxView extends CustomAppCompatActivity implements RxViewInterface{
         textView = (TextView) findViewById(R.id.rxJava);
 
         //create RxPresenter object via Interface with connection to current (this) view
-        RxPresenterInterface rxPresenterInterface2 = new RxPresenter(this);
+        RxPresenterInterface rxPresenterInterface2 = new RxPresenter(this, model);
         //call showData method from rxPresenter interface
         rxPresenterInterface2.showData();
     }

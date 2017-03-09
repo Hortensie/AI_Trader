@@ -1,6 +1,8 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import dbTester.FireBaseModelTest;
+import dbTester.RxPresenterTest;
 import xAPI.ApiCandleConverterTest;
 import xAPI.CalendarSelectorTest;
 import xAPI.CandleChartDrawerTest;
@@ -34,7 +36,8 @@ import xAPI.xApiSymbolLoaderTest;
                      CalendarSelectorTest.class,
                      xApiConnectionLoginTest.class,
                      ApiCandleConverterTest.class,
-                     xApiSymbolLoaderTest.class
+                     xApiSymbolLoaderTest.class,
+                     RxPresenterTest.class
 
 
 

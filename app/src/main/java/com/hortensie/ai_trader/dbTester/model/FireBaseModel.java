@@ -39,7 +39,8 @@ public class FireBaseModel implements FireBaseModelInterface {
                 try {
                     e.onNext("Home sweet home"); // Emit the contents of the URL
                     e.onComplete(); // Nothing more to emit
-                } catch (Exception e1) {
+                }
+                catch (Exception e1) {
                     e1.printStackTrace();
                 }
             }
