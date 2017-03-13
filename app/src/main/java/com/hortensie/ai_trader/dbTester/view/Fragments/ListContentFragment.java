@@ -7,14 +7,23 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.hortensie.ai_trader.R;
-import com.hortensie.ai_trader.dbTester.presenter.ListContentPresenter;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
+import com.hortensie.ai_trader.dbTester.presenter.ListContentAdapterPresenter;
 import com.hortensie.ai_trader.dbTester.view.DetailActivityView;
+import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
+
+import java.util.List;
+
+import io.reactivex.Flowable;
+import io.reactivex.functions.Predicate;
 
 /**
  * Created by szczesny on 2017-02-18.
@@ -22,7 +31,10 @@ import com.hortensie.ai_trader.dbTester.view.DetailActivityView;
  * use specific one for calculations
  */
 
-public class ListContentFragment extends Fragment {
+public class ListContentFragment extends Fragment implements ListContentFragmentInterface{
+
+    private FireBaseModelInterface modelInterface=new FireBaseModel();
+
 
 
     @Override
@@ -31,7 +43,7 @@ public class ListContentFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
-        ListContentPresenter adapter = new ListContentPresenter(recyclerView.getContext());
+        ListContentAdapterPresenter adapter = new ListContentAdapterPresenter(recyclerView.getContext(), modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords"));
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -41,9 +53,41 @@ public class ListContentFragment extends Fragment {
 
     }
 
+    //search method inside recycler viewer
+    public void search(SearchView searchView) {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                //https://www.numetriclabz.com/android-adding-search-functionality-to-recyclerview/
+
+                final String finalQuery = query;
+                /*
+                final Flowable<List<ListSymbolRecord>> filteredRecords =
+                        recordList
+                                .filter(new Predicate<List<ListSymbolRecord>>() {
+                                    @Override
+                                    public boolean test(List<ListSymbolRecord> listSymbolRecordList) throws Exception {
+                                        return listSymbolRecordList.get(1).getGroupName().equals(finalQuery);
+                                    }
+                                });
+
+                return f;
+            }
+        });
+        */
+                return true;
+            }
+        });
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView avatar;
-        //needs to be public so ListContentPresenter can reference to it
+        //needs to be public so ListContentAdapterPresenter can reference to it
         public TextView symbolName;
         public TextView symbolDescription;
 
@@ -66,5 +110,7 @@ public class ListContentFragment extends Fragment {
             });
         }
     }
+
+
 
 }

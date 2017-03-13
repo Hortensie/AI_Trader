@@ -1,32 +1,29 @@
 package dbTester;
-
-import com.google.firebase.database.DataSnapshot;
-import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.presenter.RxPresenter;
-import com.hortensie.ai_trader.dbTester.view.RxView;
 import com.hortensie.ai_trader.dbTester.view.RxViewInterface;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
  * Created by szczesny on 2017-03-07.
- * rxJava 2 test
+ * rxJava 2 sample test
  */
 
 public class RxPresenterTest {
 
-    RxViewInterface viewInterface;
-    FireBaseModelInterface fireBaseModelInterface;
+    private RxViewInterface viewInterface;
+    private FireBaseModelInterface fireBaseModelInterface;
 
     @Before
     public void setUp(){
@@ -36,44 +33,29 @@ public class RxPresenterTest {
 
 
     @Test
-    public void shouldPassStringsToView(){
+    public void shouldExecuteModelMethod(){
+        reset(viewInterface);
 
         //given
-        RxViewInterface view = new MockView();
-        FireBaseModelInterface model = new MockFireBaseModel();
+        RxPresenter presenter = new RxPresenter(viewInterface,fireBaseModelInterface);
 
         //when
-        RxPresenter presenter = new RxPresenter(viewInterface,fireBaseModelInterface);
-        //presenter.showData();
-        when(fireBaseModelInterface.getData()).thenReturn(Observable.<String>empty());
-        fireBaseModelInterface.getData().test().assertSubscribed();
-        fireBaseModelInterface.getData().test().onNext("");
+        when(fireBaseModelInterface.getData()).thenReturn(Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> e) throws Exception {
+                e.onNext("home");
+                e.onComplete();
+            }
+        }));
+
+
+        presenter.showData();
 
         //then
-        //Assert.assertEquals(true,((MockView)view).passed);
+        verify(fireBaseModelInterface).getData();
 
-    }
-    private class MockView implements RxViewInterface{
-
-        boolean passed;
-
-        @Override
-        public void updateUi(String s) {
-        passed=true;
-        }
 
     }
 
-    private class MockFireBaseModel implements FireBaseModelInterface{
 
-        @Override
-        public Observable<String> getData() {
-            return null;
-        }
-
-        @Override
-        public Flowable<DataSnapshot> getDataFromFireBase(String childName) {
-            return null;
-        }
-    }
 }

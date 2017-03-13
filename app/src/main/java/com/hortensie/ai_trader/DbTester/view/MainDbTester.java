@@ -13,17 +13,22 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.hortensie.ai_trader.R;
-import com.hortensie.ai_trader.dbTester.view.Fragments.CardContentFragment;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragment;
+import com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragmentInterface;
+import com.hortensie.ai_trader.dbTester.view.Fragments.CardContentFragment;
 import com.hortensie.ai_trader.dbTester.view.Fragments.TileContentFragment;
 import com.hortensie.ai_trader.xAPI.CandleChartDrawer;
 import com.hortensie.ai_trader.xAPI.xApiConnectionLogin;
@@ -41,6 +46,9 @@ import java.util.List;
 
 public class MainDbTester extends AppCompatActivity {
 
+    //private FireBaseModelInterface modelInterface=new FireBaseModel();
+    private ListContentFragmentInterface listContentFragmentInterface;
+
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -48,6 +56,8 @@ public class MainDbTester extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_aitrader);
+       // adapter = new ListContentAdapterPresenter(getApplicationContext(),modelInterface.getListSymbolRecordFromFireBase("ListSymbolRecords"));
+        listContentFragmentInterface=new ListContentFragment();
 
         //allow network connection for xAPI login
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -123,11 +133,11 @@ public class MainDbTester extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new CardContentFragment(), "Card");
         adapter.addFragment(new TileContentFragment(), "Tile");
-        adapter.addFragment(new ListContentFragment(), "Symbols");
+        adapter.addFragment(new com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragment(), "Symbols");
         viewPager.setAdapter(adapter);
     }
 
-    static class Adapter extends FragmentPagerAdapter {
+    private static class Adapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -160,8 +170,15 @@ public class MainDbTester extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_navigation, menu);
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        //add search menu
+        final MenuItem search = menu.findItem(R.id.search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        listContentFragmentInterface.search(searchView);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

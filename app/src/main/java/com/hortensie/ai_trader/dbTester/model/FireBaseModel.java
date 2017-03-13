@@ -7,6 +7,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
+
+import java.util.LinkedList;
+import java.util.List;
 
 import io.reactivex.BackpressureStrategy;
 
@@ -16,6 +20,9 @@ import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Single;
+import io.reactivex.SingleEmitter;
+import io.reactivex.SingleOnSubscribe;
 
 /**
  * Created by szczesny on 2017-02-09.
@@ -47,35 +54,62 @@ public class FireBaseModel implements FireBaseModelInterface {
         });
     }
 
+    /*
     @Override
-        public Flowable<DataSnapshot> getDataFromFireBase(final String childName) {
-            return Flowable.create(new FlowableOnSubscribe<DataSnapshot>() {
-                @Override
-                public void subscribe(final FlowableEmitter<DataSnapshot> e) throws Exception {
-                    databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                        /*
-                        for (DataSnapshot snapshot:dataSnapshot.getChildren())
+    public Flowable <List<ListSymbolRecord>> getListSymbolRecordFromFireBase(final String childName){
+        return Flowable.create(new FlowableOnSubscribe<List<ListSymbolRecord>>() {
+            @Override
+            public void subscribe(final FlowableEmitter<List<ListSymbolRecord>> e) throws Exception {
+                databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        List<ListSymbolRecord> list = new LinkedList<>();
+                        for (DataSnapshot postSnapshot:dataSnapshot.getChildren())
                         {
-                            Log.d("RxJava Model",snapshot.toString());
-                            e.onNext(snapshot);
+                            ListSymbolRecord record = postSnapshot.getValue(ListSymbolRecord.class);
+                            Log.d("Rxjava", record.getDescription());
+                            list.add(record);
                         }
-                        /*/
-                            //Log.d("RxJava Model",dataSnapshot.toString());
-                            e.onNext(dataSnapshot);
-                            e.onComplete();
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                    //apply back pressure buffer strategy (model buffer items)
-                }
-            }, BackpressureStrategy.BUFFER);
-
+                        e.onNext(list);
+                        e.onComplete();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+            }
+        }, BackpressureStrategy.BUFFER);
     }
+    */
+
+    @Override
+    public Single<List<ListSymbolRecord>> getSymbolRecordListFromFireBase(final String childName) {
+        return Single.create(new SingleOnSubscribe<List<ListSymbolRecord>>() {
+            @Override
+            public void subscribe(final SingleEmitter<List<ListSymbolRecord>> e) throws Exception {
+                databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        List<ListSymbolRecord> list = new LinkedList<>();
+
+                        for (DataSnapshot postSnapshot:dataSnapshot.getChildren())
+                        {
+                            ListSymbolRecord record = postSnapshot.getValue(ListSymbolRecord.class);
+                            //Log.d("RxJava model", record.getDescription());
+                            list.add(record);
+                        }
+                        e.onSuccess(list);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+    }
+
+
 }
 

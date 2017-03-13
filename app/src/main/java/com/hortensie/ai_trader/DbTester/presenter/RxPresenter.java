@@ -1,10 +1,8 @@
 package com.hortensie.ai_trader.dbTester.presenter;
 
-import android.util.Log;
-
-import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.view.RxViewInterface;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -39,7 +37,6 @@ public class RxPresenter implements RxPresenterInterface {
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Log.d("RxJava",s);
                         viewInterface.updateUi(s); // update TextView from activity view
                     }
                 });

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/xAPI_menu"
@@ -17,4 +18,6 @@
             android:tint="@color/button_grey"
             android:title="@string/dbtester_menu3" />
     </group>
+
+
 </menu>

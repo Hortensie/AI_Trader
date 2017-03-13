@@ -2,13 +2,15 @@ package com.hortensie.ai_trader.dbTester.presenter;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import com.google.firebase.database.DataSnapshot;
-import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
+
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.view.DetailActivityViewInterface;
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
+import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
+
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -17,23 +19,34 @@ import io.reactivex.schedulers.Schedulers;
  * Presenter receive data from FireBase and sends back to DetailActivity view via onNext updateTitle method
  */
 
-public class DetailActivityPresenter extends AppCompatActivity implements DetailActivityPresenterInterface {
+public class DetailActivity extends AppCompatActivity implements DetailActivityInter {
 
-    private FireBaseModelInterface modelInterface=new FireBaseModel();
+    private FireBaseModelInterface modelInterface;
     private DetailActivityViewInterface detailViewInterface;
 
-    public DetailActivityPresenter(DetailActivityViewInterface detailInterface) {
+    public DetailActivity(DetailActivityViewInterface detailInterface, FireBaseModelInterface modelInterface) {
         this.detailViewInterface = detailInterface;
+        this.modelInterface = modelInterface;
     }
 
     @Override
     public void showSymbolDetails() {
         Log.d("RxJava Presenter","inside showDetails");
-        //RxJava2 observer
-        modelInterface.getDataFromFireBase("FinalSymbols")
+        //RxJava2 observer for Flowable
+        modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<DataSnapshot>() {
+                .subscribe(new Consumer<List<ListSymbolRecord>>() {
+                    @Override
+                    public void accept(List<ListSymbolRecord> listSymbolRecordList) throws Exception {
+                        detailViewInterface.updateTitle(listSymbolRecordList);
+                    }
+                });
+        /*
+        modelInterface.getListSymbolRecordFromFireBase("ListSymbolRecords")
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber <List<ListSymbolRecord>>() {
                     @Override
                     public void onSubscribe(Subscription s) {
                         //request 200 items - same number as recycler viewer row list item
@@ -41,9 +54,9 @@ public class DetailActivityPresenter extends AppCompatActivity implements Detail
                     }
 
                     @Override
-                    public void onNext(DataSnapshot dataSnapshot) {
+                    public void onNext(List<ListSymbolRecord> list) {
                         //call update detail view method
-                        detailViewInterface.updateTitle(dataSnapshot);
+                        detailViewInterface.updateTitle(list);
                     }
 
                     @Override

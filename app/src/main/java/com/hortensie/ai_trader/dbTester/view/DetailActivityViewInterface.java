@@ -1,14 +1,15 @@
 package com.hortensie.ai_trader.dbTester.view;
+import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
 
-import com.google.firebase.database.DataSnapshot;
+import java.util.List;
 
 /**
  * Created by szczesny on 2017-02-26.
- * Interface between DetailActivityPresenter -> DetailActivityView
+ * Interface between DetailActivity -> DetailActivityView
  */
 
 public interface DetailActivityViewInterface {
 
-    void updateTitle(DataSnapshot input);
+    void updateTitle(List<ListSymbolRecord> inputList);
 
 }

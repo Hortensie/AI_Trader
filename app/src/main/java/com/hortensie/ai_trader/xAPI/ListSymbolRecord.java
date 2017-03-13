@@ -41,16 +41,16 @@ public class ListSymbolRecord {
         public double marginHedged;
         public boolean marginHedgedStrong;
         public Long marginMaintenance;
-        public MARGIN_MODE marginMode;
+        //public MARGIN_MODE marginMode;
         public double percentage;
-        public PROFIT_MODE profitMode;
+        //public PROFIT_MODE profitMode;
         public double spreadRaw;
         public double spreadTable;
         public boolean swapEnable;
         public double swapLong;
         public double swapShort;
-        public SWAP_TYPE swapType;
-        public SWAP_ROLLOVER_TYPE swapRollover;
+        //public SWAP_TYPE swapType;
+        //public SWAP_ROLLOVER_TYPE swapRollover;
         public double tickSize;
         public double tickValue;
         public int quoteId;
@@ -61,7 +61,7 @@ public class ListSymbolRecord {
     public ListSymbolRecord() {
     }
 
-    public ListSymbolRecord(double ask, double bid, String currency, String currencyProfit, String description, int instantMaxVolume, double high, double low, String symbol, long time, int type, String groupName, String categoryName, boolean longOnly, Long starting, Long expiration, int stepRuleId, int stopsLevel, double lotMax, double lotMin, double lotStep, int precision, Long contractSize, Long initialMargin, double marginHedged, boolean marginHedgedStrong, Long marginMaintenance, MARGIN_MODE marginMode, double percentage, PROFIT_MODE profitMode, double spreadRaw, double spreadTable, boolean swapEnable, double swapLong, double swapShort, SWAP_TYPE swapType, SWAP_ROLLOVER_TYPE swapRollover, double tickSize, double tickValue, int quoteId, String timeString, double leverage, boolean currencyPair) {
+    public ListSymbolRecord(double ask, double bid, String currency, String currencyProfit, String description, int instantMaxVolume, double high, double low, String symbol, long time, int type, String groupName, String categoryName, boolean longOnly, Long starting, Long expiration, int stepRuleId, int stopsLevel, double lotMax, double lotMin, double lotStep, int precision, Long contractSize, Long initialMargin, double marginHedged, boolean marginHedgedStrong, Long marginMaintenance, double percentage, double spreadRaw, double spreadTable, boolean swapEnable, double swapLong, double swapShort, double tickSize, double tickValue, int quoteId, String timeString, double leverage, boolean currencyPair) {
         this.ask = ask;
         this.bid = bid;
         this.currency = currency;
@@ -89,16 +89,16 @@ public class ListSymbolRecord {
         this.marginHedged = marginHedged;
         this.marginHedgedStrong = marginHedgedStrong;
         this.marginMaintenance = marginMaintenance;
-        this.marginMode = marginMode;
+        //this.marginMode = marginMode;
         this.percentage = percentage;
-        this.profitMode = profitMode;
+        //this.profitMode = profitMode;
         this.spreadRaw = spreadRaw;
         this.spreadTable = spreadTable;
         this.swapEnable = swapEnable;
         this.swapLong = swapLong;
         this.swapShort = swapShort;
-        this.swapType = swapType;
-        this.swapRollover = swapRollover;
+        //this.swapType = swapType;
+        //this.swapRollover = swapRollover;
         this.tickSize = tickSize;
         this.tickValue = tickValue;
         this.quoteId = quoteId;
@@ -141,16 +141,16 @@ public class ListSymbolRecord {
                     records.get(i).getMarginHedged(),
                     records.get(i).getMarginHedgedStrong(),
                     records.get(i).getMarginMaintenance(),
-                    records.get(i).getMarginMode(),
+                    //records.get(i).getMarginMode(),
                     records.get(i).getPercentage(),
-                    records.get(i).getProfitMode(),
+                    //records.get(i).getProfitMode(),
                     records.get(i).getSpreadRaw(),
                     records.get(i).getSpreadTable(),
                     records.get(i).isSwapEnable(),
                     records.get(i).getSwapLong(),
                     records.get(i).getSwapShort(),
-                    records.get(i).getSwapType(),
-                    records.get(i).getSwap_rollover(),
+                    //records.get(i).getSwapType(),
+                    //records.get(i).getSwap_rollover(),
                     records.get(i).getTickSize(),
                     records.get(i).getTickValue(),
                     records.get(i).getQuoteId(),
@@ -379,28 +379,12 @@ public class ListSymbolRecord {
         this.marginMaintenance = marginMaintenance;
     }
 
-    public MARGIN_MODE getMarginMode() {
-        return marginMode;
-    }
-
-    public void setMarginMode(MARGIN_MODE marginMode) {
-        this.marginMode = marginMode;
-    }
-
     public double getPercentage() {
         return percentage;
     }
 
     public void setPercentage(double percentage) {
         this.percentage = percentage;
-    }
-
-    public PROFIT_MODE getProfitMode() {
-        return profitMode;
-    }
-
-    public void setProfitMode(PROFIT_MODE profitMode) {
-        this.profitMode = profitMode;
     }
 
     public double getSpreadRaw() {
@@ -441,22 +425,6 @@ public class ListSymbolRecord {
 
     public void setSwapShort(double swapShort) {
         this.swapShort = swapShort;
-    }
-
-    public SWAP_TYPE getSwapType() {
-        return swapType;
-    }
-
-    public void setSwapType(SWAP_TYPE swapType) {
-        this.swapType = swapType;
-    }
-
-    public SWAP_ROLLOVER_TYPE getSwapRollover() {
-        return swapRollover;
-    }
-
-    public void setSwapRollover(SWAP_ROLLOVER_TYPE swapRollover) {
-        this.swapRollover = swapRollover;
     }
 
     public double getTickSize() {

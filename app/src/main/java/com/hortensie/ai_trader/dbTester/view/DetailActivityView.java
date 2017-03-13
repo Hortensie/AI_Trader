@@ -1,10 +1,6 @@
 package com.hortensie.ai_trader.dbTester.view;
 
-/**
- * Created by szczesny on 2017-02-28.
- * This Class provides extension when User Click on specific Recycler Viewer row
- * Provides detailed information's about selected symbol
- */
+
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -14,18 +10,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.firebase.database.DataSnapshot;
 import com.hortensie.ai_trader.R;
-import com.hortensie.ai_trader.dbTester.presenter.DetailActivityPresenter;
-import com.hortensie.ai_trader.dbTester.presenter.DetailActivityPresenterInterface;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
+import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
+import com.hortensie.ai_trader.dbTester.presenter.DetailActivity;
+import com.hortensie.ai_trader.dbTester.presenter.DetailActivityInter;
+import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
+
+import java.util.List;
 
 /**
+ * Created by szczesny on 2017-02-28.
  * Provides UI for the Detail page with Collapsing Toolbar.
+ * This Class provides extension when User Click on specific Recycler Viewer row
+ * Provides detailed information's about selected symbol
  */
+
 public class DetailActivityView extends AppCompatActivity implements DetailActivityViewInterface {
 
     public static final String EXTRA_POSITION = "position";
+    private FireBaseModelInterface model=new FireBaseModel();
     CollapsingToolbarLayout collapsingToolbar;
     //position in recycler viewer
     int position;
@@ -62,8 +66,8 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
         //get resources for pictures
         Resources resources = getResources();
         //create object via Detail Activity Interface with connection to current view
-        DetailActivityPresenterInterface detailInterface = new DetailActivityPresenter(this);
-        //call showDetails method from DetailActivityPresenter interface to print symbol details
+        DetailActivityInter detailInterface = new DetailActivity(this,model);
+        //call showDetails method from DetailActivity interface to print symbol details
         detailInterface.showSymbolDetails();
 
         //initialize picture resources
@@ -76,13 +80,13 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
     //method that Update Ui for selected symbol
     //it updates symbol, currency, categoryName, groupName, bid ... etc information's
     @Override
-    public void updateTitle(DataSnapshot dataFromDb) {
-        collapsingToolbar.setTitle(dataFromDb.child(String.valueOf(position)).child("description").getValue().toString());
-        symbolName.setText(dataFromDb.child(String.valueOf(position)).child("symbol").getValue().toString());
-        currencyName.setText(dataFromDb.child(String.valueOf(position)).child("currency").getValue().toString());
-        categoryName.setText(dataFromDb.child(String.valueOf(position)).child("categoryName").getValue().toString());
-        groupName.setText(dataFromDb.child(String.valueOf(position)).child("groupName").getValue().toString());
-        bid.setText(dataFromDb.child(String.valueOf(position)).child("bid").getValue().toString());
-    }
+    public void updateTitle(List<ListSymbolRecord> inputList) {
+        collapsingToolbar.setTitle(inputList.get(position).getDescription());
+        symbolName.setText(inputList.get(position).getSymbol());
+        currencyName.setText(inputList.get(position).getCurrency());
+        categoryName.setText(inputList.get(position).getCategoryName());
+        groupName.setText(inputList.get(position).getGroupName());
+        bid.setText(String.valueOf(inputList.get(position).getBid()));
+}
 
 }
