@@ -131,7 +131,7 @@ public class MainDbTester extends AppCompatActivity {
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new CardContentFragment(), "Card");
+        adapter.addFragment(new CardContentFragment(), "Features");
         adapter.addFragment(new TileContentFragment(), "Tile");
         adapter.addFragment(new com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragment(), "Symbols");
         viewPager.setAdapter(adapter);

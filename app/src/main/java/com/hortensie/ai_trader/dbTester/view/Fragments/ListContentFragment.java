@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,19 @@ import android.widget.TextView;
 import com.hortensie.ai_trader.R;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
+import com.hortensie.ai_trader.dbTester.presenter.ListContentAdapter;
 import com.hortensie.ai_trader.dbTester.presenter.ListContentAdapterPresenter;
 import com.hortensie.ai_trader.dbTester.view.DetailActivityView;
 import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by szczesny on 2017-02-18.
@@ -34,16 +40,19 @@ import io.reactivex.functions.Predicate;
 public class ListContentFragment extends Fragment implements ListContentFragmentInterface{
 
     private FireBaseModelInterface modelInterface=new FireBaseModel();
-
-
+    //Single<List<ListSymbolRecord>> recordList;
+    //Single<List<ListSymbolRecord>> filteredRecords;
+    ListContentAdapterPresenter adapter;
+    RecyclerView recyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(
+        recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
-        ListContentAdapterPresenter adapter = new ListContentAdapterPresenter(recyclerView.getContext(), modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords"));
+        //recordList = modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords");
+        adapter = new ListContentAdapterPresenter(recyclerView.getContext(),modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords"));
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -53,64 +62,61 @@ public class ListContentFragment extends Fragment implements ListContentFragment
 
     }
 
-    //search method inside recycler viewer
-    public void search(SearchView searchView) {
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String query) {
-                //https://www.numetriclabz.com/android-adding-search-functionality-to-recyclerview/
+    @Override
+    public void presentFilteredSymbolData(Single<List<ListSymbolRecord>> recordList, final ListContentAdapterPresenter.MyViewHolder holder, String query) {
 
-                final String finalQuery = query;
-                /*
-                final Flowable<List<ListSymbolRecord>> filteredRecords =
-                        recordList
-                                .filter(new Predicate<List<ListSymbolRecord>>() {
-                                    @Override
-                                    public boolean test(List<ListSymbolRecord> listSymbolRecordList) throws Exception {
-                                        return listSymbolRecordList.get(1).getGroupName().equals(finalQuery);
-                                    }
-                                });
+        final String finalQuery=query.toLowerCase();
 
-                return f;
-            }
-        });
-        */
-                return true;
-            }
-        });
+        recordList
+                .filter(new Predicate<List<ListSymbolRecord>>() {
+                    @Override
+                    public boolean test(List<ListSymbolRecord> listSymbolRecords) throws Exception {
+                        return listSymbolRecords.get(holder.getAdapterPosition()).getGroupName().equals(finalQuery);
+                    }
+                })
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<ListSymbolRecord>>() {
+                    @Override
+                    public void accept(List<ListSymbolRecord> listSymbolRecordList) throws Exception {
+                        holder.symbolName.setText(listSymbolRecordList.get(holder.getAdapterPosition()).getDescription());
+                        holder.symbolDescription.setText(listSymbolRecordList.get(holder.getAdapterPosition()).getCategoryName());
+
+                    }
+                });
+
+
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView avatar;
-        //needs to be public so ListContentAdapterPresenter can reference to it
-        public TextView symbolName;
-        public TextView symbolDescription;
 
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.item_list, parent, false));
-            avatar = (ImageView) itemView.findViewById(R.id.list_avatar);
-            //symbol name inside recycler
-            symbolName = (TextView) itemView.findViewById(R.id.list_title);
-            //symbol description inside recycler
-            symbolDescription = (TextView) itemView.findViewById(R.id.list_desc);
-            itemView.setOnClickListener(new View.OnClickListener() {
+    //search method inside recycler viewer
+    public void search(SearchView searchView) {
+            Log.d("RxJava","Inside seach function");
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
-                public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, DetailActivityView.class);
-                    //put position inside intent so Detail Activity can reference to it
-                    intent.putExtra(DetailActivityView.EXTRA_POSITION, getAdapterPosition());
-                    context.startActivity(intent);
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String query) {
+                    //https://www.numetriclabz.com/android-adding-search-functionality-to-recyclerview/
+                    //Log.d("RxJava","Inside seach onQueryTextChange");
+                    //final String finalQuery = query;
+
+                    //presentFilteredSymbolData(modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords"),;
+
+                    //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    //filteredRecords = recordList;
+                    //adapter=new ListContentAdapterPresenter(recyclerView.getContext(),filteredRecords,filteredRecords);
+                    //recyclerView.setAdapter(adapter);
+
+                    //adapter.notifyDataSetChanged();
+                    return true;
                 }
             });
         }
-    }
-
 
 
 }
