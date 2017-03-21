@@ -2,15 +2,21 @@ package com.hortensie.ai_trader.dbTester.view;
 
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.aiViewer.view.CandleView;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.presenter.DetailActivity;
@@ -31,6 +37,7 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
     public static final String EXTRA_POSITION = "position";
     private FireBaseModelInterface model=new FireBaseModel();
     CollapsingToolbarLayout collapsingToolbar;
+
     //position in recycler viewer
     int position;
     //symbol details
@@ -51,7 +58,6 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         // Set Collapsing Toolbar layout to the screen
         collapsingToolbar =(CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         symbolName = (TextView) findViewById(R.id.symbol_description);
@@ -63,6 +69,7 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
         // Set title of Detail page
         collapsingToolbar.setTitle(getString(R.string.item_title));
         position = getIntent().getIntExtra(EXTRA_POSITION, 0);
+
         //get resources for pictures
         Resources resources = getResources();
         //create object via Detail Activity Interface with connection to current view
@@ -75,6 +82,19 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
         ImageView placePicture = (ImageView) findViewById(R.id.image);
         placePicture.setImageDrawable(placePictures.getDrawable(position % placePictures.length()));
         placePictures.recycle();
+
+        // Adding Floating Action Button to bottom right of main view
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (fab != null)
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, CandleView.class);
+                    startActivity(intent);
+                }
+            });
+
     }
 
     //method that Update Ui for selected symbol

@@ -1,4 +1,5 @@
 package com.hortensie.ai_trader.dbTester.view;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
 
 import java.util.List;

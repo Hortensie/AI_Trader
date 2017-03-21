@@ -5,6 +5,7 @@ import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -13,5 +14,11 @@ import io.reactivex.Single;
 
 public interface ListContentAdapter {
 
-    void presentSymbolData(Single<List<ListSymbolRecord>> recordList, ListContentAdapterPresenter.MyViewHolder holder);
+    //void presentFilteredSymbolData(Single<List<ListSymbolRecord>> recordList, ListContentAdapterPresenter.MyViewHolder holder, String query);
+    Observable<List<ListSymbolRecord>> filterSymbolsData(Observable<List<ListSymbolRecord>> recordList, final ListContentAdapterPresenter.MyViewHolder holder, String query);
+
+
+    //void presentSymbolData(Single<List<ListSymbolRecord>> recordList, ListContentAdapterPresenter.MyViewHolder holder);
+    void presentSymbolsData(Observable<List<ListSymbolRecord>> recordList, ListContentAdapterPresenter.MyViewHolder holder);
+
 }

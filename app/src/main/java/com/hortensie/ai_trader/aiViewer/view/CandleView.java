@@ -1,9 +1,12 @@
-package com.hortensie.ai_trader.xAPI;
+package com.hortensie.ai_trader.aiViewer.view;
 
-import android.app.Activity;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 
 import com.github.mikephil.charting.charts.CandleStickChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -12,6 +15,12 @@ import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
+import com.hortensie.ai_trader.aiViewer.model.FireBaseCandleData;
+import com.hortensie.ai_trader.aiViewer.presenter.CandleDrawer;
+import com.hortensie.ai_trader.aiViewer.presenter.CandleDrawerInterface;
+import com.hortensie.ai_trader.dbTester.presenter.ListContentAdapterPresenter;
+import com.hortensie.ai_trader.dbTester.view.DetailActivityView;
 
 import java.util.List;
 
@@ -21,28 +30,39 @@ import static android.graphics.Color.RED;
 import static android.graphics.Color.WHITE;
 
 /**
- * Created by Piotr on 2017-01-19.
- * class that uses MPAndroidChart Library in order to draw Candle Chart
- * Main function drawCandleChart receive CandleEntry List to draw Candle Chart
+ * Created by szczesny on 2017-03-20.
+ * This class show Candle Data
  */
 
-public class CandleChartDrawer extends Activity{
+public class CandleView extends AppCompatActivity implements CandleViewInterface {
+
+    CandleStickChart candleStickChart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.candlechart);
-        CandleStickChart candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
 
-        //draw candleChart only when there is local  data
-        if(xApiRangeDataLoader.getDataSet()!=null&&xApiRangeDataLoader.getDataSet().size()!=0) {
-           // drawCandleChart(candleStickChart, xApiRangeDataLoader.getDataSet(), "label");
-        }
-        else {
-            Toast toastLogged = Toast.makeText(this,"There is no data to draw, get first from db!", Toast.LENGTH_SHORT);
-            toastLogged.show();
-        }
+        setContentView(R.layout.candlechart);
+        Log.d("RxJava","Before candle stick");
+        candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
+        FireBaseCandleData model = new FireBaseCandleData();
+        CandleDrawerInterface presenter = new CandleDrawer(model,this);
+        Log.d("RxJava decode", ListContentAdapterPresenter.getTemp_symbol());
+        presenter.showChartData(ListContentAdapterPresenter.getTemp_symbol(),"PERIOD_CODE +code=1440-");
+
+        // Adding Floating Action Button to bottom right of main view
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Snackbar.make(v, "Hello Chart!",
+                        Snackbar.LENGTH_LONG).show();
+            }
+        });
     }
+
 
     //method responsible for setting x axis (position, color, grids)
     public XAxis prepareXAxis(CandleStickChart candleStickChart){
@@ -84,17 +104,8 @@ public class CandleChartDrawer extends Activity{
         candleStickChart.setAutoScaleMinMaxEnabled(true);
     }
 
-    public void drawCandleChart(CandleStickChart candleStickChart, List<CandleEntry> dataList, String label )
-    {
-        prepareChart(candleStickChart);
-        prepareXAxis(candleStickChart);
-        prepareYLeftAxis(candleStickChart);
-        candleStickChart.setData(prepareCandleData(prepareCandleDataSet(dataList,label)));
-        candleStickChart.invalidate();
-    }
-
     public CandleDataSet prepareCandleDataSet(List<CandleEntry> data, String label){
-        return  new CandleDataSet(data,label);
+        return new CandleDataSet(data,label);
     }
 
     public CandleData prepareCandleData(CandleDataSet dataSet)
@@ -119,4 +130,12 @@ public class CandleChartDrawer extends Activity{
         //dataSet.setNeutralColor(BLUE);
     }
 
+    @Override
+    public void updateChartOnUi(List<CandleEntry> candleEntries, String label) {
+        prepareChart(candleStickChart);
+        prepareXAxis(candleStickChart);
+        prepareYLeftAxis(candleStickChart);
+        candleStickChart.setData(prepareCandleData(prepareCandleDataSet(candleEntries,label)));
+        candleStickChart.invalidate();
+    }
 }

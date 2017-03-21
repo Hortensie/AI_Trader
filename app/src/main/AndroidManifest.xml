@@ -28,6 +28,7 @@
         <activity android:name=".xAPI.MainApiActivity"/>
         <activity android:name=".dbTester.view.RxView"/>
         <activity android:name=".dbTester.view.DetailActivityView"/>
+        <activity android:name=".aiViewer.view.CandleView"/>
     </application>
 
 </manifest>

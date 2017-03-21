@@ -83,10 +83,10 @@ public class FireBaseModel implements FireBaseModelInterface {
     */
 
     @Override
-    public Single<List<ListSymbolRecord>> getSymbolRecordListFromFireBase(final String childName) {
-        return Single.create(new SingleOnSubscribe<List<ListSymbolRecord>>() {
+    public Observable<List<ListSymbolRecord>> getSymbolListFromFireBase(final String childName) {
+        return Observable.create(new ObservableOnSubscribe<List<ListSymbolRecord>>() {
             @Override
-            public void subscribe(final SingleEmitter<List<ListSymbolRecord>> e) throws Exception {
+            public void subscribe(final ObservableEmitter<List<ListSymbolRecord>> e) throws Exception {
                 databaseReference.child(childName).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,7 +98,8 @@ public class FireBaseModel implements FireBaseModelInterface {
                             //Log.d("RxJava model", record.getDescription());
                             list.add(record);
                         }
-                        e.onSuccess(list);
+                        e.onNext(list);
+                        e.onComplete();
                     }
 
                     @Override

@@ -19,5 +19,6 @@ public interface FireBaseModelInterface {
     //method that getData from some source and return Observable object which can be used by Presenter
     Observable<String> getData();
     //Flowable<List<ListSymbolRecord>> getListSymbolRecordFromFireBase(final String childName);
-    Single<List<ListSymbolRecord>> getSymbolRecordListFromFireBase(final String childName);
+    //Single<List<ListSymbolRecord>> getSymbolRecordListFromFireBase(final String childName);
+    Observable<List<ListSymbolRecord>> getSymbolListFromFireBase(final String childName);
 }

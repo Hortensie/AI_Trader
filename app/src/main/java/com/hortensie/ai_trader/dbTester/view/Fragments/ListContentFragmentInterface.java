@@ -15,6 +15,6 @@ import io.reactivex.Single;
  */
 
 public interface ListContentFragmentInterface {
-    void search(SearchView searchView);
-    void presentFilteredSymbolData(Single<List<ListSymbolRecord>> recordList, ListContentAdapterPresenter.MyViewHolder holder, String query);
+    void search(SearchView searchView, ListContentAdapterPresenter.MyViewHolder holder);
+    //void presentFilteredSymbolData(Single<List<ListSymbolRecord>> recordList, ListContentAdapterPresenter.MyViewHolder holder, String query);
 }

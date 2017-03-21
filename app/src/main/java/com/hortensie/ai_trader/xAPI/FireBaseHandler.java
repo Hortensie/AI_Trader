@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class FireBaseHandler
     }
 
     //method that save Candle List (received from xAPI server) to FireBase
-    void saveCandleListToFireBase(List<CandleEntry> data, ChartRangeInfo chartRangeInfo) {
+    void saveCandleListToFireBase(List<CandleEntryRecord> data, ChartRangeInfo chartRangeInfo) {
 
         for (int i = 0; i < data.size(); i++) {
             databaseReference.child(EncodeString(chartRangeInfo.getSymbol())).child(EncodeString(chartRangeInfo.getPeriod().toString())).setValue(data);

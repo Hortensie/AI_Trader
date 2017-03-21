@@ -17,6 +17,7 @@ public class RxView extends CustomAppCompatActivity implements RxViewInterface{
 
     TextView textView;
     private FireBaseModelInterface model=new FireBaseModel();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

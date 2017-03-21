@@ -3,6 +3,7 @@ package xAPI;
 import android.content.Context;
 
 import com.github.mikephil.charting.data.CandleEntry;
+import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
 import com.hortensie.ai_trader.xAPI.ChartRangeInfo;
 import com.hortensie.ai_trader.xAPI.xApiRangeDataLoader;
 
@@ -24,14 +25,14 @@ public class xApiRangeDataLoaderTest {
 
     private Context mockContext;
     private ChartRangeInfo mockChartRangeInfo;
-    private CandleEntry candleEntry;
+    private CandleEntryRecord candleEntry;
 
     @Before
     public void setUp(){
 
         mockContext = mock(Context.class);
         mockChartRangeInfo = mock(ChartRangeInfo.class);
-        candleEntry = mock(CandleEntry.class);
+        candleEntry = mock(CandleEntryRecord.class);
     }
 
     @Test
@@ -44,7 +45,7 @@ public class xApiRangeDataLoaderTest {
     @Test
     public void validateSetAndGetData(){
 
-        List<CandleEntry> fakeList = new ArrayList<>();
+        List<CandleEntryRecord> fakeList = new ArrayList<>();
         //List<CandleEntry> spyList = Mockito.spy(fakeList);
         fakeList.add(candleEntry);
         fakeList.add(candleEntry);

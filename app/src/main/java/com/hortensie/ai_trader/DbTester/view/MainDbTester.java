@@ -24,8 +24,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.hortensie.ai_trader.R;
+import com.hortensie.ai_trader.aiViewer.view.CandleView;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
+import com.hortensie.ai_trader.dbTester.presenter.ListContentAdapterPresenter;
 import com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragment;
 import com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragmentInterface;
 import com.hortensie.ai_trader.dbTester.view.Fragments.CardContentFragment;
@@ -46,7 +48,7 @@ import java.util.List;
 
 public class MainDbTester extends AppCompatActivity {
 
-    //private FireBaseModelInterface modelInterface=new FireBaseModel();
+    private FireBaseModelInterface modelInterface=new FireBaseModel();
     private ListContentFragmentInterface listContentFragmentInterface;
 
     private DrawerLayout mDrawerLayout;
@@ -57,7 +59,7 @@ public class MainDbTester extends AppCompatActivity {
 
         setContentView(R.layout.activity_aitrader);
        // adapter = new ListContentAdapterPresenter(getApplicationContext(),modelInterface.getListSymbolRecordFromFireBase("ListSymbolRecords"));
-        listContentFragmentInterface=new ListContentFragment();
+        listContentFragmentInterface=new ListContentAdapterPresenter(getApplicationContext(),modelInterface.getSymbolListFromFireBase("ListSymbolRecords"));
 
         //allow network connection for xAPI login
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -103,7 +105,7 @@ public class MainDbTester extends AppCompatActivity {
                                 startActivity(new Intent(getApplicationContext(),xApiConnectionLogin.class));
                                 break;
                             case R.id.dBViewer_menu:
-                                startActivity(new Intent(getApplicationContext(),CandleChartDrawer.class));
+                                startActivity(new Intent(getApplicationContext(),CandleView.class));
                                 break;
                             case R.id.dBTester_menu:
                                 startActivity(new Intent(getApplicationContext(),RxView.class));
@@ -174,7 +176,7 @@ public class MainDbTester extends AppCompatActivity {
         //add search menu
         final MenuItem search = menu.findItem(R.id.search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
-        listContentFragmentInterface.search(searchView);
+        //listContentFragmentInterface.search(searchView);
         return true;
     }
 
@@ -195,7 +197,7 @@ public class MainDbTester extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),xApiConnectionLogin.class));
                 break;
             case R.id.dBViewer_menu:
-                startActivity(new Intent(getApplicationContext(),CandleChartDrawer.class));
+                startActivity(new Intent(getApplicationContext(),CandleView.class));
                 break;
             case R.id.dBTester_menu:
                 startActivity(new Intent(getApplicationContext(),RxView.class));

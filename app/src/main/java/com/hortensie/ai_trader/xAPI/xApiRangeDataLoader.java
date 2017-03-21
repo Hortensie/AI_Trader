@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.data.CandleEntry;
+import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +30,7 @@ import pro.xstore.api.sync.SyncAPIConnector;
 
  public class xApiRangeDataLoader extends AsyncTask<SyncAPIConnector,Void,Void> {
 
-        private static List<CandleEntry> dataSet = new LinkedList<>();
+        private static List<CandleEntryRecord> dataSet = new LinkedList<>();
         private ChartRangeInfo chartRangeInfo;
         private Context context;
 
@@ -40,11 +41,11 @@ import pro.xstore.api.sync.SyncAPIConnector;
         this.context = context;
     }
 
-    public static List<CandleEntry> getDataSet() {
+    public static List<CandleEntryRecord> getDataSet() {
         return dataSet;
     }
 
-    public static void setDataSet(List<CandleEntry> dataSet) {
+    public static void setDataSet(List<CandleEntryRecord> dataSet) {
         xApiRangeDataLoader.dataSet = dataSet;
     }
 

@@ -1,6 +1,7 @@
 package com.hortensie.ai_trader.xAPI;
 
 import com.github.mikephil.charting.data.CandleEntry;
+import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,9 +17,9 @@ import pro.xstore.api.message.records.RateInfoRecord;
 public class ApiCandleConverter {
 
     //this function can be moved outside this class
-    public List<CandleEntry> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records, ChartRangeInfo chartRangeInfo)
+    public List<CandleEntryRecord> saveApiRecordsToCandleEntryList (List<RateInfoRecord> records, ChartRangeInfo chartRangeInfo)
     {
-        List<CandleEntry> data = new LinkedList<>();
+        List<CandleEntryRecord> data = new LinkedList<>();
         for (int i = 0; i < records.size(); i++)
         {
 
@@ -30,7 +31,7 @@ public class ApiCandleConverter {
             );
 
             //main object (candleEntry) that is listed in data base
-            CandleEntry candleEntry = new CandleEntry(
+            CandleEntryRecord candleEntry = new CandleEntryRecord(
                     i,
                     (float) (records.get(i).getHigh()+records.get(i).getOpen()),
                     (float) (records.get(i).getLow()+records.get(i).getOpen()),
