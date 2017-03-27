@@ -75,6 +75,7 @@ public class SymbolRecordTest {
         assertEquals(481000,symbolRecord.getLow(),0);
         assertEquals(491200,symbolRecord.getClose(),0);
         assertEquals(4372,symbolRecord.getVol(),0);
+
     }
 
     @Test

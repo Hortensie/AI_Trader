@@ -1,6 +1,7 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import aiViewer.CandleEntryRecordTest;
 import dbTester.DetailActivityTest;
 import dbTester.FireBaseModelTest;
 import dbTester.RxPresenterTest;
@@ -39,7 +40,8 @@ import xAPI.xApiSymbolLoaderTest;
                      ApiCandleConverterTest.class,
                      xApiSymbolLoaderTest.class,
                      RxPresenterTest.class,
-                     DetailActivityTest.class
+                     DetailActivityTest.class,
+                     CandleEntryRecordTest.class
 
 
 
