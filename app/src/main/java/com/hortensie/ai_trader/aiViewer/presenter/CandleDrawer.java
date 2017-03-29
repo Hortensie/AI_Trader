@@ -44,7 +44,7 @@ public class CandleDrawer implements CandleDrawerInterface{
                 });
     }
 
-    private List<CandleEntry> convertListCandleEntryRecordToCandleEntry(List<CandleEntryRecord> entry){
+    public List<CandleEntry> convertListCandleEntryRecordToCandleEntry(List<CandleEntryRecord> entry){
 
         List<CandleEntry> records = new LinkedList<>();
         for (int i=0;i<entry.size();i++)
