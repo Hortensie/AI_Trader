@@ -63,7 +63,9 @@ public class CandleDrawerTest {
         });
 
         //then
+
         presenter.showChartData("USD","label");
+        model.getCandleListFromFireBase(anyString(),anyString());
     }
 
     @Test
