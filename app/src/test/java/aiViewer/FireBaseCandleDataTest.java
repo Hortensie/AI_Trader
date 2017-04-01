@@ -16,6 +16,7 @@ import com.hortensie.ai_trader.dbTester.view.Fragments.CardContentFragment;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +26,7 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.observers.TestObserver;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockingDetails;
@@ -39,22 +41,40 @@ public class FireBaseCandleDataTest {
 
     private FireBaseCandleDataInterface model;
     private DatabaseReference reference;
-    //private FirebaseDatabase firebase;
-    //private FireBaseCandleData sut;
+    private FirebaseDatabase firebase;
+    private FireBaseCandleData sut;
     private CandleEntryRecord record;
+    private Context context;
+
 
     @Before
     public void setUp()
     {
-
+        context=mock(Context.class);
         reference=mock(DatabaseReference.class);
         model=mock(FireBaseCandleDataInterface.class);
-        //firebase=mock(FirebaseDatabase.class);
+        firebase=mock(FirebaseDatabase.class);
         record=mock(CandleEntryRecord.class);
     }
 
     @Test
+    public void constructorShouldInitFireBase(){
+
+        //given
+        FireBaseCandleData object = new FireBaseCandleData(reference,firebase);
+
+        //when
+        object.getCandleListFromFireBase(anyString(),anyString());
+
+        //then
+
+    }
+
+
+    @Test
     public void getCandleListFromFireBaseShouldReturnObservable (){
+        //FirebaseApp.initializeApp(context);
+
 
         //given
         TestObserver<List<CandleEntryRecord>> observer = new TestObserver<>();
@@ -69,11 +89,14 @@ public class FireBaseCandleDataTest {
             }
         });
 
+        //sut = new FireBaseCandleData();
+
         //when
         when(model.getCandleListFromFireBase(anyString(),anyString())).thenReturn(observable);
+
         observable.subscribe(observer);
         model.getCandleListFromFireBase("symbol","period");
-
+        //sut.getCandleListFromFireBase("symbol1","period1");
 
 
         //then

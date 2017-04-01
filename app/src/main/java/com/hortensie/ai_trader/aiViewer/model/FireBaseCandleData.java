@@ -24,13 +24,20 @@ import io.reactivex.ObservableOnSubscribe;
 public class FireBaseCandleData implements FireBaseCandleDataInterface {
 
     private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
 
+    public FireBaseCandleData(DatabaseReference databaseReference, FirebaseDatabase firebaseDatabase) {
+        this.databaseReference = databaseReference;
+        this.firebaseDatabase = firebaseDatabase;
+    }
+
+    /*
     public FireBaseCandleData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
 
-
+    */
 
     @Override
     public Observable<List<CandleEntryRecord>> getCandleListFromFireBase(final String symbol, final String period) {

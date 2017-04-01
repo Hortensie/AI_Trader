@@ -14,6 +14,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.CandleData;
 import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
+import com.google.firebase.database.FirebaseDatabase;
 import com.hortensie.ai_trader.R;
 import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
 import com.hortensie.ai_trader.aiViewer.model.FireBaseCandleData;
@@ -46,7 +47,10 @@ public class CandleView extends AppCompatActivity implements CandleViewInterface
         setContentView(R.layout.candlechart);
         Log.d("RxJava","Before candle stick");
         candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
-        FireBaseCandleData model = new FireBaseCandleData();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        //databaseReference = firebaseDatabase.getReference();
+
+        FireBaseCandleData model = new FireBaseCandleData(firebaseDatabase.getReference(),firebaseDatabase);
         CandleDrawerInterface presenter = new CandleDrawer(model,this);
         Log.d("RxJava decode", ListContentAdapterPresenter.getTemp_symbol());
         presenter.showChartData(ListContentAdapterPresenter.getTemp_symbol(),"PERIOD_CODE +code=1440-");
