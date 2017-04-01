@@ -23,6 +23,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.firebase.database.FirebaseDatabase;
 import com.hortensie.ai_trader.R;
 import com.hortensie.ai_trader.aiViewer.view.CandleView;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
@@ -47,8 +49,8 @@ import java.util.List;
  */
 
 public class MainDbTester extends AppCompatActivity {
-
-    private FireBaseModelInterface modelInterface=new FireBaseModel();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private FireBaseModelInterface modelInterface=new FireBaseModel(firebaseDatabase.getReference(),firebaseDatabase);
     private ListContentFragmentInterface listContentFragmentInterface;
 
     private DrawerLayout mDrawerLayout;

@@ -45,7 +45,8 @@ import xAPI.xApiSymbolLoaderTest;
                      DetailActivityTest.class,
                      CandleEntryRecordTest.class,
                      CandleDrawerTest.class,
-                     FireBaseCandleDataTest.class
+                     FireBaseCandleDataTest.class,
+                     FireBaseModelTest.class
 
 
 

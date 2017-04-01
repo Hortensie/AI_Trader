@@ -32,11 +32,19 @@ import io.reactivex.SingleOnSubscribe;
 public class FireBaseModel implements FireBaseModelInterface {
 
     private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase;
 
+    public FireBaseModel(DatabaseReference databaseReference, FirebaseDatabase firebaseDatabase) {
+        this.databaseReference = databaseReference;
+        this.firebaseDatabase = firebaseDatabase;
+    }
+
+    /*
     public FireBaseModel() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
     }
+    */
 
     @Override
     public Observable<String> getData() {

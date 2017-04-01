@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.hortensie.ai_trader.R;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
@@ -33,7 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ListContentFragment extends Fragment{
 
-    private FireBaseModelInterface modelInterface=new FireBaseModel();
+    private FireBaseModelInterface modelInterface;
     //Single<List<ListSymbolRecord>> recordList;
     //Single<List<ListSymbolRecord>> filteredRecords;
     ListContentAdapterPresenter adapter;
@@ -45,6 +46,8 @@ public class ListContentFragment extends Fragment{
 
         recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        modelInterface=new FireBaseModel(firebaseDatabase.getReference(),firebaseDatabase);
         //recordList = modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords");
         adapter = new ListContentAdapterPresenter(recyclerView.getContext(),modelInterface.getSymbolListFromFireBase("ListSymbolRecords"));
         recyclerView.setAdapter(adapter);
@@ -52,8 +55,9 @@ public class ListContentFragment extends Fragment{
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //add decoration line
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL));
-        return recyclerView;
 
+
+        return recyclerView;
     }
 
 }

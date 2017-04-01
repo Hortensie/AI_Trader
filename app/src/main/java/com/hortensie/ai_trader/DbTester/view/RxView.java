@@ -2,6 +2,7 @@ package com.hortensie.ai_trader.dbTester.view;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
 import com.hortensie.ai_trader.dbTester.presenter.RxPresenter;
@@ -15,8 +16,9 @@ import com.hortensie.ai_trader.R;
 
 public class RxView extends CustomAppCompatActivity implements RxViewInterface{
 
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     TextView textView;
-    private FireBaseModelInterface model=new FireBaseModel();
+    private FireBaseModelInterface model=new FireBaseModel(firebaseDatabase.getReference(),firebaseDatabase);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

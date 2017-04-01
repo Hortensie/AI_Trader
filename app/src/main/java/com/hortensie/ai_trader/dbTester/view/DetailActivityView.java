@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.hortensie.ai_trader.R;
 import com.hortensie.ai_trader.aiViewer.view.CandleView;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
@@ -35,7 +36,8 @@ import java.util.List;
 public class DetailActivityView extends AppCompatActivity implements DetailActivityViewInterface {
 
     public static final String EXTRA_POSITION = "position";
-    private FireBaseModelInterface model=new FireBaseModel();
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private FireBaseModelInterface model=new FireBaseModel(firebaseDatabase.getReference(),firebaseDatabase);
     CollapsingToolbarLayout collapsingToolbar;
 
     //position in recycler viewer
