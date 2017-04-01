@@ -64,7 +64,7 @@ public class FireBaseCandleDataTest {
         FireBaseCandleData object = new FireBaseCandleData(reference,firebase);
 
         //when
-        object.getCandleListFromFireBase(anyString(),anyString());
+        object.getCandleListFromFireBase("symbol","period");
 
         //then
 
