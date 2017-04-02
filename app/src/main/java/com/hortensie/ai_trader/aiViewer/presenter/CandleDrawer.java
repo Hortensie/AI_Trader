@@ -38,7 +38,6 @@ public class CandleDrawer implements CandleDrawerInterface{
                 .subscribe(new Consumer<List<CandleEntryRecord>>() {
                     @Override
                     public void accept(List<CandleEntryRecord> candleEntries) throws Exception {
-                        Log.d("RxJava Present","Inside accept ");
                         view.updateChartOnUi(convertListCandleEntryRecordToCandleEntry(candleEntries),"label");
                     }
                 });

@@ -3,6 +3,7 @@ import org.junit.runners.Suite;
 
 import aiViewer.CandleDrawerTest;
 import aiViewer.CandleEntryRecordTest;
+import aiViewer.CandleViewTest;
 import aiViewer.FireBaseCandleDataTest;
 import dbTester.DetailActivityTest;
 import dbTester.FireBaseModelTest;
@@ -46,7 +47,8 @@ import xAPI.xApiSymbolLoaderTest;
                      CandleEntryRecordTest.class,
                      CandleDrawerTest.class,
                      FireBaseCandleDataTest.class,
-                     FireBaseModelTest.class
+                     FireBaseModelTest.class,
+                     CandleViewTest.class
 
 
 

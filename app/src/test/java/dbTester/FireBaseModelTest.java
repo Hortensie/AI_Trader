@@ -80,5 +80,23 @@ public class FireBaseModelTest {
         Assert.assertNotNull(observable2);
     }
 
+    @Test
+    public void getDataReturnObservable(){
+
+        //given
+        TestObserver<String> observer2 = new TestObserver<>();
+        sut = new FireBaseModel(reference,firebase);
+
+        //when
+        Observable<String> observable = sut.getData();
+        observable.subscribe(observer2);
+
+
+        //then
+        observable.test().assertSubscribed();
+        observable.test().onNext("Home");
+        observable.test().onComplete();
+        Assert.assertNotNull(observable);
+    }
 
 }
