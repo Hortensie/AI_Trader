@@ -7,6 +7,7 @@ import aiViewer.CandleViewTest;
 import aiViewer.FireBaseCandleDataTest;
 import dbTester.DetailActivityTest;
 import dbTester.FireBaseModelTest;
+import dbTester.ListContentAdapterPresenterTest;
 import dbTester.RxPresenterTest;
 import xAPI.ApiCandleConverterTest;
 import xAPI.CalendarSelectorTest;
@@ -48,7 +49,8 @@ import xAPI.xApiSymbolLoaderTest;
                      CandleDrawerTest.class,
                      FireBaseCandleDataTest.class,
                      FireBaseModelTest.class,
-                     CandleViewTest.class
+                     CandleViewTest.class,
+                     ListContentAdapterPresenterTest.class
 
 
 

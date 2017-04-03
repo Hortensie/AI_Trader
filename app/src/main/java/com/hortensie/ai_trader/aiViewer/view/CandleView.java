@@ -43,16 +43,12 @@ public class CandleView extends AppCompatActivity implements CandleViewInterface
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.candlechart);
-        Log.d("RxJava","Before candle stick");
         candleStickChart = (CandleStickChart)findViewById(R.id.candleChart);
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        //databaseReference = firebaseDatabase.getReference();
 
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         FireBaseCandleData model = new FireBaseCandleData(firebaseDatabase.getReference(),firebaseDatabase);
         CandleDrawerInterface presenter = new CandleDrawer(model,this);
-        Log.d("RxJava decode", ListContentAdapterPresenter.getTemp_symbol());
         presenter.showChartData(ListContentAdapterPresenter.getTemp_symbol(),"PERIOD_CODE +code=1440-");
 
         // Adding Floating Action Button to bottom right of main view

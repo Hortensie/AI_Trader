@@ -39,6 +39,7 @@ public class FireBaseCandleDataTest {
         reference=mock(DatabaseReference.class);
         firebase=mock(FirebaseDatabase.class);
         record=mock(CandleEntryRecord.class);
+
     }
 
     @Test

@@ -4,6 +4,7 @@ import com.github.mikephil.charting.data.CandleEntry;
 import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
 import com.hortensie.ai_trader.aiViewer.model.FireBaseCandleDataInterface;
 import com.hortensie.ai_trader.aiViewer.presenter.CandleDrawer;
+import com.hortensie.ai_trader.aiViewer.presenter.CandleDrawerInterface;
 import com.hortensie.ai_trader.aiViewer.view.CandleViewInterface;
 
 import org.junit.Assert;
@@ -34,6 +35,7 @@ public class CandleDrawerTest {
     private CandleEntryRecord record;
     private CandleEntry entry;
     private CandleDrawer drawer;
+    private CandleDrawerInterface presenter;
 
     @Before
     public void setUp(){
@@ -99,5 +101,11 @@ public class CandleDrawerTest {
 
     }
 
+    @Test
+    public void onCreateShouldCreateConnections(){
+
+
+
+    }
 
 }

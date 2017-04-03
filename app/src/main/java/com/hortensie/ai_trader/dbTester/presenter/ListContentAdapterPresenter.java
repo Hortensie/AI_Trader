@@ -52,7 +52,6 @@ public class ListContentAdapterPresenter extends RecyclerView.Adapter<ListConten
     static String temp_symbol;
 
     public static String getTemp_symbol() {
-        Log.d("RxJava get temp",temp_symbol);
         return temp_symbol;
     }
 
@@ -232,7 +231,6 @@ public class ListContentAdapterPresenter extends RecyclerView.Adapter<ListConten
 
     //search method inside recycler viewer
     public void search(SearchView searchView, final MyViewHolder holder) {
-        Log.d("RxJava","Inside search function");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -268,8 +266,6 @@ public class ListContentAdapterPresenter extends RecyclerView.Adapter<ListConten
         public TextView symbolName;
         public TextView symbolDescription;
         //public int position = getAdapterPosition();
-
-
 
         public MyViewHolder(LayoutInflater inflater, ViewGroup parent) {
 

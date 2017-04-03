@@ -7,7 +7,10 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
+import com.hortensie.ai_trader.aiViewer.model.FireBaseCandleDataInterface;
+import com.hortensie.ai_trader.aiViewer.presenter.CandleDrawer;
 import com.hortensie.ai_trader.aiViewer.view.CandleView;
+import com.hortensie.ai_trader.aiViewer.view.CandleViewInterface;
 import com.hortensie.ai_trader.xAPI.CandleChartDrawer;
 
 import org.junit.Assert;
@@ -38,11 +41,15 @@ public class CandleViewTest {
     private XAxis xAxis;
     private CandleDataSet set;
     private CandleEntry candleEntry;
-
+    private FireBaseCandleDataInterface model;
+    private CandleViewInterface view;
+    private CandleDrawer presenter;
 
     @Before
     public void setUp(){
 
+        model=mock(FireBaseCandleDataInterface.class);
+        view=mock(CandleViewInterface.class);
         candleStickChart = mock(CandleStickChart.class);
         //System Under Test
         sut = new CandleView();
@@ -121,23 +128,28 @@ public class CandleViewTest {
 
     @Test
     public void validateDrawCandleChart(){
-        //DoC - Dependency on Component
+
+        //given
+        List<CandleEntry> fakeList = new ArrayList<>();
+        fakeList.add(candleEntry);
+        fakeList.add(candleEntry);
+        fakeList.add(candleEntry);
+
+        // DoC - Dependency on Component
         //Indirect inputs
         when(candleStickChart.getXAxis()).thenReturn(xAxis);
         when(candleStickChart.getAxisLeft()).thenReturn(yAxis);
 
-        List<CandleEntry> fakeList = new ArrayList<>();
-        //List<CandleEntry> spyList = Mockito.spy(fakeList);
-        fakeList.add(candleEntry);
-        fakeList.add(candleEntry);
-        fakeList.add(candleEntry);
+
+
         Assert.assertEquals(3,fakeList.size());
-
         String label ="label";
-
         Assert.assertNotNull(label);
         Assert.assertNotNull(fakeList);
         Assert.assertNotNull(candleStickChart);
+
+
+        //sut.updateChartOnUi(fakeList,label);
         //direct inputs to system under test (CandleChartDrawer class)
         //sut.updateChartOnUi(fakeList,label);
         //indirect output
