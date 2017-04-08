@@ -49,7 +49,7 @@ public class DetailActivityTest {
         list.add(listSymbolRecord);
 
         //when
-        when(fireBaseModelInterface.getSymbolListFromFireBase("ListSymbolRecords")).thenReturn(new Observable<List<ListSymbolRecord>>() {
+        when(fireBaseModelInterface.getSymbolListFromFireBase("DemoSymbols")).thenReturn(new Observable<List<ListSymbolRecord>>() {
             @Override
             protected void subscribeActual(Observer<? super List<ListSymbolRecord>> observer) {
                 observer.onNext(list);

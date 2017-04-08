@@ -119,7 +119,7 @@ public class ListContentAdapterPresenterTest {
         sut=new ListContentAdapterPresenter(context,recordList);
 
         //then
-        Assert.assertEquals(20,sut.getItemCount());
+        Assert.assertEquals(10,sut.getItemCount());
     }
 
     @Test
