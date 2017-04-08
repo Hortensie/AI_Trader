@@ -49,7 +49,7 @@ public class ListContentFragment extends Fragment{
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         modelInterface=new FireBaseModel(firebaseDatabase.getReference(),firebaseDatabase);
         //recordList = modelInterface.getSymbolRecordListFromFireBase("ListSymbolRecords");
-        adapter = new ListContentAdapterPresenter(recyclerView.getContext(),modelInterface.getSymbolListFromFireBase("ListSymbolRecords"));
+        adapter = new ListContentAdapterPresenter(recyclerView.getContext(),modelInterface.getSymbolListFromFireBase("DemoSymbols"));
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

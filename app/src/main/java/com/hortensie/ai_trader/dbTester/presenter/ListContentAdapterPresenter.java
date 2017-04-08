@@ -47,7 +47,7 @@ public class ListContentAdapterPresenter extends RecyclerView.Adapter<ListConten
     //reference to FireBaseModelInterface
     //private FireBaseModelInterface modelInterface=new FireBaseModel();
     // Set numbers of items inside RecyclerView.
-    private static final int LENGTH = 20;
+    private static final int LENGTH = 10;
     private final Drawable[] mPlaceAvatars;
     static String temp_symbol;
 

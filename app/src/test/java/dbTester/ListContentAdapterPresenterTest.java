@@ -3,15 +3,12 @@ package dbTester;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hortensie.ai_trader.R;
-import com.hortensie.ai_trader.aiViewer.model.CandleEntryRecord;
 import com.hortensie.ai_trader.dbTester.presenter.ListContentAdapterPresenter;
-import com.hortensie.ai_trader.dbTester.view.Fragments.CardContentFragment;
 import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
 
 import org.junit.Assert;
@@ -25,7 +22,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -36,7 +32,6 @@ import static org.mockito.Mockito.when;
 
 public class ListContentAdapterPresenterTest {
 
-    private String symbol;
     private ListContentAdapterPresenter sut;
     private Context context;
     private Observable<List<ListSymbolRecord>> recordList;
@@ -46,9 +41,7 @@ public class ListContentAdapterPresenterTest {
     private ListContentAdapterPresenter.MyViewHolder holder;
     private ViewGroup parent;
     private LayoutInflater inflater;
-    private RecyclerView.ViewHolder viewHolder;
-    ListContentAdapterPresenter.MyViewHolder object;
-    View view;
+    private View view;
 
     @Before
     public void setUp(){
@@ -59,8 +52,6 @@ public class ListContentAdapterPresenterTest {
         holder=mock(ListContentAdapterPresenter.MyViewHolder.class);
         parent=mock(ViewGroup.class);
         inflater=mock(LayoutInflater.class);
-        viewHolder=mock(RecyclerView.ViewHolder.class);
-        object=mock(ListContentAdapterPresenter.MyViewHolder.class);
         view=mock(View.class);
     }
 
@@ -129,5 +120,10 @@ public class ListContentAdapterPresenterTest {
 
         //then
         Assert.assertEquals(20,sut.getItemCount());
+    }
+
+    @Test
+    public void onBindViewHolderShouldUpdateRecyclerView(){
+
     }
 }

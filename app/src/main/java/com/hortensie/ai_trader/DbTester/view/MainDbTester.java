@@ -61,7 +61,7 @@ public class MainDbTester extends AppCompatActivity {
 
         setContentView(R.layout.activity_aitrader);
        // adapter = new ListContentAdapterPresenter(getApplicationContext(),modelInterface.getListSymbolRecordFromFireBase("ListSymbolRecords"));
-        listContentFragmentInterface=new ListContentAdapterPresenter(getApplicationContext(),modelInterface.getSymbolListFromFireBase("ListSymbolRecords"));
+        listContentFragmentInterface=new ListContentAdapterPresenter(getApplicationContext(),modelInterface.getSymbolListFromFireBase("DemoSymbols"));
 
         //allow network connection for xAPI login
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

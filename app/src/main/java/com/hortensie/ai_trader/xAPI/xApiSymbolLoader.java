@@ -38,6 +38,7 @@ public class xApiSymbolLoader extends AsyncTask<SyncAPIConnector,Void,List<Symbo
                 SyncAPIConnector apiConnector = params[0];
                 AllSymbolsResponse availableSymbols = APICommandFactory.executeAllSymbolsCommand(apiConnector);
                 symbolList = availableSymbols.getSymbolRecords();
+
                 //temporary turn off Close connection function so rangeDataLoader cna use existing connection
                 //apiConnector.close();
             }

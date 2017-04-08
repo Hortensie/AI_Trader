@@ -33,7 +33,7 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityI
     public void showSymbolDetails() {
         Log.d("RxJava Presenter","inside showDetails");
         //RxJava2 observer for Flowable
-        modelInterface.getSymbolListFromFireBase("ListSymbolRecords")
+        modelInterface.getSymbolListFromFireBase("DemoSymbols")
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<ListSymbolRecord>>() {
