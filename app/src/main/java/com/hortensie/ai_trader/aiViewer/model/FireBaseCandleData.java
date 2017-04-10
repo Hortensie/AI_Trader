@@ -1,8 +1,5 @@
 package com.hortensie.ai_trader.aiViewer.model;
 
-import android.util.Log;
-
-import com.github.mikephil.charting.data.CandleEntry;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

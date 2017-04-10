@@ -32,7 +32,7 @@ android {
         }*/
         compileOptions {
             //sourceCompatibility JavaVersion.VERSION_1_8
-           // targetCompatibility JavaVersion.VERSION_1_8
+            // targetCompatibility JavaVersion.VERSION_1_8
         }
 
     }
@@ -52,11 +52,11 @@ android {
         }
     }
     buildTypes {
-         debug {
+        debug {
             testCoverageEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-         }
+        }
         /*
         release {
            testCoverageEnabled true
@@ -80,8 +80,8 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile("org.robolectric:robolectric:3.1.4",
-                'junit:junit:4.12','org.assertj:assertj-core:2.6.0',
-                'org.mockito:mockito-core:2.5.3'
+            'junit:junit:4.12','org.assertj:assertj-core:2.6.0',
+            'org.mockito:mockito-core:2.5.3'
     )
     //dagger 2 dependencies
     compile 'com.google.dagger:dagger:2.9'
@@ -143,5 +143,3 @@ dependencies {
 
 
 }
-
-

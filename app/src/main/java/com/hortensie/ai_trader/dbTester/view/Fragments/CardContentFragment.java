@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,21 +48,43 @@ public class CardContentFragment extends Fragment {
             picture = (ImageView) itemView.findViewById(R.id.card_image);
             name = (TextView) itemView.findViewById(R.id.card_title);
             description = (TextView) itemView.findViewById(R.id.card_text);
-            itemView.setOnClickListener(new View.OnClickListener() {
+
+            picture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Context context = v.getContext();
-                    Intent intent = new Intent(context, DetailActivityView.class);
-                    intent.putExtra(DetailActivityView.EXTRA_POSITION, getAdapterPosition());
-                    context.startActivity(intent);
+                    switch (v.getId())
+                    {
+                        case R.id.card_image:
+                            Log.d("RxJava","Inside 0-0");
+                            Context context = v.getContext();
+                            //Intent intent = new Intent(context, ListContentFragment.class);
+                            //intent.putExtra(DetailActivityView.EXTRA_POSITION, getAdapterPosition());
+                            //context.startActivity(intent);
+                            break;
+
+                        default:
+                            break;
+
+                    }
                 }
             });
+
+
             // Adding Snackbar to Action Button inside card
-            Button button = (Button)itemView.findViewById(R.id.action_button);
+            final Button button = (Button)itemView.findViewById(R.id.action_button);
             button.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Snackbar.make(v, "Action is pressed",
+                    switch (v.getId())
+                    {
+                        case R.id.action_button:
+                            Log.d("RxJava","Inside 0");
+                            break;
+                        default:
+                            break;
+
+                    }
+                    Snackbar.make(v, "Good job!",
                             Snackbar.LENGTH_LONG).show();
                 }
             });

@@ -86,7 +86,7 @@ public class DetailActivityView extends AppCompatActivity implements DetailActiv
         placePictures.recycle();
 
         // Adding Floating Action Button to bottom right of main view
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_chart);
         if (fab != null)
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override

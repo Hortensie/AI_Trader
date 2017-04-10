@@ -31,7 +31,6 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityI
 
     @Override
     public void showSymbolDetails() {
-        Log.d("RxJava Presenter","inside showDetails");
         //RxJava2 observer for Flowable
         modelInterface.getSymbolListFromFireBase("DemoSymbols")
                 .subscribeOn(Schedulers.newThread())

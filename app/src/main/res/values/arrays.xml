@@ -78,15 +78,15 @@
         <item>Cape Town, South Africa</item>
     </string-array>
     <array name="place_avator">
-        <item>@drawable/a_avator</item>
-        <item>@drawable/b_avator</item>
-        <item>@drawable/c_avator</item>
-        <item>@drawable/d_avator</item>
-        <item>@drawable/e_avator</item>
-        <item>@drawable/f_avator</item>
+        <item>@drawable/arrow_right</item>
+        <item>@drawable/chartdonut</item>
+        <item>@drawable/numeric3</item>
+        <item>@drawable/numeric4</item>
+        <item>@drawable/numeric5</item>
+        <item>@drawable/numeric6</item>
     </array>
     <array name="places_picture">
-        <item>@drawable/a</item>
+        <item>@drawable/ai_view</item>
         <item>@drawable/b</item>
         <item>@drawable/c</item>
         <item>@drawable/d</item>

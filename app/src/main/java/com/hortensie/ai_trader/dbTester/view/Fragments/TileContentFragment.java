@@ -62,7 +62,7 @@ public class TileContentFragment extends Fragment {
      */
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
         // Set numbers of List in RecyclerView.
-        private static final int LENGTH = 18;
+        private static final int LENGTH = 6;
         private final String[] mPlaces;
         private final Drawable[] mPlacePictures;
         public ContentAdapter(Context context) {
