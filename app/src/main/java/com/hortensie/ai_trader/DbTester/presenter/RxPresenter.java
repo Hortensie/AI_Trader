@@ -6,6 +6,11 @@ import com.hortensie.ai_trader.dbTester.view.RxViewInterface;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+//spark
+
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.SparkConf;
 
 /**
  * Created by szczesny on 2017-02-09.

@@ -1,8 +1,7 @@
 //import com.android.ddmlib.DdmPreferences
-
 apply plugin: 'com.android.application'
-apply plugin: 'jacoco-android'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'jacoco-android'
 
 android {
 
@@ -29,12 +28,12 @@ android {
         /*
         jackOptions{
             enabled true
-        }*/
-        compileOptions {
-            //sourceCompatibility JavaVersion.VERSION_1_8
-            // targetCompatibility JavaVersion.VERSION_1_8
         }
-
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+        */
     }
     //do not check .png files so strictly
     aaptOptions.cruncherEnabled = false
@@ -49,7 +48,12 @@ android {
                             'src/main/res/layouts/xAPI',
                             'src/main/res/layouts/global_generic',
                     ]
-        }
+
+            jniLibs.srcDirs =
+                    [
+                            'src/main/jniLibs',
+                    ]
+            }
     }
     buildTypes {
         debug {
@@ -76,7 +80,11 @@ android {
     }
 
 }
-
+configurations.all {
+    resolutionStrategy.force 'com.google.guava:guava:18.0'
+    resolutionStrategy.force 'org.objenesis:objenesis:2.5.1'
+    resolutionStrategy.force 'com.google.protobuf:protobuf-java:2.4.1'
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile("org.robolectric:robolectric:3.1.4",
@@ -140,6 +148,6 @@ dependencies {
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
     // UiAutomator
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
-
-
+    //spark
+    compile 'org.apache.spark:spark-core_2.10:1.6.1'
 }

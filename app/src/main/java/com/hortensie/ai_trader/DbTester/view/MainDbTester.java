@@ -20,6 +20,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,8 +53,10 @@ public class MainDbTester extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private FireBaseModelInterface modelInterface=new FireBaseModel(firebaseDatabase.getReference(),firebaseDatabase);
     private ListContentFragmentInterface listContentFragmentInterface;
-
     private DrawerLayout mDrawerLayout;
+
+    ViewPager viewPager;
+    TabLayout tabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +75,15 @@ public class MainDbTester extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Setting ViewPager for each Tabs
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        // Set Tabs inside Toolbar
+        tabs = (TabLayout) findViewById(R.id.tabs);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+
         setupViewPager(viewPager);
 
-        // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
+        tabs.addOnTabSelectedListener(tabListener);
         // Create Navigation drawer and inflate layout
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -121,6 +126,7 @@ public class MainDbTester extends AppCompatActivity {
                     }
                 });
         // Adding Floating Action Button to bottom right of main view
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +136,7 @@ public class MainDbTester extends AppCompatActivity {
                         Snackbar.LENGTH_LONG).show();
             }
         });
+        */
     }
 
     // Add Fragments to Tabs
@@ -137,7 +144,7 @@ public class MainDbTester extends AppCompatActivity {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new CardContentFragment(), "Features");
         adapter.addFragment(new TileContentFragment(), "Tile");
-        adapter.addFragment(new com.hortensie.ai_trader.dbTester.view.Fragments.ListContentFragment(), "Symbols");
+        adapter.addFragment(new ListContentFragment(), "Symbols");
         viewPager.setAdapter(adapter);
     }
 
@@ -208,6 +215,38 @@ public class MainDbTester extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    TabLayout.OnTabSelectedListener tabListener = new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            //viewPager.setCurrentItem(tab.getPosition());
+            Log.d("RxJava","inside on TabSelected");
+        }
+
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {
+            Log.d("RxJava","inside on onTabUnselected");
+        }
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+            Log.d("RxJava","inside on onTabReselected");
+
+        }
+    };
+
+    public void changePage(final int id){
+
+        Log.d("RxJava","inside on changePage");
+        viewPager.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                viewPager.setCurrentItem(id, true);
+            }
+        }, 100);
     }
 
 }

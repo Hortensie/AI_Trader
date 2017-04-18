@@ -1,13 +1,13 @@
 package com.hortensie.ai_trader.dbTester.view.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,14 +19,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.hortensie.ai_trader.R;
-import com.hortensie.ai_trader.dbTester.view.DetailActivityView;
+import com.hortensie.ai_trader.dbTester.view.MainDbTester;
 
 /**
  * Created by szczesny on 2017-02-18.
+ * Fragment that contains main AI trader options
  */
 
 
 public class CardContentFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,11 +41,12 @@ public class CardContentFragment extends Fragment {
         return recyclerView;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView picture;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView picture;
         public TextView name;
         public TextView description;
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+
+        ViewHolder(LayoutInflater inflater, final ViewGroup parent) {
             super(inflater.inflate(R.layout.item_card, parent, false));
             picture = (ImageView) itemView.findViewById(R.id.card_image);
             name = (TextView) itemView.findViewById(R.id.card_title);
@@ -55,11 +58,9 @@ public class CardContentFragment extends Fragment {
                     switch (v.getId())
                     {
                         case R.id.card_image:
-                            Log.d("RxJava","Inside 0-0");
-                            Context context = v.getContext();
-                            //Intent intent = new Intent(context, ListContentFragment.class);
-                            //intent.putExtra(DetailActivityView.EXTRA_POSITION, getAdapterPosition());
-                            //context.startActivity(intent);
+                            MainDbTester object = new MainDbTester();
+                            object.changePage(0);
+
                             break;
 
                         default:
@@ -112,7 +113,7 @@ public class CardContentFragment extends Fragment {
     /**
      * Adapter to display recycler view.
      */
-    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
+    public class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 6;
         //1- AI dBT Tester - Viewer

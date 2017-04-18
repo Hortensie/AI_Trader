@@ -79,11 +79,11 @@
     </string-array>
     <array name="place_avator">
         <item>@drawable/arrow_right</item>
-        <item>@drawable/chartdonut</item>
-        <item>@drawable/numeric3</item>
-        <item>@drawable/numeric4</item>
-        <item>@drawable/numeric5</item>
-        <item>@drawable/numeric6</item>
+        <item>@drawable/arrow_right</item>
+        <item>@drawable/arrow_right</item>
+        <item>@drawable/arrow_right</item>
+        <item>@drawable/arrow_right</item>
+        <item>@drawable/arrow_right</item>
     </array>
     <array name="places_picture">
         <item>@drawable/ai_view</item>

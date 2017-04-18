@@ -31,6 +31,11 @@ import io.reactivex.SingleOnSubscribe;
 
 public class FireBaseModel implements FireBaseModelInterface {
 
+    //static {
+     //   System.loadLibrary("native-lib");
+    //}
+
+    //private native String calculateArea(double radius);
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
 
@@ -39,20 +44,14 @@ public class FireBaseModel implements FireBaseModelInterface {
         this.firebaseDatabase = firebaseDatabase;
     }
 
-    /*
-    public FireBaseModel() {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
-    }
-    */
-
     @Override
     public Observable<String> getData() {
         return Observable.create(new ObservableOnSubscribe<String>() {
             @Override
             public void subscribe(ObservableEmitter<String> e) throws Exception {
                 try {
-                    e.onNext("Home sweet home"); // Emit the contents of the URL
+                    //e.onNext(calculateArea(5.5f)); // Emit the contents of the URL
+                    e.onNext("Home");
                     e.onComplete(); // Nothing more to emit
                 }
                 catch (Exception e1) {

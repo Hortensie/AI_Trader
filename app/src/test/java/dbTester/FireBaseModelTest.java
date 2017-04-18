@@ -1,5 +1,7 @@
 package dbTester;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,6 +23,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.observers.TestObserver;
 
+import static android.content.ContentValues.TAG;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasSize;
@@ -45,8 +48,8 @@ public class FireBaseModelTest {
         record=mock(ListSymbolRecord.class);
         reference=mock(DatabaseReference.class);
         firebase=mock(FirebaseDatabase.class);
-
     }
+
     @Test
     public void constructorShouldInitFireBase(){
 
@@ -54,7 +57,7 @@ public class FireBaseModelTest {
         FireBaseModel object = new FireBaseModel(reference,firebase);
 
         //when
-        object.getSymbolListFromFireBase("symbols");
+        object.getSymbolListFromFireBase("Symbols");
 
         //then
         Assert.assertNotNull(object);
@@ -82,7 +85,6 @@ public class FireBaseModelTest {
 
     @Test
     public void getDataReturnObservable(){
-
         //given
         TestObserver<String> observer2 = new TestObserver<>();
         sut = new FireBaseModel(reference,firebase);
@@ -94,7 +96,7 @@ public class FireBaseModelTest {
 
         //then
         observable.test().assertSubscribed();
-        observable.test().onNext("Home");
+        observable.test().onNext("RxJava, ");
         observable.test().onComplete();
         Assert.assertNotNull(observable);
     }
