@@ -19,6 +19,7 @@ android {
         //DdmPreferences.setTimeOut(60000)
         //vector assets for images
         vectorDrawables.useSupportLibrary = true
+        //multiDexEnabled true
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -26,23 +27,30 @@ android {
         }
         //required by java8 compiler - lambda expressions
 
-        //jackOptions{
-        //    enabled true
+        //jackOptions {
+          //  enabled true
         //}
         /*
         //spark
+
         compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_7
-            targetCompatibility JavaVersion.VERSION_1_7
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
         }
         */
+
     }
+    //compileOptions {
+      //  sourceCompatibility JavaVersion.VERSION_1_8
+       // targetCompatibility JavaVersion.VERSION_1_8
+    //}
     //do not check .png files so strictly
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
     //in order to have subdirectories for layouts
     sourceSets {
         main {
+
             res.srcDirs =
                     [
                             'src/main/res/layouts/dBTester',
@@ -53,6 +61,7 @@ android {
 
             jniLibs.srcDirs =
                     [
+                            'libs',
                             'src/main/jniLibs',
                     ]
             }
@@ -94,7 +103,7 @@ configurations.all {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile("org.robolectric:robolectric:3.1.4",
-            'junit:junit:4.12','org.assertj:assertj-core:2.6.0',
+            'junit:junit:4.12', 'org.assertj:assertj-core:2.6.0',
             'org.mockito:mockito-core:2.5.3'
     )
     //dagger 2 dependencies
@@ -123,23 +132,22 @@ dependencies {
     // Because RxAndroid releases are few and far between, it is recommended you also
     // explicitly depend on RxJava's latest version for bug fixes and new features.
     compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     /*
-    androidTestCompile("org.robolectric:robolectric:3.1.4",
-            'junit:junit:4.12','org.assertj:assertj-core:2.6.0',
-            'org.mockito:mockito-core:2.5.3',
-    )
-    */
+                        androidTestCompile("org.robolectric:robolectric:3.1.4",
+                                'junit:junit:4.12','org.assertj:assertj-core:2.6.0',
+                                'org.mockito:mockito-core:2.5.3',
+                        )
+                        */
     //Espresso dependency
     androidTestCompile 'com.android.support.test:runner:0.5'
     androidTestCompile 'com.android.support:support-annotations:25.3.1'
     // JUnit4 Rules
     androidTestCompile 'com.android.support.test:rules:0.5'
     //Espresso Contributor for DatePicker, RecyclerView, Drawer actions, Accessibility checks, CountingIdlingResource
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.2'){
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.2') {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
@@ -156,4 +164,5 @@ dependencies {
     androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
     //spark
     //compile 'org.apache.spark:spark-core_2.10:1.6.1'
+    compile files('libs/libandroid_tensorflow_inference_java.jar')
 }

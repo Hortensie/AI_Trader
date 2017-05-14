@@ -1,6 +1,5 @@
 package com.hortensie.ai_trader.dbTester.model;
 
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -8,21 +7,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hortensie.ai_trader.xAPI.ListSymbolRecord;
-
 import java.util.LinkedList;
 import java.util.List;
 
-import io.reactivex.BackpressureStrategy;
-
-import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Single;
-import io.reactivex.SingleEmitter;
-import io.reactivex.SingleOnSubscribe;
 
 /**
  * Created by szczesny on 2017-02-09.
@@ -31,9 +21,6 @@ import io.reactivex.SingleOnSubscribe;
 
 public class FireBaseModel implements FireBaseModelInterface {
 
-    //static {
-     //   System.loadLibrary("native-lib");
-    //}
 
     //private native String calculateArea(double radius);
     private DatabaseReference databaseReference;
@@ -117,6 +104,7 @@ public class FireBaseModel implements FireBaseModelInterface {
             }
         });
     }
+
 
 
 }

@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModel;
 import com.hortensie.ai_trader.dbTester.model.FireBaseModelInterface;
+import com.hortensie.ai_trader.dbTester.model.TensorFlowModel;
 import com.hortensie.ai_trader.dbTester.presenter.RxPresenter;
 import com.hortensie.ai_trader.dbTester.presenter.RxPresenterInterface;
 import com.hortensie.ai_trader.R;
@@ -19,7 +20,7 @@ public class RxView extends CustomAppCompatActivity implements RxViewInterface{
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     TextView textView;
     private FireBaseModelInterface model=new FireBaseModel(firebaseDatabase.getReference(),firebaseDatabase);
-
+    TensorFlowModel tensorModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,8 @@ public class RxView extends CustomAppCompatActivity implements RxViewInterface{
         RxPresenterInterface rxPresenterInterface2 = new RxPresenter(this, model);
         //call showData method from rxPresenter interface
         rxPresenterInterface2.showData();
+        tensorModel= new TensorFlowModel(getApplicationContext());
+        tensorModel.initTensorFlowModel();
     }
 
     @Override
