@@ -15,7 +15,7 @@ dependencies:
     - ~/android
   pre:
     #-- Install NDK r12b --
-    #- if [[ ! -e ~/android-ndk-r12b ]]; then wget http://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip && unzip -d ~ android-ndk-r12b-linux-x86_64.zip; fi
+    - if [[ ! -e ~/android-ndk-r12b ]]; then wget http://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip && unzip -d ~ android-ndk-r12b-linux-x86_64.zip; fi
     #-- Intall Android SDK Build-tools, revision 25.0.1 --
     - echo y | android update sdk --no-ui --all --filter build-tools-25.0.3,android-25,extra-android-m2repository
     #---Install CMake--
