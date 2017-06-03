@@ -1,5 +1,8 @@
 package com.hortensie.ai_trader.dbTester.view;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,6 +36,23 @@ public class RxView extends CustomAppCompatActivity implements RxViewInterface{
         rxPresenterInterface2.showData();
         tensorModel= new TensorFlowModel(getApplicationContext());
         tensorModel.initTensorFlowModel();
+
+        final Button button = (Button) findViewById(R.id.tensor_interfere);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText editNum1 = (EditText) findViewById(R.id.editNum1);
+                final EditText editNum2 = (EditText) findViewById(R.id.editNum2);
+                final EditText editNum3 = (EditText) findViewById(R.id.editNum3);
+
+                long num1 = Long.parseLong(editNum1.getText().toString());
+                long num2 = Long.parseLong(editNum2.getText().toString());
+                long num3 = Long.parseLong(editNum3.getText().toString());
+
+                long[] inputFloats = {num1,num2,num3};
+                tensorModel.performInference(inputFloats);
+            }
+        });
     }
 
     @Override
