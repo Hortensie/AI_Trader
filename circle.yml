@@ -26,7 +26,7 @@ dependencies:
     - chmod +x gradlew
     - ANDROID_HOME=/usr/local/android-sdk-linux ./gradlew dependencies
     #------------------
-    #- echo "ndk.dir=/home/ubuntu/android-ndk-r12b" > local.properties
+    - echo "ndk.dir=/home/ubuntu/android-ndk-r12b" > local.properties
 
 test:
   pre:
