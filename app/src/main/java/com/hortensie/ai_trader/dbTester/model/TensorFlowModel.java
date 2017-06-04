@@ -1,7 +1,6 @@
 package com.hortensie.ai_trader.dbTester.model;
 import android.content.Context;
 import android.util.Log;
-
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
 
