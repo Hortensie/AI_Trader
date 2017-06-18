@@ -21,27 +21,21 @@
 
         <EditText
             android:id="@+id/editNum1"
-            android:layout_width="match_parent"
+            android:layout_width="85dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="1" />
+            android:ems="10" />
 
         <EditText
             android:id="@+id/editNum2"
-            android:layout_width="match_parent"
+            android:layout_width="86dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="2" />
+            android:ems="10" />
 
         <EditText
             android:id="@+id/editNum3"
-            android:layout_width="match_parent"
+            android:layout_width="89dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="3" />
+            android:ems="10" />
 
         <Button
             android:id="@+id/tensor_interfere"
@@ -49,6 +43,11 @@
             android:layout_height="wrap_content"
             android:text="Analyse" />
 
+        <TextView
+            android:id="@+id/tensor_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="What is the value?"/>
     </LinearLayout>
 
     <include layout="@layout/navigation_view"/>

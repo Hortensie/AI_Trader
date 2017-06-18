@@ -28,13 +28,13 @@ public class RxView extends CustomAppCompatActivity implements RxViewInterface{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rxjava);
-        textView = (TextView) findViewById(R.id.rxJava);
+        textView = (TextView) findViewById(R.id.tensor_output);
 
         //create RxPresenter object via Interface with connection to current (this) view
         RxPresenterInterface rxPresenterInterface2 = new RxPresenter(this, model);
         //call showData method from rxPresenter interface
         rxPresenterInterface2.showData();
-        tensorModel= new TensorFlowModel(getApplicationContext());
+        tensorModel= new TensorFlowModel(getApplicationContext(),this);
         tensorModel.initTensorFlowModel();
 
         final Button button = (Button) findViewById(R.id.tensor_interfere);
@@ -45,11 +45,11 @@ public class RxView extends CustomAppCompatActivity implements RxViewInterface{
                 final EditText editNum2 = (EditText) findViewById(R.id.editNum2);
                 final EditText editNum3 = (EditText) findViewById(R.id.editNum3);
 
-                long num1 = Long.parseLong(editNum1.getText().toString());
-                long num2 = Long.parseLong(editNum2.getText().toString());
-                long num3 = Long.parseLong(editNum3.getText().toString());
+                float num1 = Float.parseFloat(editNum1.getText().toString());
+                float num2 = Float.parseFloat(editNum2.getText().toString());
+                float num3 = Float.parseFloat(editNum3.getText().toString());
 
-                long[] inputFloats = {num1,num2,num3};
+                float[] inputFloats = {num1,num2,num3};
                 tensorModel.performInference(inputFloats);
             }
         });
