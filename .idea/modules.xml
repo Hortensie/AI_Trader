@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AI_Trader.iml" filepath="$PROJECT_DIR$/AI_Trader.iml" />
+      <module fileurl="file://C:\AI_Trader\AI_Trader.iml" filepath="C:\AI_Trader\AI_Trader.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\AI_Trader\app\app.iml" filepath="C:\AI_Trader\app\app.iml" />
     </modules>
   </component>
 </project>

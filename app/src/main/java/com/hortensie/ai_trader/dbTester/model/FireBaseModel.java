@@ -15,6 +15,7 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
 /**
+ * New work started (29.12.2017)
  * Created by szczesny on 2017-02-09.
  * Data access layer such as database API or remote server API.
  */

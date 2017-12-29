@@ -60,7 +60,7 @@ public class TensorFlowModel {
         inferenceInterface.fetch(OUTPUT_NODE,resu);
         //inferenceInterface.readNodeFloat(OUTPUT_NODE, resu);
         Log.d("Model","Success of Tensor fetch");
-        //Log.d("Model","Result"+resu[0]);
+        Log.d("Model","Result"+resu[0]);
         viewInterface.updateUi(""+resu[0]+", "+resu[1]);
         //textViewR.setText(Float.toString(resu[0]) + ", " + Float.toString(resu[1]));
     }
