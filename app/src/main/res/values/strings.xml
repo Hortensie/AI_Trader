@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">AI_Trader</string>
-    <string name="login_xapi">10164121</string>
+    <string name="login_xapi">10338031</string>
     <string name="load_historical_financial_data">Get Data from db</string>
     <string name="load_symbols_db">Get symbols from db</string>
-    <string name="password_xapi">17242203</string>
+    <string name="password_xapi">devil666</string>
     <string name="login_hint">please enter login</string>
     <string name="password_hint">please enter password</string>
     <string name="data_symbol">symbol</string>
