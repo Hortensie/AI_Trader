@@ -5,12 +5,12 @@ apply plugin: 'jacoco-android'
 
 android {
 
-    compileSdkVersion 27
+    compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.hortensie.ai_trader"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         //dependency to run Espresso Instrumental tests
